@@ -1,0 +1,23 @@
+{
+  "name": "js-template",
+  "version": "0.0.0",
+  "description": "Template repository for general javascript projects ",
+  "main": "dist/index.min.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimbob3806/js-template.git"
+  },
+  "keywords": [
+    "template",
+    "javascript"
+  ],
+  "author": "James Reid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimbob3806/js-template/issues"
+  },
+  "homepage": "https://github.com/jimbob3806/js-template#readme"
+}
