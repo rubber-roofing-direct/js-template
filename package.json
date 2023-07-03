@@ -1,23 +1,43 @@
 {
-  "name": "js-template",
-  "version": "0.0.0",
-  "description": "Template repository for general javascript projects ",
-  "main": "dist/index.min.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jimbob3806/js-template.git"
-  },
-  "keywords": [
-    "template",
-    "javascript"
-  ],
-  "author": "James Reid",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jimbob3806/js-template/issues"
-  },
-  "homepage": "https://github.com/jimbob3806/js-template#readme"
+    "name": "js-template",
+    "version": "0.0.0",
+    "description": "Template repository for general javascript projects ",
+    "main": "dist/index.min.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jimbob3806/js-template.git"
+    },
+    "keywords": [
+        "template",
+        "javascript"
+    ],
+    "author": "James Reid",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jimbob3806/js-template/issues"
+    },
+    "homepage": "https://github.com/jimbob3806/js-template#readme",
+    "devDependencies": {
+        "@13ms/funky": "^1.0.1",
+        "@13ms/submodule": "^1.2.1",
+        "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+        "@babel/preset-env": "^7.22.5",
+        "@jest/globals": "^29.5.0",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-commonjs": "^25.0.2",
+        "@rollup/plugin-node-resolve": "^15.1.0",
+        "@rollup/plugin-terser": "^0.4.3",
+        "docdash": "^2.0.1",
+        "eslint": "^8.44.0",
+        "eslint-plugin-regex": "^1.10.0",
+        "http-server": "^14.1.1",
+        "jest": "^29.5.0",
+        "nodemon": "^2.0.22",
+        "rollup": "^3.26.0",
+        "rollup-plugin-postcss": "^4.0.2",
+        "typescript": "^5.1.6"
+    }
 }
