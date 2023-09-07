@@ -1,14 +1,41 @@
 {
     "name": "js-template",
-    "version": "0.0.0",
-    "description": "Template repository for general javascript projects ",
-    "main": "dist/index.min.js",
+    "version": "0.0.1",
+    "description": "Template repository for general javascript projects",
+    "type": "module",
+    "main": "dist/package/index.min.js",
+    "targets": {
+        "main": false
+    },
     "scripts": {
-        "test": "jest"
+        "build": "npm run build:dev && npm run build:prod",
+        "build:dev": "npm run build:dev:bin && npm run build:dev:docs && npm run build:dev:package && npm run build:dev:web",
+        "build:dev:bin": "rollup --config admin/config/rollup.config.js",
+        "build:dev:docs": "jsdoc --configure admin/config/jsdoc.config.json",
+        "build:dev:package": "rollup --config admin/config/rollup.config.js",
+        "build:prod": "npm run build:prod:bin && npm run build:prod:package && npm run build:prod:web",
+        "build:prod:bin": "rollup --config admin/config/rollup.config.js",
+        "build:prod:package": "rollup --config admin/config/rollup.config.js",
+        "build:prod:web": "parcel build src/web/pages/**/**/*.html --dist-dir dist/web",
+        "changelog": "node admin/scripts/changelog.js",
+        "deploy": "gh-pages --dist dist/web",
+        "lint": "npm run lint:check",
+        "lint:check": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "plop": "plop --plopfile 'admin/config/plopfile.js'",
+        "start": "npm run start:web",
+        "start:docs": "npm run build:dev:docs && http-server build/jsdoc & nodemon --watch src --exec 'npm run build:dev:docs'",
+        "start:web": "parcel src/web/pages/**/**/*.html --dist-dir build/web",
+        "test": "jest",
+        "tokei": "node admin/scripts/tokei.js",
+        "types": "tsc",
+        "watch": "nodemon --watch src --exec 'npm run build:dev:bin && npm run build:dev:package'",
+        "watch:bin": "nodemon --watch src/bin --exec 'npm run build:dev:bin'",
+        "watch:package": "nodemon --watch src/package --exec 'npm run build:dev:package'"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/jimbob3806/js-template.git"
+        "url": "git+https://github.com/blameitonyourisp/js-template.git"
     },
     "keywords": [
         "template",
@@ -17,9 +44,9 @@
     "author": "James Reid",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/jimbob3806/js-template/issues"
+        "url": "https://github.com/blameitonyourisp/js-template/issues"
     },
-    "homepage": "https://github.com/jimbob3806/js-template#readme",
+    "homepage": "https://github.com/blameitonyourisp/js-template#readme",
     "devDependencies": {
         "@13ms/funky": "^1.0.1",
         "@13ms/submodule": "^1.2.1",
@@ -30,14 +57,23 @@
         "@rollup/plugin-commonjs": "^25.0.2",
         "@rollup/plugin-node-resolve": "^15.1.0",
         "@rollup/plugin-terser": "^0.4.3",
+        "@types/mustache": "^4.2.2",
         "docdash": "^2.0.1",
         "eslint": "^8.44.0",
+        "eslint-plugin-eslint-comments": "^3.2.0",
         "eslint-plugin-regex": "^1.10.0",
+        "gh-pages": "^5.0.0",
         "http-server": "^14.1.1",
         "jest": "^29.5.0",
-        "nodemon": "^2.0.22",
+        "jsdoc": "^4.0.2",
+        "mustache": "^4.2.0",
+        "nodemon": "^3.0.1",
+        "parcel": "^2.9.3",
+        "plop": "^3.1.2",
         "rollup": "^3.26.0",
         "rollup-plugin-postcss": "^4.0.2",
-        "typescript": "^5.1.6"
+        "sharp": "^0.31.3",
+        "typescript": "^5.1.6",
+        "yaml": "^2.3.2"
     }
 }

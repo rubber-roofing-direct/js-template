@@ -1,0 +1,263 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+
+    "extends": "eslint:recommended",
+
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+
+    "plugins": [
+        "header",
+        "regex"
+    ],
+
+    "rules": {
+        // PLUGINS
+        "regex/invalid": ["error", [
+            {
+                "id": "jsdocRegexes",
+                // review order of imports
+                "regex": "(?<!\n\n)\/\/ (@imports(-(node|dependencies|utils|package|module|types))?|@no-imports)(\n| .*\n)",
+                "message": "Import tag line break required.",
+                "replacement": {
+                    "function": "return `\n${text}`"
+                }
+            },
+            // add regex for no invalid import tags
+            {
+                "id": "jsdocRegexes",
+                "regex": "(?<!\n\n)\/\/ (@body|@no-body)(\n| .*\n)",
+                "message": "Correct jsdoc @file and @author tags required.",
+                "replacement": {
+                    "function": "return `\n${text}`"
+                }
+            },
+            {
+                "id": "jsdocRegexes",
+                "regex": "(?<!\n\n)\/\/ (@exports|@no-exports)(\n| .*\n)",
+                "message": "Correct jsdoc @file and @author tags required.",
+                "replacement": {
+                    "function": "return `\n${text}`"
+                }
+            }
+        ]],
+        "regex/required": ["error", [
+            {
+                "id": "headerRegex",
+                "regex": "(?<!.|\n)\/\/ Copyright \\(c\\) \\d{4} .*\\. All rights reserved\\.\n\/\/\n\/\/ This source code file is licensed under the terms of the MIT license, a copy\n\/\/ of which may be found in the LICENSE\\.md file in the root of this repository\\.\n\/\/\n\/\/ For a template copy of the license see one of the following 3rd party sites:\n\/\/ {6}- <https:\/\/opensource\\.org\/licenses\/MIT>\n\/\/ {6}- <https:\/\/choosealicense\\.com\/licenses\/mit>\n\/\/ {6}- <https:\/\/spdx\\.org\/licenses\/MIT>\n\n\/\\*\\*\\s*\n([^\\*]|(\\*(?!\/)))*\\s*\\*\\s*@file\\s.*\n(\\s*\\*\\s*@author\\s.*\n)+\\s*\\*\/\n\n\/\/ (@ts-check|@ts-nocheck)(\n| .*\n)\n",
+                "message": "Correct header order required."
+            },
+            {
+                "id": "licenseRegex",
+                "regex": "(?<!.|\n)\/\/ Copyright \\(c\\) \\d{4} .*\\. All rights reserved\\.\n\/\/\n\/\/ This source code file is licensed under the terms of the MIT license, a copy\n\/\/ of which may be found in the LICENSE\\.md file in the root of this repository\\.\n\/\/\n\/\/ For a template copy of the license see one of the following 3rd party sites:\n\/\/ {6}- <https:\/\/opensource\\.org\/licenses\/MIT>\n\/\/ {6}- <https:\/\/choosealicense\\.com\/licenses\/mit>\n\/\/ {6}- <https:\/\/spdx\\.org\/licenses\/MIT>\n",
+                "message": "Correct license header required."
+            },
+            {
+                "id": "jsdocRegex",
+                "regex": "\/\\*\\*\\s*\n([^\\*]|(\\*(?!\/)))*\\s*\\*\\s*@file\\s.*\n(\\s*\\*\\s*@author\\s.*\n)+\\s*\\*\/\n",
+                "message": "Correct jsdoc @file and @author tags required."
+            },
+            {
+                "id": "tsCheckRegex",
+                "regex": "\/\/ (@ts-check|@ts-nocheck)(\n| .*\n)",
+                "message": "@ts-check or @ts-nocheck tag required."
+            },
+            {
+                "id": "importTagRegex",
+                "regex": "\/\/ (@imports(-(node|dependencies|package|module|types|utils))?|@no-imports)(\n| .*\n)",
+                "message": "Import tag required."
+            },
+            {
+                "id": "bodyTagRegex",
+                "regex": "\/\/ (@body|@no-body)(\n| .*\n)",
+                "message": "Body tag required."
+            },
+            {
+                "id": "exportTagRegex",
+                "regex": "\/\/ (@exports|@no-exports)(\n| .*\n)",
+                "message": "Export tag required."
+            }
+        ]],
+
+        // PROBLEMS
+        "no-control-regex": "off",
+        "no-duplicate-imports": "error",
+        "no-ex-assign": "off",
+        "no-unused-private-class-members": "error",
+
+        // SUGGESTIONS
+        "curly": ["error", "all"],
+        "default-case": ["error", {
+            "commentPattern": "^@no-default"
+        }],
+        "default-case-last": "error",
+        "default-param-last": "error",
+        "eqeqeq": "error",
+        "func-style": ["error", "declaration", {
+            "allowArrowFunctions": true
+        }],
+        "grouped-accessor-pairs": "error",
+        "guard-for-in": "off", // https://eslint.org/docs/latest/rules/guard-for-in
+        "id-denylist": ["error", "err", "e", "ev", "cb"],
+        "id-match": ["error", "(^[A-Z]?[a-z]+([A-Z][a-z]+)*$)|(^([A-Z]+_?)*$)", {
+            "properties": false,
+            "classFields": false,
+            "onlyDeclarations": true,
+            "ignoreDestructuring": true
+        }],
+        "multiline-comment-style": ["error", "separate-lines"],
+        "new-cap": ["error", {
+            "newIsCap": true,
+            "capIsNew": true,
+            "capIsNewExceptions": ["Array"]
+        }],
+        "no-else-return": "error",
+        "no-extra-label": "error",
+        "no-label-var": "error",
+        "no-lone-blocks": "error",
+        "no-useless-return": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "spaced-comment": ["error", "always"],
+        "yoda": "error",
+
+        // LAYOUT
+        "array-bracket-newline": ["error", "consistent"],
+        "array-bracket-spacing": ["error", "never"],
+        "array-element-newline": ["error", "consistent"],
+        "arrow-parens": ["error", "as-needed"],
+        "arrow-spacing": ["error", {
+            "before": true,
+            "after": true
+        }],
+        "block-spacing": ["error", "always"],
+        "brace-style": ["error", "stroustrup", {
+            "allowSingleLine": true
+        }],
+        "comma-dangle": ["error", "never"], // https://eslint.org/docs/latest/rules/comma-dangle
+        "comma-spacing": ["error", {
+            "before": false,
+            "after": true
+        }],
+        "comma-style": ["error", "last"],
+        "computed-property-spacing": ["error", "never", {
+            "enforceForClassMembers": true
+        }],
+        "dot-location": ["error", "property"],
+        "eol-last": ["error", "always"],
+        "func-call-spacing": ["error", "never"],
+        "function-call-argument-newline": ["error", "consistent"],
+        "function-paren-newline": ["error", "consistent"],
+        "generator-star-spacing": ["error", {
+            "before": false,
+            "after": true
+        }],
+        "implicit-arrow-linebreak": ["error", "beside"],
+        "indent": ["error", 4, {
+            "ignoredNodes": ["ConditionalExpression"]
+            // "flatTernaryExpressions": true
+        }],
+        "jsx-quotes": ["error", "prefer-double"], // https://eslint.org/docs/latest/rules/jsx-quotes
+        "key-spacing": ["error", {
+            "beforeColon": false,
+            "afterColon": true,
+            "mode": "strict"
+        }],
+        "keyword-spacing": ["error", {
+            "before": true,
+            "after": true
+        }],
+        "line-comment-position": ["off"], // https://eslint.org/docs/latest/rules/line-comment-position
+        "linebreak-style": ["error", "unix"],
+        "lines-around-comment": ["off"], // https://eslint.org/docs/latest/rules/lines-around-comment
+        "lines-between-class-members": ["error", "always"],
+        "max-len": ["error", {
+            "code": 80,
+            "tabWidth": 4,
+            "comments": 80,
+            "ignorePattern": "^.*@no-wrap$", // https://eslint.org/docs/latest/rules/max-len
+            "ignoreUrls": true,
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": true,
+            "ignoreRegExpLiterals": true
+        }],
+        "new-parens": ["error", "always"],
+        "newline-per-chained-call": ["error", {
+            "ignoreChainWithDepth": 3
+        }],
+        "no-extra-parens": ["off"], // https://eslint.org/docs/latest/rules/no-extra-parens
+        "no-mixed-spaces-and-tabs": "error",
+        "no-multi-spaces": ["error", {
+            "ignoreEOLComments": false,
+            "exceptions": { "Property": false } 
+        }],
+        "no-multiple-empty-lines": ["error", {
+            "max": 1,
+            "maxEOF": 1,
+            "maxBOF": 1
+        }],
+        "no-tabs": "error",
+        "no-trailing-spaces": ["error", {
+            "skipBlankLines": false,
+            "ignoreComments": false
+        }],
+        "no-whitespace-before-property": "error",
+        "nonblock-statement-body-position": ["error", "beside"],
+        "object-curly-newline": ["error", {
+            "consistent": true
+        }],
+        "object-curly-spacing": ["error", "always"],
+        "operator-linebreak": ["error", "after", {
+            "overrides": { 
+                ":": "before",
+                "?": "before"
+            }
+        }],
+        "padded-blocks": ["error", "never"],
+        "padding-line-between-statements": ["off"], // https://eslint.org/docs/latest/rules/padding-line-between-statements
+        "quotes": ["error", "double"],
+        "rest-spread-spacing": ["error", "never"],
+        "semi": ["error", "never"],
+        "semi-spacing": ["error", {
+            "before": false,
+            "after": false
+        }],
+        "semi-style": ["error", "last"],
+        "space-before-blocks": ["error", "always"],
+        "space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
+        "space-in-parens": ["error", "never"],
+        "space-infix-ops": "error",
+        "space-unary-ops": ["error", {
+            "words": true,
+            "nonwords": true,
+            "overrides": {
+                "++": false,
+                "--": false,
+                "!": false,
+                "~": false
+            }
+        }],
+        "switch-colon-spacing": ["error", {
+            "before": false,
+            "after": true
+        }],
+        "template-curly-spacing": ["error", "never"],
+        "template-tag-spacing": ["error", "never"],
+        "unicode-bom": ["error", "never"],
+        "wrap-iife": ["error", "inside"],
+        "yield-star-spacing": ["error", {
+            "before": false,
+            "after": true
+        }]
+    }
+}

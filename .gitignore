@@ -1,2 +1,6 @@
 # node modules
 node_modules
+
+# dev builds and caches
+build
+.parcel-cache
