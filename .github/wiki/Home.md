@@ -1,1 +1,1 @@
-Welcome to the js-template wiki!
+This is a test!
