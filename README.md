@@ -5,5 +5,8 @@ This is a test of some random content, have a dog pic
 dashes in filename (angular contributing)
 
 git remote add wiki url
-git subtree add --prefix ./github/wiki wiki master --squash
-git subtree push --prefix ./github/wiki wiki master
+git subtree add --prefix .github/wiki wiki master --squash
+git subtree pull --prefix .github/wiki wiki master --squash
+
+// commit changes to local repo
+git subtree push --prefix .github/wiki wiki master
