@@ -1,0 +1,5 @@
+name: Performance Issue
+description: Report a performance issue
+title: "[PERF]: "
+labels: ["type:performance", "status:pending"]
+body:

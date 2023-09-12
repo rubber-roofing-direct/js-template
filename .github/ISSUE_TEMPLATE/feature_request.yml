@@ -1,0 +1,10 @@
+name: Feature Request
+description: Request a new feature, or changes to a feature
+title: "[FEAT]: "
+labels: ["type:feature", "status:pending"]
+body:
+
+# thanks for reporting
+# have you checked existing issues
+# feature description
+# motivation

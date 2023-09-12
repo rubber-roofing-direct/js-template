@@ -1,0 +1,85 @@
+name: Bug Report
+description: Report a bug
+title: "[BUG]: "
+labels: ["type:bug", "status:pending"]
+body:
+  # 
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to submit a new issue.
+
+  # Confirm that no similar issue exists
+  - type: checkboxes
+    id: new-issue-confirmation
+    attributes:
+      label: Is there already a similar open or closed issue?
+      description: Please check existing issues to see if the problem you are experiencing has already been reported.
+      options:
+      - label: I have checked the existing issues
+        required: true
+
+
+  # Package version dropdown
+  - type: dropdown
+    id: package-version
+    attributes:
+      label: Which version of this package are you using?
+      description: If you are experiencing an issue with multiple versions, then select all appropriate versions.
+      multiple: true
+      options:
+        - v0.0.1
+        - LOCAL BUILD (please specify in description)
+        - OTHER (please specify in description)
+    validations:
+      required: true
+
+  # Node LTS version dropdown
+  - type: dropdown
+    id: node-version
+    attributes:
+      label: Which version of NodeJS are you using?
+      description: |
+        If you are experiencing an issue with multiple versions, then select all appropriate versions. 
+        If you are not using an LTS version of NodeJS, then please specify the exact version in the "Additional Information" textarea.
+      multiple: true
+      options:
+        - v18.17.1 ~ Hydrogen
+        - v16.20.2 ~ Gallium
+        - v14.21.3 ~ Fermium
+        - v12.22.12 ~ Erbium
+        - v10.24.1 ~ Dubnium
+        - v8.17.0 ~ Carbon
+        - v6.17.1 ~ Boron
+        - v4.9.1 ~ Argon
+        - NOT APPLICABLE
+        - OTHER (please specify in description)
+    validations:
+      required: true
+
+  # Browser dropdown
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Which browser are you using?
+      description:
+      multiple: true
+      options:
+        - Chrome
+        - Safari
+        - Firefox
+        - Opera
+        - Edge
+        - NOT APPLICABLE
+        - OTHER (please specify in description)
+    validations:
+      required: true
+
+# thanks for reporting
+# select all appropriate versions where issue is observed
+# version of node - other please specify in bug description, or not applicable
+# version of browser (browser brand) chrome etc. - other please specify in bug description, or not applicable
+# version of package
+# bug description
+# steps to reproduce
+# extras

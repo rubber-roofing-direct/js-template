@@ -1,0 +1,9 @@
+name: Other Issue
+description: Report some other issue, or start a discussion
+title: "[MISC]: "
+labels: ["type:other", "status:pending"]
+body:
+
+# thanks for reporting
+# have you checked existing issues
+# issue description

@@ -1,0 +1,5 @@
+name: Security Issue
+description: Report a security vulnerability
+title: "[SEC]: "
+labels: ["type:security", "status:pending"]
+body:
