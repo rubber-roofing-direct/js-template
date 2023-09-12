@@ -25,12 +25,15 @@ body:
     id: package-version
     attributes:
       label: Which version of this package are you using?
-      description: If you are experiencing an issue with multiple versions, then select all appropriate versions.
+      description: |
+        * If you are experiencing an issue with multiple versions, select all appropriate versions
+        * If you are running this package from a local build, specify the hash of commit which you used to build the package
+        * If the package version you are using is not listed, specify correct version in the "Additional Information" textarea
       multiple: true
       options:
         - v0.0.1
-        - LOCAL BUILD (please specify in description)
-        - OTHER (please specify in description)
+        - LOCAL BUILD (specify in description)
+        - OTHER (specify in description)
     validations:
       required: true
 
@@ -40,9 +43,9 @@ body:
     attributes:
       label: Which version of NodeJS are you using?
       description: |
-        * If you are experiencing an issue with multiple versions, then select all appropriate versions
-        * If you are not using an LTS version of NodeJS, then please specify the exact version in the "Additional Information" textarea
-        * If you are not running this package using NodeJS, then please select "NOT APPLICABLE"
+        * If you are experiencing an issue with multiple versions, select all appropriate versions
+        * If you are not running this package using NodeJS, select "NOT APPLICABLE"
+        * If you are not using an LTS version of NodeJS, specify the exact version in the "Additional Information" textarea
       multiple: true
       options:
         - v18.17.1 ~ Hydrogen
@@ -54,7 +57,7 @@ body:
         - v6.17.1 ~ Boron
         - v4.9.1 ~ Argon
         - NOT APPLICABLE
-        - OTHER (please specify in description)
+        - OTHER (specify in description)
     validations:
       required: true
 
@@ -63,7 +66,10 @@ body:
     id: browser
     attributes:
       label: Which browser are you using?
-      description:
+      description: |
+        * If you are experiencing an issue with multiple browsers, select all appropriate browsers
+        * If you are not running this package in a browser, select "NOT APPLICABLE"
+        * If the browser you are using is not listed, specify the browser in the "Additional Information" textarea
       multiple: true
       options:
         - Chrome
@@ -72,7 +78,7 @@ body:
         - Opera
         - Edge
         - NOT APPLICABLE
-        - OTHER (please specify in description)
+        - OTHER (specify in description)
     validations:
       required: true
 
