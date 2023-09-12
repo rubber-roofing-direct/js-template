@@ -8,6 +8,7 @@ body:
     attributes:
       value: |
         Thank you for taking the time to submit a new issue. 
+        Fill out all fields in the form below
         Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available. 
         Please remember that this is a privately maintained repository, and as such issues may take longer than normal to resolve.
 
@@ -15,10 +16,10 @@ body:
   - type: checkboxes
     id: new-issue-confirmation
     attributes:
-      label: Is there already a similar issue?
+      label: Have you checked for similar issues?
       description: Check existing issues to see if the problem you are experiencing has already been reported.
       options:
-      - label: I have checked the existing issues
+      - label: I have checked for similar issues
         required: true
 
   # Confirm that a title has been written
@@ -28,7 +29,7 @@ body:
       label: Have you written an issue title?
       description: Write a title for the issue in the input field above. The title should describe the issue succinctly.
       options:
-      - label: I have given the issue a title
+      - label: I have written an issue title
         required: true      
 
 
@@ -38,14 +39,15 @@ body:
     attributes:
       label: Which version of this package are you using?
       description: |
+        Select which version of this package you are using considering the following:
         * If you are experiencing an issue with multiple versions, select all appropriate versions
-        * If you are running this package from a local build, select "LOCAL BUILD", and specify the hash of the commit which you used to build the package in the "Additional Information" textarea
+        * If you are using a local build, select "LOCAL BUILD", and specify the commit used to build the package in the "Additional Information" textarea
         * If the package version you are using is not listed, select "OTHER", and specify correct version in the "Additional Information" textarea
       multiple: true
       options:
         - v0.0.1
-        - LOCAL BUILD (specify in description)
-        - OTHER (specify in description)
+        - LOCAL BUILD (specify in "Additional Information")
+        - OTHER (specify in "Additional Information")
     validations:
       required: true
 
@@ -55,6 +57,7 @@ body:
     attributes:
       label: Which version of NodeJS are you using?
       description: |
+        Select which version of NodeJS you are using considering the following:
         * If you are experiencing an issue with multiple versions, select all appropriate versions
         * If you are not running this package using NodeJS, select "NOT APPLICABLE"
         * If you are not using an LTS version of NodeJS, select "OTHER", and specify the exact version in the "Additional Information" textarea
@@ -69,7 +72,7 @@ body:
         - v6.17.1 ~ Boron
         - v4.9.1 ~ Argon
         - NOT APPLICABLE
-        - OTHER (specify in description)
+        - OTHER (specify in "Additional Information")
     validations:
       required: true
 
@@ -79,6 +82,7 @@ body:
     attributes:
       label: Which browser are you using?
       description: |
+        Select which browser you are using considering the following:
         * If you are experiencing an issue with multiple browsers, select all appropriate browsers
         * If you are not running this package in a browser, select "NOT APPLICABLE"
         * If the browser you are using is not listed, select "OTHER", and specify the browser in the "Additional Information" textarea
@@ -90,7 +94,7 @@ body:
         - Opera
         - Edge
         - NOT APPLICABLE
-        - OTHER (specify in description)
+        - OTHER (specify in "Additional Information")
     validations:
       required: true
 
