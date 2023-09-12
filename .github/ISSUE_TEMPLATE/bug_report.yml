@@ -40,8 +40,9 @@ body:
     attributes:
       label: Which version of NodeJS are you using?
       description: |
-        If you are experiencing an issue with multiple versions, then select all appropriate versions. 
-        If you are not using an LTS version of NodeJS, then please specify the exact version in the "Additional Information" textarea.
+        * If you are experiencing an issue with multiple versions, then select all appropriate versions
+        * If you are not using an LTS version of NodeJS, then please specify the exact version in the "Additional Information" textarea
+        * If you are not running this package using NodeJS, then please select "NOT APPLICABLE"
       multiple: true
       options:
         - v18.17.1 ~ Hydrogen
