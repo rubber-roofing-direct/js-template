@@ -3,11 +3,11 @@ description: Report a bug
 title: "[BUG]: "
 labels: ["type:bug", "status:pending"]
 body:
-  # 
+  # Default message
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to submit a new issue.
+        Thank you for taking the time to submit a new issue. Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available. Please remember that this is a privately maintained repository, and as such issues may take longer than normal to resolve.
 
   # Confirm that no similar issue exists
   - type: checkboxes
@@ -19,6 +19,16 @@ body:
       - label: I have checked the existing issues
         required: true
 
+  # Confirm that a title has been written
+  - type: checkboxes
+    id: title-confirmation
+    attributes:
+      label: Have you written an issue title?
+      description: Please ensure that you have entered a title for the issue in the input field above. The title should describe the issue succinctly.
+      options:
+      - label: I have given the issue a title
+        required: true      
+
 
   # Package version dropdown
   - type: dropdown
@@ -27,8 +37,8 @@ body:
       label: Which version of this package are you using?
       description: |
         * If you are experiencing an issue with multiple versions, select all appropriate versions
-        * If you are running this package from a local build, specify the hash of commit which you used to build the package
-        * If the package version you are using is not listed, specify correct version in the "Additional Information" textarea
+        * If you are running this package from a local build, select "LOCAL BUILD", and specify the hash of commit which you used to build the package
+        * If the package version you are using is not listed, select "OTHER", and specify correct version in the "Additional Information" textarea
       multiple: true
       options:
         - v0.0.1
@@ -45,7 +55,7 @@ body:
       description: |
         * If you are experiencing an issue with multiple versions, select all appropriate versions
         * If you are not running this package using NodeJS, select "NOT APPLICABLE"
-        * If you are not using an LTS version of NodeJS, specify the exact version in the "Additional Information" textarea
+        * If you are not using an LTS version of NodeJS, select "OTHER", and specify the exact version in the "Additional Information" textarea
       multiple: true
       options:
         - v18.17.1 ~ Hydrogen
@@ -69,7 +79,7 @@ body:
       description: |
         * If you are experiencing an issue with multiple browsers, select all appropriate browsers
         * If you are not running this package in a browser, select "NOT APPLICABLE"
-        * If the browser you are using is not listed, specify the browser in the "Additional Information" textarea
+        * If the browser you are using is not listed, select "OTHER", and specify the browser in the "Additional Information" textarea
       multiple: true
       options:
         - Chrome
@@ -83,10 +93,6 @@ body:
       required: true
 
 # thanks for reporting
-# select all appropriate versions where issue is observed
-# version of node - other please specify in bug description, or not applicable
-# version of browser (browser brand) chrome etc. - other please specify in bug description, or not applicable
-# version of package
 # bug description
 # steps to reproduce
-# extras
+# additonal information
