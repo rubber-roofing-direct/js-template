@@ -97,32 +97,32 @@ body:
     validations:
       required: true
 
-    # Issue description
-    - type: textarea
-      id: issue-description
-      attributes:
-        label: What issue did you encounter?
-        description: |
-          Tell us what bug you encountered and what should have happened
-      validations:
-        required: true
+  # Issue description
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: What issue did you encounter?
+      description: |
+        Tell us what bug you encountered and what should have happened
+    validations:
+      required: true
 
-    # Reproduction steps
-    - type: textarea
-      id: reproduction-steps
-      attributes:
-        label: How can you reproduce this issue?
-        description: |
-          Tell us what bug you encountered and what should have happened
-      validations:
-        required: true
+  # Reproduction steps
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: How can you reproduce this issue?
+      description: |
+        Tell us what bug you encountered and what should have happened
+    validations:
+      required: true
 
-    # Additional information
-    - type: textarea
-      id: additional-information
-      attributes:
-        label: What additional information is available?
-        description: |
-          Tell us what bug you encountered and what should have happened
-      validations:
-        required: true
+  # Additional information
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: What additional information is available?
+      description: |
+        Tell us what bug you encountered and what should have happened
+    validations:
+      required: true
