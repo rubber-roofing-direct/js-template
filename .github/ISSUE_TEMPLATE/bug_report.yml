@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to contribute to this repository. Please fill out the form below to submit a new issue, and consider the following: 
+        Thank you for taking the time to contribute. Please fill out the form below to submit a new issue, and consider the following: 
         * Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available
         * This is a privately maintained repository, and as such issues may take longer than normal to resolve
 
@@ -103,7 +103,13 @@ body:
     attributes:
       label: What issue did you encounter?
       description: |
-        Tell us what bug you encountered and what should have happened
+        Describe the bug that you encountered providing the following information:
+        * Summary of the bug
+        * Description of the expected behaviour
+        * Description of the observed behaviour
+      value: |
+        ## Summary
+        <!-- Summarise the bug that you encountered -->
     validations:
       required: true
 
@@ -113,7 +119,7 @@ body:
     attributes:
       label: How can you reproduce this issue?
       description: |
-        Tell us what bug you encountered and what should have happened
+        Optionally provide steps to reproduce to reproduce this bug
     validations:
       required: true
 
@@ -123,6 +129,9 @@ body:
     attributes:
       label: What additional information is available?
       description: |
-        Tell us what bug you encountered and what should have happened
+        Add any additional information which may be applicable
+        * Version(s) or build commit hash of package if not listed above
+        * Specific version(s) of NodeJS, if applicable, and if not listed in the LTS dropdown above
+        * Browser 
     validations:
       required: true
