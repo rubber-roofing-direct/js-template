@@ -103,13 +103,13 @@ body:
     attributes:
       label: What issue did you encounter?
       description: |
-        Describe the bug that you encountered providing the following information:
+        Describe the bug that you encountered, providing the following information:
         * Summary of the bug
-        * Description of the expected behaviour
-        * Description of the observed behaviour
+        * Expected behaviour
+        * Observed behaviour
       value: |
-        ## Summary
-        <!-- Summarise the bug that you encountered -->
+        ### Summary
+        <!-- Summarise the bug that you encountered. -->
     validations:
       required: true
 
@@ -129,9 +129,30 @@ body:
     attributes:
       label: What additional information is available?
       description: |
-        Add any additional information which may be applicable
-        * Version(s) or build commit hash of package if not listed above
-        * Specific version(s) of NodeJS, if applicable, and if not listed in the LTS dropdown above
-        * Browser 
+        Add any additional information which may be applicable, including, but not limited to, the following:
+        * Version(s) or commit hash of local build of package where issue was observed (if not listed above)
+        * Specific version(s) of NodeJS where issue was observed (if applicable, and if not listed in the LTS dropdown above)
+        * Browser(s) where issue was observed (if applicable, and if not listed in the browser dropdown above)
+        * Any available logs, for example from the browser console or system terminal
+        * If the issue is intermittent, describe the context/scenarios in which the issue occurs
+      value: |
+        ### Additional Version Information
+        <!-- Fill out the following table with additional affected versions. If no additional versions are affected, leave the table blank. -->
+        The following table lists additional versions and browsers where the issue has been observed. Please see above for affected release versions of the package, LTS versions of NodeJS, and affected common browsers.
+        | Category | Affected Versions                                         | 
+        | -------- | --------------------------------------------------------- |
+        | Package  | <!-- List versions, or commit hashes of local builds. --> |
+        | NodeJS   | <!-- List additional affected versions of NodeJS. -->     |
+        | Browser  | <!-- List additional affected browsers. -->               |
+
+        ### Logs
+        <!-- Provide any available logs in markdown codeblock fences. Use multiple blocks, and briefly describe each block where appropriate. -->
+
+        ### Context
+        <!-- Describe the context or scenarios in which the issue occurs. If the bug is not intermittent, leave this section blank. -->
+
+        ### Other
+        <!-- Add any other information which you think might be helpful for resolving the issue -->
+
     validations:
       required: true
