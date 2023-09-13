@@ -7,10 +7,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to submit a new issue. 
-        Fill out all fields in the form below
-        Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available. 
-        Please remember that this is a privately maintained repository, and as such issues may take longer than normal to resolve.
+        Thank you for taking the time to contribute to this repository. Please fill out the form below to submit a new issue, and consider the following: 
+        * Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available
+        * This is a privately maintained repository, and as such issues may take longer than normal to resolve
 
   # Confirm that no similar issue exists
   - type: checkboxes
@@ -41,12 +40,12 @@ body:
       description: |
         Select which version of this package you are using considering the following:
         * If you are experiencing an issue with multiple versions, select all appropriate versions
-        * If you are using a local build, select "LOCAL BUILD", and specify the commit used to build the package in the "Additional Information" textarea
+        * If you are using a local build, select "LOCAL", and specify the commit used to build the package in the "Additional Information" textarea
         * If the package version you are using is not listed, select "OTHER", and specify correct version in the "Additional Information" textarea
       multiple: true
       options:
         - v0.0.1
-        - LOCAL BUILD (specify in "Additional Information")
+        - LOCAL (specify in "Additional Information")
         - OTHER (specify in "Additional Information")
     validations:
       required: true
@@ -98,8 +97,32 @@ body:
     validations:
       required: true
 
-# thanks for reporting
-# bug description
-# steps to reproduce
-# additonal information
-# whats next?
+    # Issue description
+    - type: textarea
+      id: issue-description
+      attributes:
+        label: What issue did you encounter?
+        description: |
+          Tell us what bug you encountered and what should have happened
+      validations:
+        required: true
+
+    # Reproduction steps
+    - type: textarea
+      id: reproduction-steps
+      attributes:
+        label: How can you reproduce this issue?
+        description: |
+          Tell us what bug you encountered and what should have happened
+      validations:
+        required: true
+
+    # Additional information
+    - type: textarea
+      id: additional-information
+      attributes:
+        label: What additional information is available?
+        description: |
+          Tell us what bug you encountered and what should have happened
+      validations:
+        required: true
