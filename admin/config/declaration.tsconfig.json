@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "skipLibCheck": true,
+        "strict": true,
+        "module": "NodeNext",
+        "checkJs": true,
+        "allowJs": true,
+        "emitDeclarationOnly": true,
+        "declaration": true,
+        "rootDir": "../../src/package",
+        "outDir": "../../dist/package/declarations"
+    },
+    "include": [
+        "../../src/package/**/*"
+    ]
+}

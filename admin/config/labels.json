@@ -1,0 +1,112 @@
+[
+    {
+        "name": "priority:high",
+        "color": "dd3c49",
+        "description": "Issue (or PR) is urgent, and should be resolved at the next patch release"
+    },
+    {
+        "name": "priority:low",
+        "color": "a3f5aa",
+        "description": "Issue (or PR) is not critical, and may be resolved at next major release"
+    },
+    {
+        "name": "priority:medium",
+        "color": "ecec79",
+        "description": "Issue (or PR) is important, but may be resolved at next minor release"
+    },
+    {
+        "name": "satus:refused",
+        "color": "dbdbbd",
+        "description": "Issue will not be resolved, or PR will not be merged"
+    },
+    {
+        "name": "status:accepted",
+        "color": "779966",
+        "description": "Issue will be resolved, or PR will be merged"
+    },
+    {
+        "name": "status:duplicate",
+        "color": "dbdbbd",
+        "description": "Issue marked as duplicate"
+    },
+    {
+        "name": "status:fixed",
+        "color": "dbdbbd",
+        "description": "Issue has been fixed"
+    },
+    {
+        "name": "status:merged",
+        "color": "dbdbbd",
+        "description": "PR has been merged"
+    },
+    {
+        "name": "status:needs-changes",
+        "color": "779966",
+        "description": "PR needs changes before it will be merged"
+    },
+    {
+        "name": "status:pending",
+        "color": "242827",
+        "description": "Issue (or PR) has been submitted, but has not yet been reviewed"
+    },
+    {
+        "name": "status:under-review",
+        "color": "415841",
+        "description": "Issue (or PR) marked as under review by the maintainer"
+    },
+    {
+        "name": "type:bug",
+        "color": "332640",
+        "description": "Issue (or PR) which reports (or fixes) a bug"
+    },
+    {
+        "name": "type:dependency",
+        "color": "b9b0e8",
+        "description": "Issue (or PR) which requests (or applies) changes to code dependencies"
+    },
+    {
+        "name": "type:docs",
+        "color": "b9b0e8",
+        "description": "Issue (or PR) which requests (or applies) changes to documentation"
+    },
+    {
+        "name": "type:feature",
+        "color": "6f4db3",
+        "description": "Issue (or PR) which requests (or applies) a new feature, or changes to a feature"
+    },
+    {
+        "name": "type:other",
+        "color": "b9b0e8",
+        "description": "Issue (or PR) which reports (or fixes) some other type of issue"
+    },
+    {
+        "name": "type:performance",
+        "color": "6f4db3",
+        "description": "Issue (or PR) which reports (or fixes) a performance issue"
+    },
+    {
+        "name": "type:refactor",
+        "color": "b9b0e8",
+        "description": "Issue (or PR) which requests (or applies) a refactor of a section of code"
+    },
+    {
+        "name": "type:remove",
+        "color": "b9b0e8",
+        "description": "Issue (or PR) which requests (or applies) the removal of a section of code"
+    },
+    {
+        "name": "type:rewrite",
+        "color": "b9b0e8",
+        "description": "Issue (or PR) which requests (or applies) a rewrite of a section of code"
+    },
+    {
+        "name": "type:security",
+        "color": "332640",
+        "description": "Issue (or PR) which reports (or fixes) a security issue"
+    },
+    {
+        "name": "type:test",
+        "color": "6f4db3",
+        "description": "Issue (or PR) which requests (or applies) new tests, or changes to tests"
+    }
+]
