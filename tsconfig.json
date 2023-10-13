@@ -5,10 +5,11 @@
         "strict": true,
         "module": "NodeNext",
         "checkJs": true,
+        "allowJs": true,
         "noEmit": true
     },
     "include": [
-        "src/**/*",
-        "admin/scripts/**/*"
+        "./src/**/*",
+        "./admin/**/*"
     ]
 }
