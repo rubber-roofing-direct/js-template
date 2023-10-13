@@ -16,9 +16,9 @@
 
 // @ts-check
 
-// @no-imports
+// @@no-imports
 
-// @body
+// @@body
 /**
  * Allowable types for arguments of any cli option.
  *
@@ -36,7 +36,7 @@
  * @property {string} description - Description of cli option for help purposes.
  */
 
-// @exports
+// @@exports
 /**
  * @ignore
  * @type {CliArgument}

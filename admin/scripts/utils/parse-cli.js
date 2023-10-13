@@ -1,4 +1,4 @@
-// Copyright (c) 2022 James Reid. All rights reserved.
+// Copyright (c) 2023 James Reid. All rights reserved.
 //
 // This source code file is licensed under the terms of the MIT license, a copy
 // of which may be found in the LICENSE.md file in the root of this repository.
@@ -16,13 +16,13 @@
 
 // @ts-check
 
-// @imports-types
-/* eslint-disable no-unused-vars */
+// @@imports-types
+/* eslint-disable no-unused-vars -- Types only used in comments. */
 import { decorateFg, padEndDecorated } from "./decorate-cli.js"
-import { CliOption, CliArgument } from "./types/index.js"
-/* eslint-enable no-unused-vars */
+import { CliOption, CliArgument } from "../types/index.js"
+/* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
-// @body
+// @@body
 /**
  * Render help for a given cli option. Rendered string provides consistent
  * padding for each part/fragment of the string, such that consecutive help
@@ -153,9 +153,7 @@ const parseCliArguments = (cli, option, optionMap, pointer = 2) => {
     // keys from the original cli options object.
     if (pointer >= process.argv.length) {
         const parsedArgs = /** @type {Object.<string,CliArgument>} */ ({})
-        for (const key in cli) {
-            parsedArgs[key] = cli[key].value
-        }
+        for (const key in cli) { parsedArgs[key] = cli[key].value }
         return parsedArgs
     }
 
@@ -189,5 +187,5 @@ const parseCliArguments = (cli, option, optionMap, pointer = 2) => {
     return parseCliArguments(cli, option, optionMap, ++pointer)
 }
 
-// @exports
+// @@exports
 export { parseCliArguments }

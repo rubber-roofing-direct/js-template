@@ -16,9 +16,9 @@
 
 // @ts-check
 
-// @no-imports
+// @@no-imports
 
-// @body
+// @@body
 /**
  * Wrapper object for all data parsed from a given commit required for rendering
  * a changelog prompt.
@@ -55,7 +55,7 @@
  * @property {string} date - Date of commit in format "YYYY-MM-DD".
  */
 
-// @exports
+// @@exports
 /**
  * @ignore
  * @type {ParsedCommit}

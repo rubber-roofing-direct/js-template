@@ -1,4 +1,4 @@
-// Copyright (c) 2022 James Reid. All rights reserved.
+// Copyright (c) 2023 James Reid. All rights reserved.
 //
 // This source code file is licensed under the terms of the MIT license, a copy
 // of which may be found in the LICENSE.md file in the root of this repository.
@@ -16,9 +16,51 @@
 
 // @ts-check
 
-// @no-imports
+// @@no-imports
 
-// @body
+// @@body
+/**
+ * Custom error which renders an error in a uniform way, taking an options
+ * object with reserved name and message fields, and then any other fields
+ * relevant to the error, and rendering them with indentation.
+ */
+class DecoratedError extends Error {
+    /**
+     * Build new error based on supplied options object which may set the custom
+     * name of the error, the top level message of the error, and then any
+     * number of other custom fields.
+     *
+     * @param {Object.<string,string|number|boolean>} options - Options object
+     *      containing any string keys, and string, number or boolean values.
+     */
+    constructor(options) {
+        super()
+        let message = ""
+
+        // Parse all properties in options argument; if key is name, use value
+        // to set the custom name of the error, if key is message, append value
+        // top of error message, otherwise render a grey, tabbed key-value
+        // pair to the end of the message string.
+        for (const key in options) {
+            switch (key) {
+                case "name":
+                    this.name = /** @type {string} */ (options[key])
+                    break
+                case "message":
+                    message = `${options[key]}\n${message}`
+                    break
+                default: {
+                    const detail = `${key}: ${options[key]}`
+                    message = `${message}${decorateFg(detail, "gray", 1)}\n`
+                }
+            }
+        }
+
+        // Set error message which will be displayed.
+        this.message = message || ""
+    }
+}
+
 /**
  * Decorate a string with control characters for changing cli string colors and
  * text decoration. Adds supplied list of modifiers for the string, then uses
@@ -77,6 +119,7 @@ const decorateFg = (string, color, tabs = 0) => {
  */
 const decorateBg = (string, color, tabs = 0) => {
     const colorModifier = cliModifiers.bgColors[color]
+
     // Return decorated string depending on if color resolves to valid control
     // character from object of cli modifiers.
     return colorModifier
@@ -167,12 +210,81 @@ const cliModifiers = {
     }
 }
 
-// @exports
+/**
+ * Convert kebab-case string to camelCase string, removing all hyphens in input
+ * string, and capitalising the first character following each hyphen. Options
+ * available for generating UpperCamelCase strings, and spaced strings too.
+ *
+ * @summary Convert kebab-case string to camelCase string.
+ * @param {string} kebabCaseString - Input kebab-case string.
+ * @param {boolean} isUpper - Should return string be in UpperCamelCase?
+ * @param {boolean} isSpaced - Should return string replace hyphens with
+ *      whitespace characters?
+ * @returns {string} camelCase string version of input.
+ */
+const toCamelCase = (kebabCaseString, isUpper = false, isSpaced = false) => {
+    // Reduce split input string with starting value object containing an empty
+    // string and flag set to isUpper for if next character should be capital.
+    return (kebabCaseString.split("").reduce((acc, cur) => {
+        // Ignore hyphens, or replace with spaces as required.
+        if (cur === "-") {
+            return isSpaced
+                ? { string: `${acc.string} `, isCapital: true }
+                : { ...acc, isCapital: true }
+        }
+
+        // Concatenate string with next character set to uppercase if required.
+        const nextChar = acc.isCapital ? cur.toUpperCase() : cur.toLowerCase()
+        return { string: `${acc.string}${nextChar}`, isCapital: false }
+    }, { string: "", isCapital: isUpper }).string)
+}
+
+/**
+ * Convert camelCaseString to kebab-case-string, adding hyphens between words.
+ * If input string includes spaces (for example the verbatim title of a
+ * markdown documentation file), replace with hyphens - this is good for
+ * converting a title string to a valid kebab-case-filename. Option also
+ * available for generating Upper-Kebab-Case strings.
+ *
+ * @summary Convert camelCaseString to kebab-case-string.
+ * @param {string} camelCaseString - Input camelCaseString.
+ * @param {boolean} isUpper - Should return string be in Upper-Kebab-Case?
+ * @returns {string} kebab-case-string version of input.
+ */
+const toKebabCase = (camelCaseString, isUpper = false) => {
+    // Reduce split input string with starting value object containing an empty
+    // string and a new word flag set to true.
+    return (camelCaseString.split("").reduce((acc, cur) => {
+        // Ignore spaces in the input string, but set new word flag to true.
+        if (cur === " ") {
+            return { ...acc, isNewWord: true }
+        }
+
+        // If new word flag is set, or if an uppercase letter is found, insert
+        // a hyphen before appending the upper/lowercase version of the current
+        // letter depending on the isUpper argument.
+        else if (acc.isNewWord || cur.match(/[A-Z]/)) {
+            const nextChar = isUpper ? cur.toUpperCase() : cur.toLowerCase()
+            return acc.string
+                ? { string: `${acc.string}-${nextChar}`, isNewWord: false }
+                : { string: `${nextChar}`, isNewWord: false }
+        }
+
+        // Otherwise, append current letter in lowercase.
+        const nextChar = cur.toLowerCase()
+        return { string: `${acc.string}${nextChar}`, isNewWord: false }
+    }, { string: "", isNewWord: true }).string)
+}
+
+// @@exports
 export {
+    DecoratedError,
     decorate,
     decorateFg,
     decorateBg,
     padEndDecorated,
     padStartDecorated,
-    cliModifiers
+    cliModifiers,
+    toCamelCase,
+    toKebabCase
 }

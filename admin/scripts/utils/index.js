@@ -10,7 +10,7 @@
 
 /**
  * @ignore
- * @file Copy repository markdown documentation to .github/wiki subtree.
+ * @file Export script utils.
  * @author James Reid
  */
 
@@ -20,4 +20,8 @@
 
 // @@no-body
 
-// @@no-exports
+// @@exports
+export * from "./decorate-cli.js"
+export * from "./parse-cli.js"
+export * from "./parse-commit.js"
+export * from "./parse-package.js"

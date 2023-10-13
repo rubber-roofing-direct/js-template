@@ -16,9 +16,9 @@
 
 // @ts-check
 
-// @no-imports
+// @@no-imports
 
-// @body
+// @@body
 /**
  * Type of frontmatter expected at top of changelog file.
  *
@@ -34,8 +34,9 @@
  * changelog section.
  *
  * @typedef {object} ChangelogView
- * @property {string} user - Github organisation or user of remote repository.
- * @property {string} repo - Github repository name of remote repository.
+ * @property {string} repoOwner - Github owner (username or organisation name)
+ *      of remote repository.
+ * @property {string} repoName - Github repository name of remote repository.
  * @property {string} tag - New suggested semver version tag string.
  * @property {string} longHash - Long hash of end hash of revision list used to
  *      autogenerate new changelog section.
@@ -61,8 +62,9 @@
  * for each commit prompt in a new changelog section.
  *
  * @typedef {object} ChangelogPromptView
- * @property {string} user - Github organisation or user of remote repository.
- * @property {string} repo - Github repository name of remote repository.
+ * @property {string} repoOwner - Github owner (username or organisation name)
+ *      of remote repository.
+ * @property {string} repoName - Github repository name of remote repository.
  * @property {string} longHash - Long hash of current commit being used to
  *      generate changelog prompt within a given category.
  * @property {string} shortHash - Short hash of current commit being used to
@@ -92,11 +94,12 @@
  * @property {string} endHash - End hash of revision list to generate changelog.
  * @property {string} branch - Deployment branch containing commits in revision
  *      list.
- * @property {string} user - Github organisation or user of remote repository.
- * @property {string} repo - Github repository name of remote repository.
+ * @property {string} repoOwner - Github owner (username or organisation name)
+ *      of remote repository.
+ * @property {string} repoName - Github repository name of remote repository.
  */
 
-// @exports
+// @@exports
 /**
  * @ignore
  * @type {Frontmatter}

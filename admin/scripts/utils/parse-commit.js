@@ -1,4 +1,4 @@
-// Copyright (c) 2022 James Reid. All rights reserved.
+// Copyright (c) 2023 James Reid. All rights reserved.
 //
 // This source code file is licensed under the terms of the MIT license, a copy
 // of which may be found in the LICENSE.md file in the root of this repository.
@@ -16,18 +16,18 @@
 
 // @ts-check
 
-// @imports-node
+// @@imports-node
 import { execSync } from "child_process"
 
-// @imports-utils
-import { decorateFg } from "./decorate-cli.js"
+// @@imports-utils
+import { DecoratedError } from "./decorate-cli.js"
 
-// @imports-types
-/* eslint-disable no-unused-vars */
-import { ParsedCommit } from "./types/index.js"
-/* eslint-enable no-unused-vars */
+// @@imports-types
+/* eslint-disable no-unused-vars -- Types only used in comments. */
+import { ParsedCommit } from "../types/index.js"
+/* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
-// @body
+// @@body
 /**
  * Get revision list of commits between specified hashes. Checks that commits
  * are on the specified target branch, and ignores merge commits. Result is
@@ -93,11 +93,13 @@ const getLongHash = (shortHash, branch = "master", checkBranch = true) => {
         // Throw error - commits must be uniquely identifiable or on required
         // branch, changelog generation should not complete otherwise.
         longHash = typeof longHash === "string" ? longHash : "unknown"
-        const msg = "Error encountered with supplied commit hash or identifier"
-        const supplied = decorateFg(`short-hash: ${shortHash}`, "gray", 1)
-        const found = decorateFg(`long-hash: ${longHash}`, "gray", 1)
-        error = decorateFg(/** @type {string} */ (error), "gray", 1)
-        throw new Error(`${msg}\n${supplied}\n${found}\n${error}\n`)
+        throw new DecoratedError({
+            name: "",
+            message: "Error with supplied commit hash or identifier",
+            "short-hash": shortHash,
+            "long-hash": longHash,
+            detail: /** @type {Error} */ (error).message
+        })
     }
 
     return longHash
@@ -146,16 +148,16 @@ const parseCommit = hash => {
 
     // Determine commit category based on leading imperative verb in summary.
     const dependencyRegex = /^((bump)|(update)|(upgrade)|(migrate))$/i
-    const category = verb.match(/add/i) ? "Added"
-        : verb.match(/^rewrite$/i) ? "Rewritten"
-        : verb.match(/^change$/i) ? "Changed"
-        : verb.match(/^modify$/i) ? "Modified"
-        : verb.match(/^remove$/i) ? "Removed"
-        : verb.match(/^deprecate$/i) ? "Deprecated"
-        : verb.match(/^fix$/i) ? "Fixed"
-        : verb.match(/^secure$/i) ? "Security"
-        : verb.match(/^improve$/i) ? "Performance"
-        : verb.match(dependencyRegex) ? "Dependencies"
+    const category = verb?.match(/add/i) ? "Added"
+        : verb?.match(/^rewrite$/i) ? "Rewritten"
+        : verb?.match(/^change$/i) ? "Changed"
+        : verb?.match(/^modify$/i) ? "Modified"
+        : verb?.match(/^remove$/i) ? "Removed"
+        : verb?.match(/^deprecate$/i) ? "Deprecated"
+        : verb?.match(/^fix$/i) ? "Fixed"
+        : verb?.match(/^secure$/i) ? "Security"
+        : verb?.match(/^improve$/i) ? "Performance"
+        : verb?.match(dependencyRegex) ? "Dependencies"
         : "Other"
 
     // Parse git trailers into an array of git trailer objects.
@@ -174,9 +176,9 @@ const parseCommit = hash => {
         details: { longHash, shortHash, date },
         title: { semver, category, summary },
         trailers,
-        isRevert: !!verb.match(/revert/i)
+        isRevert: !!verb?.match(/revert/i)
     }
 }
 
-// @exports
+// @@exports
 export { getRevList, getLongHash, parseCommit }
