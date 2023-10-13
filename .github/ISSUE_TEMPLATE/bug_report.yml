@@ -85,6 +85,7 @@ body:
         * If you are experiencing an issue with multiple browsers, select all appropriate browsers
         * If you are not running this package in a browser, select "NOT APPLICABLE"
         * If the browser you are using is not listed, select "OTHER", and specify the browser in the "Additional Information" textarea
+        * If possible specify the version(s) of the browsers affected in the "Additional Information" textarea
       multiple: true
       options:
         - Chrome
@@ -93,6 +94,27 @@ body:
         - Opera
         - Edge
         - NOT APPLICABLE
+        - OTHER (specify in "Additional Information")
+    validations:
+      required: true
+
+  # OS dropdown
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Which OS are you using?
+      description: |
+        Select which browser you are using considering the following:
+        * If you are experiencing an issue with multiple operating systems, select all appropriate operating systems
+        * If the OS you are using is not listed, select "OTHER", and specify the OS in the "Additional Information" textarea
+        * If possible specify the version(s) of the operating systems affected in the "Additional Information" textarea
+      multiple: true
+      options:
+        - Windows
+        - MacOS
+        - Linux
+        - Android
+        - iOS
         - OTHER (specify in "Additional Information")
     validations:
       required: true
@@ -107,9 +129,19 @@ body:
         * Summary of the bug
         * Expected behaviour
         * Observed behaviour
+        * Scope of the bug
       value: |
         ### Summary
         <!-- Summarise the bug that you encountered. -->
+
+        ### Expected Behaviour
+        <!-- Describe the expected behaviour given what you were trying to do. -->
+
+        ### Observed Behaviour
+        <!-- Describe the observed behaviour. -->
+
+        ### Scope
+        <!-- If possible, assess how far reaching the bug is, whom it might affect etc. -->
     validations:
       required: true
 
@@ -119,7 +151,19 @@ body:
     attributes:
       label: How can you reproduce this issue?
       description: |
-        Optionally provide steps to reproduce to reproduce this bug
+        Describe steps to reproduce this bug, providing the following information:
+        * Numbered steps to reproduce the bug
+        * Code snippets where appropriate
+      value: |
+        ### Steps to Reproduce
+        <!-- Complete the following list to describe how to reproduce the bug. -->
+        1.
+
+        ### Code Snippets
+        <!-- Provide any relevant code snippets in markdown code-block fences. Use multiple blocks, and briefly describe each block where appropriate. -->
+
+        ### Other
+        <!-- Add any other information which may be relevant to reproducing the bug. -->
     validations:
       required: true
 
@@ -135,24 +179,28 @@ body:
         * Browser(s) where issue was observed (if applicable, and if not listed in the browser dropdown above)
         * Any available logs, for example from the browser console or system terminal
         * If the issue is intermittent, describe the context/scenarios in which the issue occurs
+        * Details of your operating system and environment
       value: |
         ### Additional Version Information
         <!-- Fill out the following table with additional affected versions. If no additional versions are affected, leave the table blank. -->
         The following table lists additional versions and browsers where the issue has been observed. Please see above for affected release versions of the package, LTS versions of NodeJS, and affected common browsers.
-        | Category | Affected Versions                                         | 
-        | -------- | --------------------------------------------------------- |
-        | Package  | <!-- List versions, or commit hashes of local builds. --> |
-        | NodeJS   | <!-- List additional affected versions of NodeJS. -->     |
-        | Browser  | <!-- List additional affected browsers. -->               |
+        | Category | Affected Versions                                                            | 
+        | -------- | ---------------------------------------------------------------------------- |
+        | Package  | <!-- List versions, or commit hashes of local builds. -->                    |
+        | NodeJS   | <!-- List additional affected versions of NodeJS. -->                        |
+        | Browser  | <!-- List additional affected browsers, or specific browser versions -->     |
+        | OS       | <!-- List additional affected operating systems, or specific OS versions --> |
 
         ### Logs
-        <!-- Provide any available logs in markdown codeblock fences. Use multiple blocks, and briefly describe each block where appropriate. -->
+        <!-- Provide any available logs in markdown code-block fences. Use multiple blocks, and briefly describe each block where appropriate. -->
 
         ### Context
         <!-- Describe the context or scenarios in which the issue occurs. If the bug is not intermittent, leave this section blank. -->
 
-        ### Other
-        <!-- Add any other information which you think might be helpful for resolving the issue -->
+        ### Operating System and Environment Details
+        <!-- List any other details about your specific operating system or development environment which may affect the issue. -->
 
+        ### Other
+        <!-- Add any other information which you think might be helpful for resolving the issue. -->
     validations:
       required: true
