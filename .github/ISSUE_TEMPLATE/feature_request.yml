@@ -39,8 +39,8 @@ body:
       description: Are you requesting a new feature, or suggesting changes to an existing feature. If you are suggesting a feature set that involves new features and changes to existing features, select both checkboxes.
       multiple: true
       options:
-        - label: New feature
-        - label: Updated feature
+        - New feature
+        - Updated feature
     validations:
       required: true
 
