@@ -19,7 +19,7 @@ body:
       description: Check other issue templates for this repository to make sure that your issue can't be submitted using a more specific template. Note that this issue template is largely intended as a catch-all, and for general discussion about the repository.
       options:
         - label: This issue is miscellaneous
-      required: true
+          required: true
 
   # Confirm that no similar issue exists.
   - type: checkboxes
@@ -29,7 +29,7 @@ body:
       description: Check existing issues to see if the problem you are experiencing has already been reported.
       options:
         - label: I have checked for similar issues
-      required: true
+          required: true
 
   # Confirm that a title has been written.
   - type: checkboxes
@@ -39,7 +39,7 @@ body:
       description: Write a title for the issue in the input field above. The title should describe the issue succinctly.
       options:
         - label: I have written an issue title
-      required: true
+          required: true
 
   # Issue description.
   - type: textarea
