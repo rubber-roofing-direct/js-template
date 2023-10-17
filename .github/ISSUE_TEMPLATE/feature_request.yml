@@ -3,8 +3,63 @@ description: Request a new feature, or changes to a feature
 title: "[FEAT]: "
 labels: ["type:feature", "status:pending"]
 body:
+  # Summary message.
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to contribute. Please fill out the form below to submit a new issue, and consider the following: 
+        * Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available
+        * This is a privately maintained repository, and as such issues may take longer than normal to resolve
 
-# thanks for reporting
-# have you checked existing issues
-# feature description
-# motivation
+  # Confirm that no similar issue exists.
+  - type: checkboxes
+    id: new-issue-confirmation
+    attributes:
+      label: Have you checked for similar issues?
+      description: Check existing issues to see if the problem you are experiencing has already been reported.
+      options:
+        - label: I have checked for similar issues
+      required: true
+
+  # Confirm that a title has been written.
+  - type: checkboxes
+    id: title-confirmation
+    attributes:
+      label: Have you written an issue title?
+      description: Write a title for the issue in the input field above. The title should describe the issue succinctly.
+      options:
+        - label: I have written an issue title
+      required: true
+
+  # New or update feature.
+  - type: checkboxes
+    id: feature-type
+    attributes:
+      label: Are you requesting a new or updated feature?
+      description: Are you requesting a new feature, or suggesting changes to an existing feature. If you are suggesting a feature set that involves new features and changes to existing features, select both checkboxes.
+      options:
+        - label: New feature
+        - label: Updated feature
+      required: true
+
+  # Feature description.
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: What feature would you like to be added and/or changed?
+      description: |
+        Describe the feature which should be added and/or changed considering the following:
+        * Summary of the feature
+        * Functionality of the feature
+        * Motivation for including the feature
+      value: |
+        ### Summary
+        <!-- Summarise the new and/or updated feature. -->
+
+        ### Functionality
+        <!-- Describe the functionality of the feature including how it might be called/used etc. -->
+
+        ### Motivation
+        <!-- Describe the motivation for adding or changing this feature. -->
+    validations:
+      required: true

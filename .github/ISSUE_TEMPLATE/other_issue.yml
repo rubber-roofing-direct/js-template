@@ -3,7 +3,58 @@ description: Report some other issue, or start a discussion
 title: "[MISC]: "
 labels: ["type:other", "status:pending"]
 body:
+  # Summary message.
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to contribute. Please fill out the form below to submit a new issue, and consider the following: 
+        * Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available
+        * This is a privately maintained repository, and as such issues may take longer than normal to resolve
 
-# thanks for reporting
-# have you checked existing issues
-# issue description
+  # Confirm that issue is miscellaneous.
+  - type: checkboxes
+    id: new-issue-confirmation
+    attributes:
+      label: Is this issue definitely miscellaneous?
+      description: Check other issue templates for this repository to make sure that your issue can't be submitted using a more specific template. Note that this issue template is largely intended as a catch-all, and for general discussion about the repository.
+      options:
+        - label: This issue is miscellaneous
+      required: true
+
+  # Confirm that no similar issue exists.
+  - type: checkboxes
+    id: new-issue-confirmation
+    attributes:
+      label: Have you checked for similar issues?
+      description: Check existing issues to see if the problem you are experiencing has already been reported.
+      options:
+        - label: I have checked for similar issues
+      required: true
+
+  # Confirm that a title has been written.
+  - type: checkboxes
+    id: title-confirmation
+    attributes:
+      label: Have you written an issue title?
+      description: Write a title for the issue in the input field above. The title should describe the issue succinctly.
+      options:
+        - label: I have written an issue title
+      required: true
+
+  # Issue description.
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: What issue would you like to discuss?
+      description: |
+        Describe the issue considering the following:
+        * Summary of the issue
+        * Any other relevant details
+      value: |
+        ### Summary
+        <!-- Summarise the issue you would like to discuss. -->
+
+        ### Details
+        <!-- Expand on the issue summary, and provide any other details relevant to the issue. -->
+    validations:
+      required: true

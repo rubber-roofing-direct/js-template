@@ -3,36 +3,35 @@ description: Report a bug
 title: "[BUG]: "
 labels: ["type:bug", "status:pending"]
 body:
-  # Summary message
+  # Summary message.
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to contribute. Please fill out the form below to submit a new issue, and consider the following: 
+        Thank you for taking the time to contribute. Please fill out the form below to submit a new issue, and consider the following:
         * Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available
-        * This is a privately maintained repository, and as such issues may take longer than normal to resolve
+        * This is a privately maintained repository, and as such issues may take longer than normal to\ resolve
 
-  # Confirm that no similar issue exists
+  # Confirm that no similar issue exists.
   - type: checkboxes
     id: new-issue-confirmation
     attributes:
       label: Have you checked for similar issues?
       description: Check existing issues to see if the problem you are experiencing has already been reported.
       options:
-      - label: I have checked for similar issues
-        required: true
+        - label: I have checked for similar issues
+      required: true
 
-  # Confirm that a title has been written
+  # Confirm that a title has been written.
   - type: checkboxes
     id: title-confirmation
     attributes:
       label: Have you written an issue title?
       description: Write a title for the issue in the input field above. The title should describe the issue succinctly.
       options:
-      - label: I have written an issue title
-        required: true      
+        - label: I have written an issue title
+      required: true
 
-
-  # Package version dropdown
+  # Package version dropdown.
   - type: dropdown
     id: package-version
     attributes:
@@ -50,7 +49,7 @@ body:
     validations:
       required: true
 
-  # Node LTS version dropdown
+  # Node LTS version dropdown.
   - type: dropdown
     id: node-version
     attributes:
@@ -75,7 +74,7 @@ body:
     validations:
       required: true
 
-  # Browser dropdown
+  # Browser dropdown.
   - type: dropdown
     id: browser
     attributes:
@@ -98,7 +97,7 @@ body:
     validations:
       required: true
 
-  # OS dropdown
+  # OS dropdown.
   - type: dropdown
     id: operating-system
     attributes:
@@ -119,11 +118,11 @@ body:
     validations:
       required: true
 
-  # Issue description
+  # Bug description.
   - type: textarea
-    id: issue-description
+    id: bug-description
     attributes:
-      label: What issue did you encounter?
+      label: What Bug did you encounter?
       description: |
         Describe the bug that you encountered, providing the following information:
         * Summary of the bug
@@ -145,11 +144,11 @@ body:
     validations:
       required: true
 
-  # Reproduction steps
+  # Reproduction steps.
   - type: textarea
     id: reproduction-steps
     attributes:
-      label: How can you reproduce this issue?
+      label: How can you reproduce this bug?
       description: |
         Describe steps to reproduce this bug, providing the following information:
         * Numbered steps to reproduce the bug
@@ -167,7 +166,7 @@ body:
     validations:
       required: true
 
-  # Additional information
+  # Additional information.
   - type: textarea
     id: additional-information
     attributes:
@@ -184,7 +183,7 @@ body:
         ### Additional Version Information
         <!-- Fill out the following table with additional affected versions. If no additional versions are affected, leave the table blank. -->
         The following table lists additional versions and browsers where the issue has been observed. Please see above for affected release versions of the package, LTS versions of NodeJS, and affected common browsers.
-        | Category | Affected Versions                                                            | 
+        | Category | Affected Versions                                                            |
         | -------- | ---------------------------------------------------------------------------- |
         | Package  | <!-- List versions, or commit hashes of local builds. -->                    |
         | NodeJS   | <!-- List additional affected versions of NodeJS. -->                        |
@@ -195,10 +194,13 @@ body:
         <!-- Provide any available logs in markdown code-block fences. Use multiple blocks, and briefly describe each block where appropriate. -->
 
         ### Context
-        <!-- Describe the context or scenarios in which the issue occurs. If the bug is not intermittent, leave this section blank. -->
+        <!-- If the issue is intermittent, describe the context or scenarios in which the issue occurs. If applicable, also summarise what you were trying to achieve when you observed the issue, using markdown code-block fences to provide context where required. Use multiple blocks, and briefly describe each block where appropriate. -->
 
         ### Operating System and Environment Details
         <!-- List any other details about your specific operating system or development environment which may affect the issue. -->
+
+        ### Hardware Specifications
+        <!-- If applicable, list any additional relevant hardware specifications of the machine(s) where the code is being executed -->
 
         ### Other
         <!-- Add any other information which you think might be helpful for resolving the issue. -->

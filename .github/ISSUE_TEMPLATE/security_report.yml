@@ -3,3 +3,206 @@ description: Report a security vulnerability
 title: "[SEC]: "
 labels: ["type:security", "status:pending"]
 body:
+  # Summary message.
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to contribute. Please fill out the form below to submit a new issue, and consider the following: 
+        * Once you have submitted your new issue, the maintainer(s) will review the issue as soon as they have time available
+        * This is a privately maintained repository, and as such issues may take longer than normal to resolve
+
+  # Confirm that no similar issue exists.
+  - type: checkboxes
+    id: new-issue-confirmation
+    attributes:
+      label: Have you checked for similar issues?
+      description: Check existing issues to see if the problem you are experiencing has already been reported.
+      options:
+        - label: I have checked for similar issues
+      required: true
+
+  # Confirm that a title has been written.
+  - type: checkboxes
+    id: title-confirmation
+    attributes:
+      label: Have you written an issue title?
+      description: Write a title for the issue in the input field above. The title should describe the issue succinctly.
+      options:
+        - label: I have written an issue title
+      required: true
+
+  # Package version dropdown.
+  - type: dropdown
+    id: package-version
+    attributes:
+      label: Which version of this package are you using?
+      description: |
+        Select which version of this package you are using considering the following:
+        * If you are experiencing an issue with multiple versions, select all appropriate versions
+        * If you are using a local build, select "LOCAL", and specify the commit used to build the package in the "Additional Information" textarea
+        * If the package version you are using is not listed, select "OTHER", and specify correct version in the "Additional Information" textarea
+      multiple: true
+      options:
+        - v0.0.1
+        - LOCAL (specify in "Additional Information")
+        - OTHER (specify in "Additional Information")
+    validations:
+      required: true
+
+  # Node LTS version dropdown.
+  - type: dropdown
+    id: node-version
+    attributes:
+      label: Which version of NodeJS are you using?
+      description: |
+        Select which version of NodeJS you are using considering the following:
+        * If you are experiencing an issue with multiple versions, select all appropriate versions
+        * If you are not running this package using NodeJS, select "NOT APPLICABLE"
+        * If you are not using an LTS version of NodeJS, select "OTHER", and specify the exact version in the "Additional Information" textarea
+      multiple: true
+      options:
+        - v18.17.1 ~ Hydrogen
+        - v16.20.2 ~ Gallium
+        - v14.21.3 ~ Fermium
+        - v12.22.12 ~ Erbium
+        - v10.24.1 ~ Dubnium
+        - v8.17.0 ~ Carbon
+        - v6.17.1 ~ Boron
+        - v4.9.1 ~ Argon
+        - NOT APPLICABLE
+        - OTHER (specify in "Additional Information")
+    validations:
+      required: true
+
+  # Browser dropdown.
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Which browser are you using?
+      description: |
+        Select which browser you are using considering the following:
+        * If you are experiencing an issue with multiple browsers, select all appropriate browsers
+        * If you are not running this package in a browser, select "NOT APPLICABLE"
+        * If the browser you are using is not listed, select "OTHER", and specify the browser in the "Additional Information" textarea
+        * If possible specify the version(s) of the browsers affected in the "Additional Information" textarea
+      multiple: true
+      options:
+        - Chrome
+        - Safari
+        - Firefox
+        - Opera
+        - Edge
+        - NOT APPLICABLE
+        - OTHER (specify in "Additional Information")
+    validations:
+      required: true
+
+  # OS dropdown.
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Which OS are you using?
+      description: |
+        Select which browser you are using considering the following:
+        * If you are experiencing an issue with multiple operating systems, select all appropriate operating systems
+        * If the OS you are using is not listed, select "OTHER", and specify the OS in the "Additional Information" textarea
+        * If possible specify the version(s) of the operating systems affected in the "Additional Information" textarea
+      multiple: true
+      options:
+        - Windows
+        - MacOS
+        - Linux
+        - Android
+        - iOS
+        - OTHER (specify in "Additional Information")
+    validations:
+      required: true
+
+  # Vulnerability description.
+  - type: textarea
+    id: vulnerability-description
+    attributes:
+      label: What vulnerability did you encounter?
+      description: |
+        Describe the vulnerability that you encountered, providing the following information:
+        * Summary of the vulnerability
+        * Expected behaviour
+        * Observed behaviour
+        * Severity of the vulnerability
+      value: |
+        ### Summary
+        <!-- Summarise the vulnerability that you encountered (i.e. what went wrong). -->
+
+        ### Expected Behaviour
+        <!-- Describe the expected behaviour given what you were trying to do. -->
+
+        ### Observed Behaviour
+        <!-- Describe the observed behaviour. -->
+
+        ### Severity
+        <!-- Summarise vulnerability severity in terms of whom it might affect and to what extent. -->
+    validations:
+      required: true
+
+  # Reproduction steps.
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: How can you reproduce this vulnerability?
+      description: |
+        Describe steps to reproduce this issue, providing the following information:
+        * Numbered steps to reproduce the vulnerability
+        * Code snippets where appropriate
+      value: |
+        ### Steps to Reproduce
+        <!-- Complete the following list to describe how to reproduce the vulnerability. -->
+        1.
+
+        ### Code Snippets
+        <!-- Provide any relevant code snippets in markdown code-block fences. Use multiple blocks, and briefly describe each block where appropriate. -->
+
+        ### Other
+        <!-- Add any other information which may be relevant to reproducing the vulnerability. -->
+    validations:
+      required: true
+
+  # Additional information.
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: What additional information is available?
+      description: |
+        Add any additional information which may be applicable, including, but not limited to, the following:
+        * Version(s) or commit hash of local build of package where issue was observed (if not listed above)
+        * Specific version(s) of NodeJS where issue was observed (if applicable, and if not listed in the LTS dropdown above)
+        * Browser(s) where issue was observed (if applicable, and if not listed in the browser dropdown above)
+        * Any available logs, for example from the browser console or system terminal
+        * If the issue is intermittent, describe the context/scenarios in which the issue occurs
+        * Details of your operating system and environment
+      value: |
+        ### Additional Version Information
+        <!-- Fill out the following table with additional affected versions. If no additional versions are affected, leave the table blank. -->
+        The following table lists additional versions and browsers where the issue has been observed. Please see above for affected release versions of the package, LTS versions of NodeJS, and affected common browsers.
+        | Category | Affected Versions                                                            |
+        | -------- | ---------------------------------------------------------------------------- |
+        | Package  | <!-- List versions, or commit hashes of local builds. -->                    |
+        | NodeJS   | <!-- List additional affected versions of NodeJS. -->                        |
+        | Browser  | <!-- List additional affected browsers, or specific browser versions -->     |
+        | OS       | <!-- List additional affected operating systems, or specific OS versions --> |
+
+        ### Logs
+        <!-- Provide any available logs in markdown code-block fences. Use multiple blocks, and briefly describe each block where appropriate. -->
+
+        ### Context
+        <!-- If the issue is intermittent, describe the context or scenarios in which the issue occurs. If applicable, also summarise what you were trying to achieve when you observed the issue, using markdown code-block fences to provide context where required. Use multiple blocks, and briefly describe each block where appropriate. -->
+
+        ### Operating System and Environment Details
+        <!-- List any other details about your specific operating system or development environment which may affect the issue. -->
+
+        ### Hardware Specifications
+        <!-- If applicable, list any additional relevant hardware specifications of the machine(s) where the code is being executed -->
+
+        ### Other
+        <!-- Add any other information which you think might be helpful for resolving the issue. -->
+    validations:
+      required: true
