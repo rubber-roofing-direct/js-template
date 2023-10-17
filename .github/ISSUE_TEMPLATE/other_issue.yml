@@ -13,7 +13,7 @@ body:
 
   # Confirm that issue is miscellaneous.
   - type: checkboxes
-    id: new-issue-confirmation
+    id: miscellaneous-issue-confirmation
     attributes:
       label: Is this issue definitely miscellaneous?
       description: Check other issue templates for this repository to make sure that your issue can't be submitted using a more specific template. Note that this issue template is largely intended as a catch-all, and for general discussion about the repository.
