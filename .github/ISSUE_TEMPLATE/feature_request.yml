@@ -32,14 +32,16 @@ body:
           required: true
 
   # New or update feature.
-  - type: checkboxes
+  - type: dropdown
     id: feature-type
     attributes:
       label: Are you requesting a new or updated feature?
       description: Are you requesting a new feature, or suggesting changes to an existing feature. If you are suggesting a feature set that involves new features and changes to existing features, select both checkboxes.
+      multiple: true
       options:
         - label: New feature
         - label: Updated feature
+    validations:
       required: true
 
   # Feature description.
