@@ -5,18 +5,19 @@
 
 # Contributing
 
-Welcome to the contributing guidelines for this repository. Since this repository is maintained primarily by a solo developer, this file also serves as a single source of truth style-guide 
+Welcome to the contributing guidelines for this repository. Since this repository is maintained primarily by a solo developer, this file also serves as a single source of truth style and usage guide for the repository. Amongst other things, this includes information about releasing new versions, code style, repository configuration, build scripts etc., version control standards, and directory structure.
+
+If
 
 ### Table of Contents
 
-- [Pull Requests](#pull-requests)
+- [Pull Requests](#pull-requests-1)
 - [Git](#git)
 	- [Lightweight Commit Format](#lightweight-commit-format)
 	- [Feature Branches](#feature-branches)
 	- [Developer Environments](#developer-environments)
 - [Code Style](#code-style)
 	- [ESLint](#eslint)
-	- [Overrides](#overrides)
 	- [Ternaries](#ternaries)
 	- [Paths](#paths)
 	- [Module Imports](#module-imports)
@@ -42,22 +43,35 @@ Welcome to the contributing guidelines for this repository. Since this repositor
 - [Wiki](#wiki)
 - [Releasing](#releasing)
 
-## Pull Requests
+## Pull Requests 1
+
+Here is some content
 
 ## Git
+
+This repository uses git for version control. Please consult the following subheadings for information on the preferred git commit format used in this repository, and for other guidelines to consider when making a pull request with changes you have made to this repository.
 
 ### Lightweight Commit Format
 
 ### Feature Branches
 
 ### Developer Environments
-  
+
 do NOT commit developer environment stuff such as .vscode
+
 ## Code Style
+
+This repository uses [ESLint](https://eslint.org/) as the primary tool for the standardisation of JavaScript and TypeScript source code files. Note that [ESLint](https://eslint.org/) is primarily responsible for source code formatting within this repository, although some linting rules are also intended for preventing code which may give rise to logical errors.
 
 ### ESLint
 
-### Overrides
+#### Configuration
+
+#### Checking
+
+To run ESLint manually across the source code files in this project, please see the [npm scripts reference](#scripts), or run `npm run lint:check`. 
+
+#### Overrides
 
 ### Ternaries
 
@@ -91,9 +105,21 @@ License
 
 ### .cache
 
+The `.cache` directory is empty by default, does not include a `.gitkeep` file to force the directory to appear
+
 ### .github
 
+#### Issue Templates
+
+#### Pull Request Template
+
 ### admin
+
+#### Config
+
+#### Scripts
+
+#### Templates
 
 template files are all .hbs for syntax highlighting etc., although some files may be limited to mustache syntax
 
@@ -121,5 +147,7 @@ template files are all .hbs for syntax highlighting etc., although some files ma
 
 release process: build -> changelog -> update version
 build (including public docs)
+
+update issue template versions
 
 
