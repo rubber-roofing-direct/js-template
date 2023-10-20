@@ -11,12 +11,12 @@ If
 
 ### Table of Contents
 
-- [Pull Requests](#pull-requests-1)
+- [Pull Requests](#pull-requests)
 - [Git](#git)
-	- [Lightweight Commit Format](#lightweight-commit-format)
-	- [Feature Branches](#feature-branches)
-	- [Developer Environments](#developer-environments)
-- [Code Style](#code-style)
+	- [Lightweight Commit Format](#git_lightweight-commit-format)
+	- [Feature Branches](#git_feature-branches)
+	- [Developer Environments](#git_developer-environments)
+- [Code Style](#3-code-style)
 	- [ESLint](#eslint)
 	- [Ternaries](#ternaries)
 	- [Paths](#paths)
@@ -39,11 +39,11 @@ If
 - [Package](#package)
 	- [Imports](#imports)
 	- [Exports](#exports)
-	- [Scripts](#scripts)
+	- [Scripts](#scripts-1)
 - [Wiki](#wiki)
 - [Releasing](#releasing)
 
-## Pull Requests 1
+## Pull Requests
 
 Here is some content
 
@@ -51,13 +51,17 @@ Here is some content
 
 This repository uses git for version control. Please consult the following subheadings for information on the preferred git commit format used in this repository, and for other guidelines to consider when making a pull request with changes you have made to this repository.
 
+
 ### Lightweight Commit Format
+
+<a id="git_lightweight-commit-format"></a>This is some content
 
 ### Feature Branches
 
+<a name="git_feature-branches"></a>
 ### Developer Environments
 
-do NOT commit developer environment stuff such as .vscode
+<a name="git_developer-environments"></a>do NOT commit developer environment stuff such as .vscode
 
 ## Code Style
 
@@ -101,7 +105,7 @@ License
 
 ### Template
 
-## Getting Around
+## 5 Getting Around
 
 ### .cache
 
