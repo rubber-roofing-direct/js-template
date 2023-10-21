@@ -8,5 +8,9 @@ node_modules
 .env
 
 # Development builds and caches.
-build
-.cache
+build/*
+.cache/*
+
+# Negated entries to force add empty build and cache directories.
+!build/.gitkeep
+!.cache/.gitkeep
