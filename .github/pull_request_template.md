@@ -1,26 +1,60 @@
-<!-- 
-Thanks for creating this pull request 🤗
+<!-- Thanks for creating this pull request, where possible a PR should be small and limited to one type. See below for available types, and note that you may open multiple PRs if required. -->
+<!--    - [FEATURE]: PR which implements a new or changed feature. -->
+<!--    - [BUG]: PR which fixes a reported or observed bug. -->
+<!--    - [PERFORMANCE]: PR which fixes a performance issue. -->
+<!--    - [SECURITY]: PR which fixes a security vulnerability. -->
+<!--    - [DEPENDENCY]: PR which updates a dependency, and changes code as required depending on the new version of the dependency. -->
+<!--    - [REFACTOR]: PR which refactors a part of the codebase (predominantly changes which do not change how code functions). -->
+<!--    - [REWRITE]: PR which rewrites a part of the codebase (significant changes to how the code functions). -->
+<!--    - [REMOVE]: PR which removes a section of the codebase, and changes code as required to facilitate the removal. -->
+<!--    - [DOCS]: PR which only updates documentation. -->
+<!--    - [TEST]: PR which only updates the test suite. -->
+<!--    - [OTHER]: Any other PR. -->
+## Details
 
-Please make sure that the pull request is limited to one type (docs, feature, etc.) and keep it as small as possible. You can open multiple prs instead of opening a huge one.
--->
+<!-- Please fill out the following lists and checklists detailing the type and "completeness" of your PR. -->
+Please see the following list and subsequent sections for general details about this PR such as type of code change, and how complete the PR is with respect to how close it is to being ready to merge considering compliance with repository code standards etc.
 
-<!-- If this pull request closes an issue, please mention the issue number below -->
-Closes # <!-- Issue # here -->
+- Closes: # <!-- Insert issue number here (leave blank if not applicable) -->
+- Type: <!-- Insert PR type here (see above for PR types) -->
 
-## 📑 Description
-<!-- Add a brief description of the pr -->
+### Tests
 
-<!-- You can also choose to add a list of changes and if they have been completed or not by using the markdown to-do list syntax
-- [ ] Not Completed
-- [x] Completed
--->
+- [ ] This PR requires changes or additions to the test suite
+- [ ] This PR implements any required additional or changed tests (check if no new tests required)
+- [ ] This PR passes all tests
 
-## ✅ Checks
-<!-- Make sure your pr passes the CI checks and do check the following fields as needed - -->
-- [ ] My pull request adheres to the code style of this project
-- [ ] My code requires changes to the documentation
-- [ ] I have updated the documentation as required
-- [ ] All the tests have passed
+### Documentation
 
-## ℹ Additional Information
-<!-- Any additional information like breaking changes, dependencies added, screenshots, comparisons between new and old behavior, etc. -->
+- [ ] This PR requires changes or additions to the repository documentation
+- [ ] This PR adds any required additional or changed documentation (check if no new documentation required)
+
+### Housekeeping
+
+- [ ] This PR adheres to the general code style of the repository (please see `CONTRIBUTING.md`)
+- [ ] This PR does *not* cause any ESLint errors in the changes it makes
+- [ ] This PR does *not* commit any local development environment configurations etc.
+- [ ] The changes made by this PR are on a branch which is *not* yet merged into the `main` branch
+- [ ] The template below is completed for this PR
+    - [ ] Remove sample texts underneath each heading
+    - [ ] Complete each section with requested details in comments
+
+## Description
+
+<!-- Add a brief description of the PR on the lines below. Where appropriate, include code-blocks etc. showing new functionality. -->
+This PR implements...
+
+## Motivation
+
+<!-- Particularly if this does not resolve an existing issue, describe why this change is required or beneficial (delete if not required). -->
+This change is required to...
+
+## Breaking Changes
+
+<!-- List *any* breaking changes using a markdown list. If there are no breaking changes, specify explicitly "No breaking changes.". -->
+- First breaking change
+
+## Additional Information
+
+<!-- Add any additional information relevant to the PR (e.g. screenshots, or comparisons between new and old behavior). -->
+This PR improves performance over the old implementation...
