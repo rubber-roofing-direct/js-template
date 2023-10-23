@@ -30,14 +30,14 @@ The format of this changelog is based on the guide found at [keep a changelog](h
 Release notes in this changelog follow a specific format in order to maintain consistency. Each release notes section in this changelog will consist of:
 
 1. A heading consisting of:
-   1. Tag or semver version number linking to relevant github release
-   2. Date of last commit in release or version (i.e. date of last commit before updating the changelog)
-   3. Short commit hash of last commit in release or version linking to browse the github repository at that commit
+    1. Tag or semver version number linking to relevant github release
+    2. Date of last commit in release or version (i.e. date of last commit before updating the changelog)
+    3. Short commit hash of last commit in release or version linking to browse the github repository at that commit
 2. A prose summary of the changes made by that release including a bullet point list of release highlights
 3. Changes organised by category, edited by hand from prompts generated from commits since last release or version, and consisting of:
-   1. Semver change type (breaking change, minor, patch) of change
-   2. Summary of change fetched from commit title and edited subsequently
-   3. Short commit hash of change linking to browse the github repository at that commit
+    1. Semver change type (breaking change, minor, patch) of change
+    2. Summary of change fetched from commit title and edited subsequently
+    3. Short commit hash of change linking to browse the github repository at that commit
 
 ### Generation
 
