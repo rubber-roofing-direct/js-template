@@ -37,7 +37,9 @@
     // the "extends" field. For more information on rule configuration, see
     // here: https://eslint.org/docs/latest/rules. For more information on any
     // rule set below, see https://eslint.org/docs/latest/rules/<rule-name>.
-    // Note that not ALL rules are explicitly set/unset below.
+    // Note that not ALL rules are explicitly set/unset below. Use of ESLint
+    // warnings, which may often be ignored, is generally avoided in favour of
+    // throwing an error for any incorrect formatting.
     "rules": {
         // Plugin-specific eslint configurations.
 
