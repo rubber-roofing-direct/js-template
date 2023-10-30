@@ -2,6 +2,20 @@
     "name": "js-template",
     "version": "0.0.1",
     "description": "Template repository for general javascript projects.",
+    "keywords": [
+        "template",
+        "javascript"
+    ],
+    "homepage": "https://github.com/blameitonyourisp/js-template#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/blameitonyourisp/js-template.git"
+    },
+    "bugs": {
+        "url": "https://github.com/blameitonyourisp/js-template/issues"
+    },
+    "author": "James Reid",
+    "license": "MIT",
     "type": "module",
     "main": "./dist/package/index.js",
     "exports": {
@@ -9,10 +23,15 @@
         "./COMMON_JS": "./dist/package/index.cjs"
     },
     "types": "./dist/package/index.d.ts",
+    "engines": {
+        "node": "*",
+        "npm": "*"
+    },
     "targets": {
         "main": false
     },
     "scripts": {
+        "admin:deploy": "gh-pages --dist ./dist/web",
         "admin:plop": "plop --plopfile './admin/config/plopfile.js'",
         "admin:tokei": "node ./admin/scripts/tokei.js",
         "admin:update-labels": "node ./admin/scripts/github-labels.js",
@@ -28,7 +47,6 @@
         "docs": "npm run docs:jsdoc",
         "docs:changelog": "node ./admin/scripts/changelog.js",
         "docs:jsdoc": "jsdoc --configure ./admin/config/jsdoc.config.json",
-        "deploy": "gh-pages --dist ./dist/web",
         "lint": "npm run lint:check",
         "lint:check": "eslint ./src ./admin --cache --cache-location ./.cache/eslint.json",
         "lint:fix": "eslint ./src ./admin --cache --cache-location ./.cache/eslint.json --fix",
@@ -49,20 +67,7 @@
         "watch:bin": "nodemon --watch ./src/bin --exec 'npm run build:dev:bin'",
         "watch:package": "nodemon --watch .src/package --exec 'npm run build:dev:package'"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/blameitonyourisp/js-template.git"
-    },
-    "keywords": [
-        "template",
-        "javascript"
-    ],
-    "author": "James Reid",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/blameitonyourisp/js-template/issues"
-    },
-    "homepage": "https://github.com/blameitonyourisp/js-template#readme",
+    "dependencies": {},
     "devDependencies": {
         "@13ms/funky": "^1.0.1",
         "@13ms/submodule": "^1.2.1",
