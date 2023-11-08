@@ -17,15 +17,15 @@
     "author": "James Reid",
     "license": "MIT",
     "type": "module",
+    "bin": {
+        "blameitonyourisp_js-template": "./dist/bin/index.js"
+    },
     "main": "./dist/package/index.js",
     "exports": {
         ".": "./dist/package/index.js",
         "./COMMON_JS": "./dist/package/index.cjs"
     },
     "types": "./dist/package/index.d.ts",
-    "bin": {
-        "blameitonyourisp_js-template": "./dist/bin/index.js"
-    },
     "engines": {
         "node": "*",
         "npm": "*"
