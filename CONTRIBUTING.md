@@ -401,15 +401,19 @@ Generally, this repository *discourages* the use of the [subpath imports object]
 - The location of an absolute path import is not always immediately clear compared to the location of a relative path import, especially when the relative path is in the same or an adjacent directory
 - The absolute path of an imported member will not always be inferred by tsserver solely from the [subpath imports object](https://nodejs.org/api/packages.html#subpath-imports) of the `package.json` file, and instead requires an additional entry in the [paths object](https://www.typescriptlang.org/tsconfig#paths) of the `tsconfig.json` file
 
-If a particularly long import path is unavoidable, then an entry in the [subpath imports object](https://nodejs.org/api/packages.html#subpath-imports) of the `package.json` file *may* be appropriate at the discretion of the maintainer. If a [subpath import](https://nodejs.org/api/packages.html#subpath-imports) is required, and tsserver is not correctly finding the absolute path to the imported member, please see the following code block for how to explicitly point tsserver to the absolute path:
+If a particularly long import path is unavoidable, then an entry in the [subpath imports object](https://nodejs.org/api/packages.html#subpath-imports) of the `package.json` file *may* be appropriate at the discretion of the maintainer. If a [subpath import](https://nodejs.org/api/packages.html#subpath-imports) is required, and tsserver is not correctly finding the absolute path to the imported member, please see the following code blocks for how to explicitly point tsserver to the absolute path:
+
+Configuration in `package.json` file:
 
 ```json
-// Configuration in package.json file.
 "imports": {
     "#feature": "./src/feature/index.js"
 }
+```
 
-// Configuration in tsconfig.json file.
+Configuration in `tsconfig.json` file:
+
+```json
 "paths": {
     "#feature": [ "./src/feature/index.js", "./src/feature/*.js" ]
 }
