@@ -300,7 +300,6 @@ To speed up the creation of correctly formatted new scripts, this repository off
 //      - <https://spdx.org/licenses/MIT>
 
 /**
- *
  * @file This is an empty template script with markers for where the different
  *      parts of the script should be written.
  * @author James Reid
