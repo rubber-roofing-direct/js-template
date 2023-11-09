@@ -53,7 +53,7 @@
         "lint": "npm run lint:check",
         "lint:check": "eslint ./src ./admin --cache --cache-location ./.cache/eslint.json",
         "lint:fix": "eslint ./src ./admin --cache --cache-location ./.cache/eslint.json --fix",
-        "lint:fix-dry": "eslint ./src ./admin --cache --cache-location ./.cache/eslint.json --fix-dry",
+        "lint:fix-dry": "eslint ./src ./admin --cache --cache-location ./.cache/eslint.json --fix-dry-run",
         "postversion": "git push --follow-tags",
         "preversion": "npm run build:prod",
         "start": "npm run start:web",
@@ -70,6 +70,7 @@
         "watch:bin": "nodemon --watch ./src/bin --exec 'npm run build:dev:bin'",
         "watch:package": "nodemon --watch .src/package --exec 'npm run build:dev:package'"
     },
+    "dependencies": {},
     "devDependencies": {
         "@13ms/funky": "^1.0.1",
         "@13ms/submodule": "^1.2.1",
