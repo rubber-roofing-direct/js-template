@@ -73,7 +73,7 @@ const renderPrompts = (changelog, template, view, partials) => {
     // Replace old frontmatter with new frontmatter, and inject changelog
     // section at marker comment.
     const yamlFrontmatterRegex = /(?<=^---\n)(.*\n)*(?=---\n)/
-    const releaseNotesRegex = /^<!-- INSERT_AUTO_CHANGELOG_HERE -->$/m
+    const releaseNotesRegex = /^<!-- LOG_START -->$/m
     changelog.markdown = changelog.markdown
         .replace(yamlFrontmatterRegex, yamlFrontmatter)
         .replace(releaseNotesRegex, releaseNotes)
