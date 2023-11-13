@@ -9,8 +9,7 @@
 //      - <https://spdx.org/licenses/MIT>
 
 /**
- * @ignore
- * @file Export script utils.
+ * @file Helper methods for creating shields.io badges.
  * @author James Reid
  */
 
@@ -18,11 +17,20 @@
 
 // @@no-imports
 
-// @@no-body
+// @@body
+/**
+ * Sanitize spaces, underscores and hyphens in strings used in URLs when
+ * creating badges using shields.io endpoints.
+ *
+ * @param {string} string - Input string.
+ * @returns Sanitized string for URL.
+ */
+const sanitizeShieldUrlString = string => {
+    return string
+        .replaceAll("-", "--")
+        .replaceAll("_", "__")
+        .replaceAll(" ", "_")
+}
 
 // @@exports
-export * from "./decorate-cli.js"
-export * from "./parse-cli.js"
-export * from "./parse-commit.js"
-export * from "./parse-package.js"
-export * from "./shields.js"
+export { sanitizeShieldUrlString }
