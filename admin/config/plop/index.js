@@ -21,8 +21,7 @@
 // @@no-body
 
 // @@exports
-export * from "./changelog.js"
 export * from "./doc.js"
 export * from "./package.js"
-export * from "./readme.js"
+export * from "./reset.js"
 export * from "./script.js"

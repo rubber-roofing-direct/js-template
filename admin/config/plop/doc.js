@@ -27,7 +27,8 @@ import YAML, { YAMLMap } from "yaml"
 import {
     DecoratedError,
     parsePackage,
-    toKebabCase
+    toKebabCase,
+    sanitizeShieldUrlString
 } from "../../scripts/utils/index.js"
 
 // @@imports-types
@@ -73,16 +74,6 @@ const getTitles = (choices = []) => {
     return choices
 }
 
-/**
- *
- * @returns
- */
-const getPackage = () => {
-    const { packageObject, packageError } = parsePackage()
-    if (!packageObject.name) { packageError(new Error("Name unset")) }
-    return packageObject.name
-}
-
 //
 const titles = getTitles()
 
@@ -107,8 +98,14 @@ const prompts = [
     {
         type: "input",
         name: "repoName",
-        message: "Input package name of repository if no default found:",
-        default: getPackage()
+        message: "Input package name of repository:",
+        default: parsePackage().packageObject.name || ""
+    },
+    {
+        type: "confirm",
+        name: "shouldContinue",
+        message: "This action will add a new documentation file, continue?",
+        default: false
     }
 ]
 
@@ -120,11 +117,10 @@ const prompts = [
  * @returns {plop.ActionType[]} Array of plop actions to be executed.
  */
 const actions = data => {
+    if (!data.shouldContinue) { return [] }
+
     //
-    data.repoName = data.repoName
-        .replaceAll("-", "--")
-        .replaceAll("_", "__")
-        .replaceAll(" ", "_")
+    data.repoName = sanitizeShieldUrlString(data.repoName)
 
     //
     const addDocFile = {

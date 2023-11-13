@@ -20,35 +20,59 @@
 
 // @@body
 /**
- * @typedef {object} ChangelogPromptData
- */
-
-/**
  * @typedef {object} DocPromptData
  * @property {string} title
  * @property {string[]} children
  * @property {string} repoName
+ * @property {boolean} shouldContinue - Should plop action be executed?
  */
 
 /**
  * @typedef {object} PackagePromptData
+ * @property {string} name
+ * @property {string} version
+ * @property {string} description
+ * @property {string} keywords
+ * @property {string} repository
+ * @property {string} author
+ * @property {string} bin
+ * @property {boolean} shouldContinue - Should plop action be executed?
  */
 
 /**
- * @typedef {object} ReadmePromptData
+ * @typedef {object} ResetPromptData
+ * @property {string} firstHash
+ * @property {string} firstVersion
+ * @property {string} badgeName
+ * @property {string} badgeDetail
+ * @property {string} shieldLabelColor
+ * @property {string} shieldColor
+ * @property {string} repoOwner
+ * @property {string} repoName
+ * @property {string} repoMainBranch
+ * @property {string} copyrightYear
+ * @property {string} copyrightOwner
+ * @property {boolean} isPackage
+ * @property {boolean} isScopedPackage
+ * @property {string} packageOwner
+ * @property {string} packageName
+ * @property {string} readmeTitle
+ * @property {boolean} isDemo
+ * @property {string} demoUrl
+ * @property {boolean} shouldContinue - Should plop action be executed?
  */
 
 /**
  * @typedef {object} ScriptPromptData
+ * @property {string} path
+ * @property {string} copyrightYear
+ * @property {string} copyrightOwner
+ * @property {string} scriptDescription
+ * @property {string} scriptAuthor
+ * @property {boolean} shouldContinue - Should plop action be executed?
  */
 
 // @@exports
-/**
- * @ignore
- * @type {ChangelogPromptData}
- */
-export let ChangelogPromptData
-
 /**
  * @ignore
  * @type {DocPromptData}
@@ -63,9 +87,9 @@ export let PackagePromptData
 
 /**
  * @ignore
- * @type {ReadmePromptData}
+ * @type {ResetPromptData}
  */
-export let ReadmePromptData
+export let ResetPromptData
 
 /**
  * @ignore

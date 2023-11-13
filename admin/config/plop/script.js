@@ -16,6 +16,9 @@
 
 // @ts-check
 
+// @@imports-utils
+import { parsePackage } from "../../scripts/utils/index.js"
+
 // @@imports-types
 /* eslint-disable no-unused-vars -- Types only used in comments. */
 import { ScriptPromptData } from "./types/index.js"
@@ -23,11 +26,53 @@ import * as plop from "plop"
 /* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
+const author = /** @type {string|undefined} */
+    (parsePackage().packageObject.author)
+
 // Inquirer prompts for plop generator. See inquirer readme here
 // https://github.com/SBoudrias/Inquirer.js, or see inquirer packages readme
 // here https://github.com/SBoudrias/Inquirer.js/tree/master/packages/inquirer.
 const prompts = [
-    {}
+    {
+        type: "input",
+        name: "path",
+        message: "Input path of new script:",
+        validate: (/** @type {string} */ path) => {
+            return !!path.match(/^.*\.(js|ts)x?$/)
+        }
+    },
+    {
+        type: "input",
+        name: "copyrightYear",
+        message: "Input copyright year of script:",
+        default: new Date().getUTCFullYear().toString(),
+        validate: (/** @type {string} */ year) => {
+            return !!year.match(/^\d{4}$/)
+        }
+    },
+    {
+        type: "input",
+        name: "copyrightOwner",
+        message: "Input copyright owner of script:",
+        default: author
+    },
+    {
+        type: "input",
+        name: "scriptDescription",
+        message: "Input brief description of script:"
+    },
+    {
+        type: "input",
+        name: "scriptAuthor",
+        message: "Input primary author of script:",
+        default: author
+    },
+    {
+        type: "confirm",
+        name: "shouldContinue",
+        message: "This action will add a script at the path shown, continue?",
+        default: false
+    }
 ]
 
 /**
@@ -38,7 +83,16 @@ const prompts = [
  * @returns {plop.ActionType[]} Array of plop actions to be executed.
  */
 const actions = data => {
-    return []
+    if (!data.shouldContinue) { return [] }
+
+    //
+    const addScriptFile = {
+        type: "add",
+        path: `../../${data.path}`,
+        templateFile: "../templates/script.hbs"
+    }
+
+    return [addScriptFile]
 }
 
 // Build plop generator with description field displayed when choosing.
