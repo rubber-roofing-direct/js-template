@@ -58,12 +58,14 @@ const getRepoOptions = (methodPath, { repoOwner, repoName } = cli) => {
     //
     return {
         hostname: "api.github.com",
-        path: encodeURI(`/repos/${repoOwner}/${repoName}${path ? `/${path}` : ""}`),
+        path: encodeURI(
+            `/repos/${repoOwner}/${repoName}${path ? `/${path}` : ""}`
+        ),
         method: method?.toUpperCase() || "GET",
         headers: {
             "Accept": "application/vnd.github+json",
             "Authorization": `Bearer ${cli.token}`,
-            "User-Agent": "node/18.17.1"
+            "User-Agent": `node/${process.versions.node}`
         }
     }
 }
