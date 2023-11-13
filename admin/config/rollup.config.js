@@ -1,4 +1,4 @@
-// Copyright (c) 2022 James Reid. All rights reserved.
+// Copyright (c) 2023 James Reid. All rights reserved.
 //
 // This source code file is licensed under the terms of the MIT license, a copy
 // of which may be found in the LICENSE.md file in the root of this repository.
@@ -10,7 +10,7 @@
 
 /**
  * @ignore
- * @file Rollup config
+ * @file Rollup config.
  * @author James Reid
  */
 
@@ -21,8 +21,16 @@ import { nodeResolve } from "@rollup/plugin-node-resolve"
 import terser from "@rollup/plugin-terser"
 import dts from "rollup-plugin-dts"
 
+// @@imports-types
+/* eslint-disable no-unused-vars -- Types only used in comments. */
+import * as rollup from "rollup"
+/* eslint-enable no-unused-vars -- Close disable-enable pair. */
+
 // @@body
-// declare rollup config object
+//
+const banner = "#!/usr/bin/env node"
+
+// Declare rollup config object.
 const configs = [
     {
         name: "bin",
@@ -30,7 +38,7 @@ const configs = [
             {
                 input: "./src/bin/index.js",
                 output: [
-                    { file: "./dist/package/index.js", format: "es" }
+                    { banner, file: "./build/bin/index.js", format: "es" }
                 ]
             }
         ],
@@ -38,7 +46,13 @@ const configs = [
             {
                 input: "./src/bin/index.js",
                 output: [
-                    { file: "./dist/package/index.js", format: "es" }
+                    { banner, file: "./dist/bin/index.js", format: "es" }
+                ],
+                plugins: [
+                    // @ts-expect-error - Terser is callable, but has no call
+                    // signature supplied provided by exported types.
+                    terser({ maxWorkers: 6 }),
+                    nodeResolve()
                 ]
             }
         ]
@@ -50,11 +64,12 @@ const configs = [
             {
                 input: "./src/package/index.js",
                 output: [
-                    { file: "./dist/package/index.js", format: "es" }
+                    { file: "./build/package/index.js", format: "es" }
                 ]
             }
         ],
         production: [
+            // Production build of package.
             {
                 input: "./src/package/index.js",
                 output: [
@@ -66,15 +81,21 @@ const configs = [
                     // signature supplied provided by exported types.
                     terser({ maxWorkers: 6 }),
                     nodeResolve()
-
                 ]
             },
+            // Bundle type declarations into one file.
             {
                 input: "./dist/package/declarations/index.d.ts",
                 output: [
                     { file: "./dist/package/index.d.ts", format: "es" }
                 ],
                 plugins: [
+                    // Note that if dts becomes unsupported there are three main
+                    // options for exporting types:
+                    //   - Bundle without terser so jsdoc comments are preserved
+                    //   - Use terser configured to preserve jsdoc comments
+                    //   - Use typescript without dts to which will generate
+                    //   multiple declaration files instead of one
                     dts()
                 ]
             }
@@ -88,18 +109,18 @@ const configMap = configs.reduce((map, config) => {
 
 /**
  *
- * @returns
+ * @returns {rollup.RollupOptions}
  */
 const configSelector = () => {
     //
     const development = process.env.npm_lifecycle_event?.split(":")[1] === "dev"
     const name = process.env.npm_lifecycle_event?.split(":")[2] || "package"
 
-    // chose config
+    // Chose config type (binary script or package) based on script name called.
     const config = configMap.get(name)
     if (!config) { throw new Error(`No config by the name ${name} exists`) }
 
-    // return env
+    // Return appropriate config based on if it is a dev or production build.
     return development ? config.development : config.production
 }
 
