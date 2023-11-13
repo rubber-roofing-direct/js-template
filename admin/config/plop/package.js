@@ -29,20 +29,24 @@ import * as plop from "plop"
 /* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
+// Infer git remote url from system call.
 const remoteUrl = execSync("git ls-remote --get-url origin")
     .toString()
     .split("\n")
     .shift()
 
+// Match github repo owner and name from remote url found above.
 const regex = /^https:\/\/github\.com\/(?<owner>.*)\/(?<repo>.*)\.git$/
 const { owner, repo } = remoteUrl?.match(regex)?.groups || {}
 
+// Get default author from package.json file.
 /** @type {{author:string|undefined}} */
 const { author } = parsePackage().packageObject
 
 // Inquirer prompts for plop generator. See inquirer readme here
 // https://github.com/SBoudrias/Inquirer.js, or see inquirer packages readme
 // here https://github.com/SBoudrias/Inquirer.js/tree/master/packages/inquirer.
+// See each prompt for the appropriate defaults and validations where required.
 const prompts = [
     {
         type: "input",
@@ -56,6 +60,7 @@ const prompts = [
         message: "Input current version of package:",
         default: "0.0.1",
         validate: (/** @type {string} */ version) => {
+            // Check input is semver number of form "x.y.z".
             return !!version.match(/^\d*\.\d*\.\d*$/)
         }
     },
@@ -102,30 +107,43 @@ const prompts = [
  * @returns {plop.ActionType[]} Array of plop actions to be executed.
  */
 const actions = data => {
+    // Return no plop actions if the generator is not confirmed in the cli.
     if (!data.shouldContinue) { return [] }
 
+    // Match github base url (i.e. excluding ".git" from the url of the git
+    // remote) from inquirer prompt input.
     const githubUrl = data.repository.match(/.*(?=\.git$)/)?.toString() || ""
 
+    // Generate package.json fragment from inquirer prompt input. Override the
+    // properties which are not string-only, and must be built from the string
+    // input passed in the cli.
     const packageFragment = {
         ...data,
         keywords: data.keywords ? data.keywords.split(" ") : [],
-        homepage: `${githubUrl}#readme`,
+        homepage: githubUrl ? `${githubUrl}#readme` : "",
         repository: {
             type: "git",
-            url: `${githubUrl}.git`
+            url: `git+${data.repository}`
         },
-        bugs: { url: `${githubUrl}/issues` },
+        bugs: githubUrl ? { url: `${githubUrl}/issues` } : {},
         bin: data.bin ? { [data.bin]: "./dist/bin/index.js" } : {}
     }
 
-    //
+    // Plop action for modifying repo package.json file.
     const modifyPackageFile = {
         type: "modify",
         path: "../../package.json",
         transform: (/** @type {string} */ file) => {
+            // Parse file string into object, and assign values from package
+            // fragment object to the existing parsed package object.
             const packageObject = JSON.parse(file)
             Object.assign(packageObject, packageFragment)
+
+            // Delete field(s) from the inquirer prompts which should not exist
+            // as properties in the package.json file.
             delete packageObject.shouldContinue
+
+            // Return stringified object with pretty print.
             return JSON.stringify(packageObject, null, 4)
         }
     }

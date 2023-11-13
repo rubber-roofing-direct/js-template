@@ -26,18 +26,21 @@ import * as plop from "plop"
 /* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
-const author = /** @type {string|undefined} */
-    (parsePackage().packageObject.author)
+// Get default author from package.json file.
+/** @type {{author:string|undefined}} */
+const { author } = parsePackage().packageObject
 
 // Inquirer prompts for plop generator. See inquirer readme here
 // https://github.com/SBoudrias/Inquirer.js, or see inquirer packages readme
 // here https://github.com/SBoudrias/Inquirer.js/tree/master/packages/inquirer.
+// See each prompt for the appropriate defaults and validations where required.
 const prompts = [
     {
         type: "input",
         name: "path",
         message: "Input path of new script:",
         validate: (/** @type {string} */ path) => {
+            // Check that input is a filename ending with a js extension.
             return !!path.match(/^.*\.(js|ts)x?$/)
         }
     },
@@ -47,6 +50,7 @@ const prompts = [
         message: "Input copyright year of script:",
         default: new Date().getUTCFullYear().toString(),
         validate: (/** @type {string} */ year) => {
+            // Check that input is a 4 digit year.
             return !!year.match(/^\d{4}$/)
         }
     },
@@ -83,9 +87,10 @@ const prompts = [
  * @returns {plop.ActionType[]} Array of plop actions to be executed.
  */
 const actions = data => {
+    // Return no plop actions if the generator is not confirmed in the cli.
     if (!data.shouldContinue) { return [] }
 
-    //
+    // Plop action for adding script file.
     const addScriptFile = {
         type: "add",
         path: `../../${data.path}`,
