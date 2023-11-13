@@ -1,4 +1,4 @@
-// Copyright (c) 2022 James Reid. All rights reserved.
+// Copyright (c) 2023 James Reid. All rights reserved.
 //
 // This source code file is licensed under the terms of the MIT license, a copy
 // of which may be found in the LICENSE.md file in the root of this repository.
@@ -10,7 +10,7 @@
 
 /**
  * @ignore
- * @file Insert
+ * @file Repository plopfile which offers generators exported from ./plop.
  * @author James Reid
  */
 
@@ -18,10 +18,9 @@
 
 // @@imports-module
 import {
-    changelogGenerator,
     docGenerator,
     packageGenerator,
-    readmeGenerator,
+    resetGenerator,
     scriptGenerator
 } from "./plop/index.js"
 
@@ -32,7 +31,7 @@ import * as plop from "plop"
 
 // @@body
 /**
- * Prompt each generator exported by the plop directory.
+ * Prompt each generator exported by the ./plop directory.
  *
  * @param {plop.NodePlopAPI} plop - Instance of plop.
  * @returns {void}
@@ -41,8 +40,7 @@ const plopCli = plop => {
     plop.setGenerator("Script", /** @type {any} */ (scriptGenerator))
     plop.setGenerator("Documentation", /** @type {any} */ (docGenerator))
     plop.setGenerator("Package", /** @type {any} */ (packageGenerator))
-    plop.setGenerator("CHANGELOG", /** @type {any} */ (changelogGenerator))
-    plop.setGenerator("README", /** @type {any} */ (readmeGenerator))
+    plop.setGenerator("Reset", /** @type {any} */ (resetGenerator))
 }
 
 // @@exports
