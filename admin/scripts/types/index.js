@@ -10,7 +10,7 @@
 
 /**
  * @ignore
- * @file Export types.
+ * @file Export admin script types.
  * @author James Reid
  */
 
