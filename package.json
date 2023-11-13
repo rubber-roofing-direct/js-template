@@ -29,8 +29,10 @@
         "npm": "*"
     },
     "targets": {
-        "main": false
+        "main": false,
+        "types": false
     },
+    "browserlist": "> 0.5%, last 2 versions, not dead",
     "scripts": {
         "admin:deploy": "gh-pages --dist ./dist/web",
         "admin:plop": "plop --plopfile './admin/config/plopfile.js'",
