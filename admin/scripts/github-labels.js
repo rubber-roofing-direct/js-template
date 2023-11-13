@@ -46,16 +46,23 @@ import { ClientRequest } from "http"
 
 // @@body
 /**
+ * Generate RequestOptions object for https request to "/repos/<path>" endpoint
+ * of the github api. See [here](https://docs.github.com/en/rest/overview/endpoints-available-for-fine-grained-personal-access-tokens?apiVersion=2022-11-28#repos)
+ * for available repo endpoints using fine grained personal access tokens.
  *
- * @param {string} methodPath
- * @returns {https.RequestOptions}
+ * @param {string} methodPath - String of the format "<METHOD> <endpoint>"
+ *      containing the required http method, and subpath of github api endpoint
+ *      (excluding the identifying repo owner and name) for the request.
+ * @param {{repoOwner:string, repoName:string}} obj - Repo owner and name
+ *      forming part of full api endpoint path to identify the required repo.
+ * @returns {https.RequestOptions} - Http RequestOptions object for github api.
  */
 const getRepoOptions = (methodPath, { repoOwner, repoName } = cli) => {
-    //
+    // Get http request method and endpoint path for request.
     const methodPathRegex = /^(?<method>[a-z,A-Z]*)\s?(?<path>.*)$/
     const { method, path } = methodPath.match(methodPathRegex)?.groups || {}
 
-    //
+    // Return https RequestOptions object for github api.
     return {
         hostname: "api.github.com",
         path: encodeURI(
@@ -71,62 +78,77 @@ const getRepoOptions = (methodPath, { repoOwner, repoName } = cli) => {
 }
 
 /**
+ * Get request url from ClientRequest object returned by https.request() method.
  *
- * @param {ClientRequest} request
- * @returns {string}
+ * @param {ClientRequest} request - Node ClientRequest object.
+ * @returns {string} Url of request.
  */
 const getUrl = request => {
     return `${request.protocol}//${request.host}${request.path}`
 }
 
 /**
+ * Delete issue label by name from github issue tracker for the given repo
+ * identified by options passed in the cli.
  *
- * @param {string} name
+ * @param {string} name - Name of label to delete.
  * @returns {Promise.<{name:string, status:number|undefined, message:string}>}
  *      Returns promise, rejects if label deletion fails.
  */
 const deleteLabel = name => {
     return new Promise((resolve, reject) => {
-        //
+        // Get https request options object, and request label deletion.
         const options = getRepoOptions(`DELETE labels/${encodeURI(name)}`)
         const req = https.request(options, res => {
-            //
+            // Generate data object containing summary details of request.
             const data = { name, url: getUrl(req), status: res.statusCode }
-            if (res.statusCode !== 204) {
-                reject({ ...data, message: "Label not deleted" })
-            }
 
-            resolve({ ...data, message: "Label deleted" })
+            // Resolve promise if label is deleted (expected response code 204),
+            // otherwise reject.
+            res.statusCode === 204
+                ? resolve({ ...data, message: "Label deleted" })
+                : reject({ ...data, message: "Label not deleted" })
         })
+
+        // Throw any error on request.
         req.on("error", error => { throw error })
 
+        // End request.
         req.end()
     })
 }
 
 /**
+ * Create issue label in github issue tracker for the given repo identified by
+ * options passed in the cli.
  *
- * @param {{name:string, color:string, description:string}} obj -
+ * @param {{name:string, color:string, description:string}} obj - Name, color
+ *      and description string of label to be created.
  * @returns {Promise.<{name:string, status:number|undefined, message:string}>}
  *      Returns promise, rejects if label creation fails.
  */
 const createLabel = ({ name, color, description }) => {
     return new Promise((resolve, reject) => {
-        //
-        const req = https.request(getRepoOptions("POST labels"), res => {
-            //
+        // Get https request options object, and request label creation.
+        const options = getRepoOptions("POST labels")
+        const req = https.request(options, res => {
+            // Generate data object containing summary details of request.
             const data = { name, url: getUrl(req), status: res.statusCode }
-            if (res.statusCode !== 201) {
-                reject({ ...data, message: "Label not created" })
-            }
 
-            resolve({ ...data, message: "Label created" })
+            // Resolve promise if label is created (expected response code 201),
+            // otherwise reject.
+            res.statusCode === 201
+                ? resolve({ ...data, message: "Label created" })
+                : reject({ ...data, message: "Label not created" })
         })
+
+        // Throw any error on request.
         req.on("error", error => { throw error })
 
-        //
+        // Write object containing details of label to be created to request.
         req.write(JSON.stringify({ name: encodeURI(name), color, description }))
 
+        // End request.
         req.end()
     })
 }
@@ -180,21 +202,43 @@ catch (error) {
     })
 }
 
-//
-const req = https.request(getRepoOptions("GET labels"), res => {
+// Get https request options object, and request all current labels from repo.
+// Upon end of response, delete *all* existing labels then create new labels
+// from json file containing label objects.
+const options = getRepoOptions("GET labels")
+const req = https.request(options, res => {
+    // Throw error if success status code not received.
+    if (!res.statusCode?.toString().match(/^2\d{2}$/)) {
+        throw new DecoratedError({
+            name: "GithubApiError",
+            message: "Existing labels not found",
+            "status-code": res.statusCode?.toString() || "",
+            "status-message": res.statusMessage || ""
+        })
+    }
+
+    // Read contents of response to string.
     let data = ""
     res.on("data", buffer => { data += buffer.toString() })
+
+    // Delete all labels then create new labels in repo when response is ended.
     res.on("end", async () => {
         console.log("Deleting labels:")
 
+        // Parse labels array into object.
         const currentLabels = /** @type {GithubLabel[]} */ (JSON.parse(data))
 
+        // Delete all existing labels.
         for (const [i, { name }] of currentLabels.entries()) {
+            // Log details of current label being deleted, clearing console line
+            // each time.
             const count = `[${i + 1}/${currentLabels.length}]`
             const msg = decorateFg(`${name} ${count}`, "gray", 1)
             readline.clearLine(process.stdout, 0)
             readline.cursorTo(process.stdout, 0)
             process.stdout.write(msg)
+
+            // Delete label, throwing error if deletion promise is rejected.
             await deleteLabel(name)
                 .catch(error => {
                     throw new DecoratedError({
@@ -206,12 +250,17 @@ const req = https.request(getRepoOptions("GET labels"), res => {
 
         console.log("\nCreating labels:")
 
+        // Create new labels from those fetched from json data file.
         for (const [i, label] of updatedLabels.entries()) {
+            // Log details of current label being created, clearing console line
+            // each time.
             const count = `[${i + 1}/${updatedLabels.length}]`
             const msg = decorateFg(`${label.name} ${count}`, "gray", 1)
             readline.clearLine(process.stdout, 0)
             readline.cursorTo(process.stdout, 0)
             process.stdout.write(msg)
+
+            // Create label, throwing error if creation promise is rejected.
             await createLabel(label)
                 .catch(error => {
                     throw new DecoratedError({
@@ -222,8 +271,11 @@ const req = https.request(getRepoOptions("GET labels"), res => {
         }
     })
 })
+
+// Throw any error on request.
 req.on("error", error => { throw error })
 
+// End request.
 req.end()
 
 // @@no-exports
