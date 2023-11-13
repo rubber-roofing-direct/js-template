@@ -10,7 +10,7 @@
 
 /**
  * @ignore
- * @file Jest config
+ * @file Jest config.
  * @author James Reid
  */
 
@@ -19,9 +19,17 @@
 // @@no-imports
 
 // @@body
+// Fetch root directory of repository (equivalent to current working directory
+// since this script is called from an npm script).
 const rootDir = process.cwd()
 
+// Declare jest configurations for test suites for each part of the repo (cli
+// tools, exported package, and demo site). For more information on configuring
+// jest see [here](https://jestjs.io/docs/configuration). Each config below
+// is named, and declares a cache directory and directories (relative to the
+// given root directory) to search for tests.
 const configs = [
+    // Cli tools config test suite.
     {
         name: "bin",
         config: {
@@ -31,6 +39,7 @@ const configs = [
         }
     },
 
+    // Package test suite.
     {
         name: "package",
         config: {
@@ -40,6 +49,7 @@ const configs = [
         }
     },
 
+    // Web demo test suite.
     {
         name: "web",
         config: {
@@ -50,10 +60,16 @@ const configs = [
     }
 ]
 
+// Create map of available jest configurations.
 const configMap = configs.reduce((map, config) => {
     return map.set(config.name, config)
 }, new Map())
 
+/**
+ * Select jest configuration by name of npm script being run.
+ *
+ * @returns {any} Jest config object.
+ */
 const configSelector = () => {
     // Set config name according to which npm script is being run.
     const name = process.env.npm_lifecycle_event?.split(":")[1] || "package"

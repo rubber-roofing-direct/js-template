@@ -27,11 +27,15 @@ import * as rollup from "rollup"
 /* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
-//
+// Declare node shebang banner for executable scripts.
 const banner = "#!/usr/bin/env node"
 
-// Declare rollup config object.
+// Declare rollup config objects for bundling cli tools (executable scripts) and
+// package exports for this repository. Each configuration is named and declares
+// a rollup configuration for both development and production builds of the
+// given source files.
 const configs = [
+    // Executable scripts config.
     {
         name: "bin",
         development: [
@@ -58,6 +62,7 @@ const configs = [
         ]
     },
 
+    // Package exports config.
     {
         name: "package",
         development: [
@@ -69,7 +74,8 @@ const configs = [
             }
         ],
         production: [
-            // Production build of package.
+            // Production build of package only (excluding types) including
+            // single bundle file for CommonJS.
             {
                 input: "./src/package/index.js",
                 output: [
@@ -83,6 +89,7 @@ const configs = [
                     nodeResolve()
                 ]
             },
+
             // Bundle type declarations into one file.
             {
                 input: "./dist/package/declarations/index.d.ts",
@@ -103,13 +110,15 @@ const configs = [
     }
 ]
 
+// Create map of available rollup configurations.
 const configMap = configs.reduce((map, config) => {
     return map.set(config.name, config)
 }, new Map())
 
 /**
+ * Select rollup configuration by name of npm script being run.
  *
- * @returns {rollup.RollupOptions}
+ * @returns {rollup.RollupOptions} Rollup config object.
  */
 const configSelector = () => {
     //
