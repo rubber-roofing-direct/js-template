@@ -6,7 +6,7 @@
 # JS Template
 
 <!-- Insert a brief description of the repository on the line below. -->
-A [github](https://github.com) template repository for creating node-first JavaScript projects (i.e. primarily for node packages and/or terminal applications which may include small, static web demos). 
+A [github](https://github.com) template repository for creating node-first JavaScript projects (i.e. primarily for node packages and/or terminal applications which may include small, static web demos).
 
 <!-- If applicable, insert link for web demo of repository in the paragraph below. -->
 This repository is hosted on [github](https://github.com), if you're already reading this there, then great! Otherwise browse the repository [here](https://github.com/blameitonyourisp/js-template).
@@ -18,10 +18,6 @@ This repository is hosted on [github](https://github.com), if you're already rea
 <!-- Add or remove table of contents links as required below. -->
 - [Description](#description)
 - [Getting Started](#getting-started)
-    - [Installation](#installation)
-    - [Configuration](#configuration)
-    - [Basic Usage](#basic-usage)
-- [Usage](#usage)
 - [Documentation](#documentation)
 - [Roadmap](#roadmap)
 - [Attributions](#attributions)
@@ -38,7 +34,32 @@ Please note that due to file compression, and post download installs/builds such
 ## Description
 
 <!-- Insert a longer description of the repository on the line below. -->
+This is a template repository for creating predominantly node based JavaScript projects and packages. This includes configuration scripts for testing and building source files, admin scripts for generating changelog release notes etc. Please see the following list for the main features provided by this template repository:
 
+- Template directory structure for creating and managing a package repository
+- Github issue and pull request templates
+- Configuration for testing and build processes
+- Automatic changelog release notes generation
+- Dot file configurations for linting, git, and npm
+
+## Getting Started
+
+<!-- Update this section with brief details on getting started. -->
+To get started using this template repository
+
+duplicate in org
+disable wiki
+update labels (if not correct from organisation)
+update package json with plop
+update readme, contributing, changelog, license with plop (will overwrite this readme)
+commit changes
+
+## Documentation
+
+<!-- Update this section with any additional custom documentation, for instance if the wiki is enabled. -->
+Since this README file will be overwritten during the template duplication process, no 
+
+For more information 
 
 ## Roadmap
 
