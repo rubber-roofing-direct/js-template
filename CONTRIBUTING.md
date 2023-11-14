@@ -30,7 +30,6 @@ Thank you for reading the contributing guidelines for this repository. Since thi
 	- [.cache](#cache)
 	- [.github](#github)
 	- [admin](#admin)
-	- [assets](#assets)
 	- [build](#build)
 	- [dist](#dist)
 	- [docs](#docs)
@@ -335,6 +334,10 @@ Issue templates are stored in the `./.github/ISSUE_TEMPLATE` subdirectory. Each 
 
 The `./admin` directory contains all build scripts etc., template files, and configuration files which do not need to be located in the root of the repository. All scripts in the `./admin` directory do not form any part of the code exported by this repository. Please see the following subheadings to see how the directory is structured.
 
+#### admin/assets
+
+The `./assets` subdirectory is used to store *all* repository assets. This includes images, vector files, fonts, and any other media that features in repository documentation or is used in demos of repository functionality. Note that in the event that the default `favicon.ico` file is not is deleted and no other assets are included in the repository, the `./assets` folder will still be included in git history of this repository by use of a `.gitkeep` file.
+
 #### admin/config
 
 The `./admin/config` subdirectory contains all configuration files for tools which do not require configuration files in the root of the repository. These tools include build tools such as rollup, generators such as jsdoc and plop etc. Other configuration files such as `tsconfig.json` and `.eslintrc` must be located in the root of the repository in order to be found by tsserver, npm etc., and are therefore *not* found in the `./admin/config` subdirectory.
@@ -346,10 +349,6 @@ The `./admin/scripts` subdirectory contains all custom scripts written by the ma
 #### admin/templates
 
 The `./admin/templates` subdirectory contains all templates used by plop for automatic generation of new scripts or documentation files, and by the changelog generator to render new release note prompts. Note that template files are all saved as `.hbs` (handlebars) files for syntax highlighting purposes in vscode, although some of the template files may be limited to the simpler mustache syntax (this applies mainly to the templates used by the changelog generator).
-
-### assets
-
-The `./assets` directory is used to store *all* repository assets. This includes images, vector files, fonts, and any other media that features in repository documentation or is used in demos of repository functionality. Note that in the event that the default `favicon.ico` file is not is deleted and no other assets are included in the repository, the `./assets` folder will still be included in git history of this repository by use of a `.gitkeep` file.
 
 ### build
 
