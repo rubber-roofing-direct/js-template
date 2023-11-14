@@ -18,6 +18,7 @@ This repository is hosted on [github](https://github.com), if you're already rea
 <!-- Add or remove table of contents links as required below. -->
 - [Description](#description)
 - [Getting Started](#getting-started)
+    - [Personal Access Token](#personal-access-token)
 - [Documentation](#documentation)
 - [Roadmap](#roadmap)
 - [Attributions](#attributions)
@@ -45,21 +46,64 @@ This is a template repository for creating predominantly node based JavaScript p
 ## Getting Started
 
 <!-- Update this section with brief details on getting started. -->
-To get started using this template repository
+To get started using this template repository, please follow the instructions below in order:
 
-duplicate in org
-disable wiki
-update labels (if not correct from organisation)
-update package json with plop
-update readme, contributing, changelog, license with plop (will overwrite this readme)
-commit changes
+1. Duplicate this template repository using the `Use this template` button located in the top right of the file section of the [github](https://github.com/) repository where the `Clone` button is located for normal repositories
+3. In the `General` tab of the new repository settings, underneath the section labeled `Features`, disable the repository wiki.
+4. Update issue labels to match the labels required for repository issue templates (if duplicating into an organisation with the correct labels already set as default labels, this step may be skipped):
+    1. Obtain an appropriate personal access token using the directions in the [section below](#personal-access-token)
+    2. Add `.env` file to root of repository, and add line containing access token with the following key `GITHUB_ACCESS_TOKEN=<github-pat>`
+    3. Run `npm run admin:update-labels`
+    4. Verify that labels have been updated correctly by comparing labels in the new, duplicated repository to the [template repository labels](https://github.com/blameitonyourisp/js-template/labels) (the file `./admin/config/labels.json` also contains a list of the required labels)
+5. Run `npm run admin:plop`, select `Package`, and then follow the prompts in the terminal to update the `package.json` file with details of the new repository
+6. Run `npm run admin:plop`, select `Reset`, and then follow the prompts in the terminal to update the `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE.md`, and `README.md` files with details of the new repository (note that this step will overwrite this file)
+7. Commit changes with a commit message such as `msc= Initialise template repository`
+
+### Personal Access Token
+
+To obtain a personal access token suitable for updating the labels of the new, duplicated repository, please follow the instruction below in order (see the code block at the end for the expected entry in the untracked `.env` file in the root of the repository):
+
+1. Navigate to `Developer Settings` in your account settings on [github](https://github.com/) (the `Developer Settings` tab may be found at the very bottom of the nav menu in your main account settings)
+2. Navigate to `Personal access tokens` and then `Fine-grained tokens` in the `Developer Settings` nav menu
+3. Select `Generate new token` in the top right of the settings section
+4. Enter the required details for creating the new access token, considering the following:
+    1. Choose a name reflecting the access token scope such as `personal-label-migration`
+    2. Choose a short expiry
+    3. Change `Resource owner` as required if the access token is intended for use on repositories duplicated in an organisation
+    4. Change `Repository access` to `All repositories`
+    5. Under `Permissions` change the following `Repository permissions`:
+        1. Change `Issues` to `Access: Read and write`
+        2. Change `Metadata` to `Access: Read-only`
+5. Check that only appropriate permissions have been added in the `Overview` section, then use the `Generate token` button to generate the new access token
+6. Approve personal access token in settings tab of organisation (only applies if access token is for use in an organisation): 
+    1. Navigate to the organisation settings of the appropriate organisation
+    2. Navigate to `Personal access tokens` and then `Pending requests`
+    3. Approve or revoke pending tokens as required
+    4. See [here](https://docs.github.com/en/organizations/managing-programmatic-access-to-your-organization/reviewing-and-revoking-personal-access-tokens-in-your-organization) for more information
+7. Add personal access token to `.env` file in root of the new, duplicated repository using the key `GITHUB_ACCESS_TOKEN` (see the code block below)
+
+```bash
+# Github access token should be stored with the following key:
+GITHUB_ACCESS_TOKEN=<github-pat>
+```
 
 ## Documentation
 
 <!-- Update this section with any additional custom documentation, for instance if the wiki is enabled. -->
-Since this README file will be overwritten during the template duplication process, no 
+Since this README file will be overwritten during the template duplication process, no extra documentation is included here beyond the basic steps required for initialising a new repository using this template. For more information about this template repository, please see the links in the list below:
 
-For more information 
+- For more information on all features of this template repository such as folder structure, code style, and git usage, please see the [contributing file](https://github.com/blameitonyourisp/js-template/blob/main/CONTRIBUTING.md)
+- For more information specifically concerning changelog format and generation, see the [notes section](https://github.com/blameitonyourisp/js-template/blob/main/CHANGELOG.md#changelog-notes) of the [changelog file](https://github.com/blameitonyourisp/js-template/blob/main/CHANGELOG.md)
+- For more information specifically concerning repository scripts:
+    - See the inline code documentation in the source files in the `./admin` directory
+    - See the [npm scripts section](https://github.com/blameitonyourisp/js-template/blob/main/CONTRIBUTING.md#npm-scripts) of the [contributing file](https://github.com/blameitonyourisp/js-template/blob/main/CONTRIBUTING.md)
+
+For an approximate line count of all configuration files and documentation, please see the following code block (note that [tokei](https://github.com/XAMPPRocky/tokei) will have to be installed on your local system for this to work, and that tokei does not recognise `.files`, and therefore files such as the `.eslintrc` configuration will be excluded from the count):
+
+```bash
+# Run the following command for an *approximate* line count for configuration.
+tokei admin .github package.json CHANGELOG.md CONTRIBUTING.md LICENSE.md README.md
+```
 
 ## Roadmap
 
