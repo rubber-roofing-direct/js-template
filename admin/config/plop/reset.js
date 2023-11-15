@@ -103,7 +103,7 @@ const prompts = [
         type: "input",
         name: "shieldLabelColor",
         message: "Input left hand shield color for code information badges:",
-        default: "BAC99C",
+        default: "191a1a",
         validate: (/** @type {string} */ color) => {
             // Check input is 6 chars of lowercase or uppercase hex chars.
             return !!color.match(/^[a-fA-F\d]{6}$/)
