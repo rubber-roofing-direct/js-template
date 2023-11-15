@@ -52,7 +52,7 @@ const copyrightRegex = /(?<=\nCopyright\s\(c\)\s)\d{4}\s.*(?=\n)/
 // (immediately after template repository duplication), the hash of the last
 // commit should also be the hash of the first commit in the repo (i.e. the also
 // the first commit which may appear in the changelog).
-const hash = execSync("git rev-list HEAD~1..HEAD")
+const hash = execSync("git rev-list HEAD --max-count=1")
     .toString()
     .split("\n")
     .shift()
