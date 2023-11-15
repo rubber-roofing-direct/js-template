@@ -65,9 +65,7 @@ const getRepoOptions = (methodPath, { repoOwner, repoName } = cli) => {
     // Return https RequestOptions object for github api.
     return {
         hostname: "api.github.com",
-        path: encodeURI(
-            `/repos/${repoOwner}/${repoName}${path ? `/${path}` : ""}`
-        ),
+        path: `/repos/${repoOwner}/${repoName}${path ? `/${path}` : ""}`,
         method: method?.toUpperCase() || "GET",
         headers: {
             "Accept": "application/vnd.github+json",
