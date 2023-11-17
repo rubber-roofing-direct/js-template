@@ -18,6 +18,7 @@ Thank you for reading the contributing guidelines for this repository. Since thi
 - [Code Style](#code-style)
 	- [ESLint](#eslint)
 	- [Ternaries](#ternaries)
+	- [Identifier Naming](#identifier-naming)
 	- [Paths](#paths)
 	- [Module Imports](#imports-and-exports)
 	- [Comment Grammar](#comment-grammar)
@@ -187,6 +188,29 @@ const resultC = caseA() ? resultA
     : resultD // Default case.
 ```
 
+### Identifier Naming
+
+Identifiers in source files in this repository should follow the `lowerCamelCase` naming convention with the following exceptions:
+
+- Class and type names should follow the `UpperCamelCase` naming convention
+- Global variables such as environment variables or top level configuration variables *may* use `UPPER_SNAKE_CASE` where appropriate
+
+Please see the instructions below on how to construct compliant identifiers, read the [google specification](https://google.github.io/styleguide/jsguide.html#naming-camel-case-defined), or read [this response](https://stackoverflow.com/a/45440841) summarising the algorithm:
+
+1. Convert identifier name to an ASCII prose form of the same name, for example `player ID`:
+    1. Remove any apostrophes etc.
+    2. Turn accented letters into standard letter groups (for example the German `ẞ` might become `sz`)
+2. Divide the result from step 1 into individual words: 
+    1. Split on spaces or any remaining punctuation such as hyphens
+    2. Split any conventional abbreviations into their own separate words (for instance `AdWords` would become `ad words`)
+3. Turn everything into lowercase, including all acronyms (for example `ID` will become `id`, `XML` will become `xml` etc.)
+4. Turn first letter of every word to uppercase for `UpperCamelCase`, or exclude the first word to yield `lowerCamelCase`
+5. Concatenate everything from the previous step into one word to get your camel case identifier
+
+Note that these rules are particularly useful for standardising identifiers containing acronyms (only the first letter of an acronym is capitalised *regardless* of length). The method produces consistent identifiers when compared to standards which make exceptions for short acronyms such as the [microsoft abbreviations standard](https://learn.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN), which suggests capitalising acronyms consisting of only two characters.
+
+Especially when concatenating multiple adjacent acronyms, the [google specification](https://google.github.io/styleguide/jsguide.html#naming-camel-case-defined) produces clearer identifiers. For example with a prose identifier such as `player id url`, we yield the identifier `playerIdUrl`. Compared to an identifier such as `playerIDUrl` using the [microsoft abbreviations standard](https://learn.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN), which not only looks inconsistent, but also raises ambiguity as to where some acronyms begin and/or end.
+
 ### Paths
 
 Where possible, a leading `./` path prefix is preferred for accessing relative scripts etc. from source code files, this applies to any statement where a path to a file is supplied in a string. Please see the following code block for clarification:
@@ -238,13 +262,13 @@ To maintain consistency across the repository, every script follows the same ove
 
 ### Naming
 
-Each script in this repository should be named using `lower-kebab-case` (all lowercase words separated by hyphens), or if the main exported member of the script is a class or type, then the script should be named using `upper-kebab-case` (all uppercase words separated by hyphens). Please consider the following points when naming a new script: 
+Each script in this repository should be named using `lower-kebab-case` (all lowercase words separated by hyphens), or if the main exported member of the script is a class or type, then the script should be named using `UpperCamelCase` (all uppercase words without separation). Please consider the following points when naming a new script: 
 
 - Script names *must* minimally indicate the main functionality of the script
 - Script names *should* be one or two words, longer names *may* indicate the need for further refactoring into more scripts or folders
 - Script directory paths *must* be considered as context when naming the script (i.e. `container/primary.js` rather than `container/primary-container.js`)
 - Standard scripts *must* be named using `lower-kebab-case` unless the script's main export is a class or a type
-- Scripts whose main export is a class or a type *must* be named using `upper-kebab-case`
+- Scripts whose main export is a class or a type *must* be named using `UpperCamelCase`, with the name reflecting the main exported class or type
 - Folders *may* also use `lower-kebab-case` to have multiple words in the folder name
 
 ### Header
