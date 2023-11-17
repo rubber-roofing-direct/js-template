@@ -213,7 +213,7 @@
         "grouped-accessor-pairs": "error",
         "guard-for-in": "off",
         "id-denylist": ["error", "err", "e", "ev", "cb"],
-        "id-match": ["error", "(^[A-Z]?[a-z]+([A-Z][a-z]+)*$)|(^([A-Z]+_?)*$)", {
+        "id-match": ["error", "(^[A-Z]?[a-z0-9]*([A-Z][a-z0-9]*)*$)|(^([A-Z0-9]+_?)*$)", {
             "properties": false,
             "classFields": false,
             "onlyDeclarations": true,

@@ -26,7 +26,6 @@ import fs from "fs"
 
 // @@imports-dependencies
 import Mustache from "mustache"
-/* eslint-disable-next-line id-match -- YAML id does not follow pattern. */
 import YAML, { YAMLMap } from "yaml"
 
 // @@imports-utils
