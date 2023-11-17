@@ -346,7 +346,7 @@
         "semi": ["error", "never"],
         "semi-spacing": ["error", {
             "before": false,
-            "after": false
+            "after": true
         }],
         "semi-style": ["error", "last"],
         "space-before-blocks": ["error", "always"],
