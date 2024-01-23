@@ -1,0 +1,58 @@
+/* https://realtimecolors.com/?colors=212121-e0e0e0-779966-b9c69f-6f4db3 */
+:root {
+    /* https://coolors.co/f0e2db-e6ddcb-dbdbbd-b9c69f-779966-415841-2e3831-242927-191a1a */
+    --clr-primary-100: hsl(20, 41%, 90%); /* #f0e2db */
+    --clr-primary-200: hsl(40, 35%, 85%); /* #e6ddcb */
+    --clr-primary-300: hsl(60, 29%, 80%); /* #dbdbbd */
+    --clr-primary-400: hsl(80, 25%, 70%); /* #b9c69f */
+    --clr-primary-500: hsl(100, 20%, 50%); /* #779966 */
+    --clr-primary-600: hsl(120, 15%, 30%); /* #415841 */
+    --clr-primary-700: hsl(138, 10%, 20%); /* #2e3831 */
+    --clr-primary-800: hsl(156, 6%, 15%); /* #242927 */
+    --clr-primary-900: hsl(180, 2%, 10%); /* #191a1a */
+
+    /* https://coolors.co/c6c2f0-b9b0e8-af9fdf-977ece-6f4db3-4f3a78-3d2d52-332640-281f2e */
+    --clr-accent-100: hsl(245, 61%, 85%); /* #c6c2f0 */
+    --clr-accent-200: hsl(250, 55%, 80%); /* #b9b0e8 */
+    --clr-accent-300: hsl(255, 50%, 75%); /* #af9fdf */
+    --clr-accent-400: hsl(259, 45%, 65%); /* #977ece */
+    --clr-accent-500: hsl(260, 40%, 50%); /* #6f4db3 */
+    --clr-accent-600: hsl(260, 35%, 35%); /* #4f3a78 */
+    --clr-accent-700: hsl(266, 29%, 25%); /* #3d2d52 */
+    --clr-accent-800: hsl(270, 25%, 20%); /* #332640 */
+    --clr-accent-900: hsl(276, 19%, 15%); /* #281f2e */
+
+    /* https://coolors.co/ffffff-e0e0e0-bfbfbf-a1a1a1-808080-616161-404040-212121-000000 */
+    --clr-neutral-100: hsl(0, 0%, 100%); /* #ffffff */
+    --clr-neutral-150: hsl(0, 0%, 94%); /* #f0f0f0 */
+    --clr-neutral-200: hsl(0, 0%, 88%); /* #e0e0e0 */
+    --clr-neutral-250: hsl(0, 0%, 81%); /* #cfcfcf */
+    --clr-neutral-300: hsl(0, 0%, 75%); /* #bfbfbf */
+    --clr-neutral-350: hsl(0, 0%, 69%); /* #b0b0b0 */
+    --clr-neutral-400: hsl(0, 0%, 63%); /* #a1a1a1 */
+    --clr-neutral-450: hsl(0, 0%, 56%); /* #8f8f8f */
+    --clr-neutral-500: hsl(0, 0%, 50%); /* #808080 */
+    --clr-neutral-550: hsl(0, 0%, 44%); /* #707070 */
+    --clr-neutral-600: hsl(0, 0%, 38%); /* #616161 */
+    --clr-neutral-650: hsl(0, 0%, 31%); /* #4f4f4f */
+    --clr-neutral-700: hsl(0, 0%, 25%); /* #404040 */
+    --clr-neutral-750: hsl(0, 0%, 19%); /* #303030 */
+    --clr-neutral-800: hsl(0, 0%, 13%); /* #212121 */
+    --clr-neutral-850: hsl(0, 0%, 6%); /* #0f0f0f */
+    --clr-neutral-900: hsl(0, 0%, 0%); /* #000000 */
+
+    /* https://coolors.co/ed5e6a-dd3c49-b82e39 */
+    --clr-error-400: hsl(355, 80%, 65%); /* #ed5e6a */
+    --clr-error-500: hsl(355, 70%, 55%); /* #dd3c49 */
+    --clr-error-600: hsl(355, 60%, 45%); /* #b82e39 */
+
+    /* https://coolors.co/dbdb57-ecec79-f7f7a1 */
+    --clr-warn-400: hsl(60, 84%, 80%); /* #f7f7a1 */
+    --clr-warn-500: hsl(60, 75%, 70%); /* #ecec79 */
+    --clr-warn-600: hsl(60, 65%, 60%); /* #dbdb57 */
+
+    /* https://coolors.co/cffcd2-a3f5aa-7de886 */
+    --clr-success-400: hsl(124, 88%, 90%); /* #cffcd2 */
+    --clr-success-500: hsl(125, 80%, 80%); /* #a3f5aa */
+    --clr-success-600: hsl(125, 70%, 70%); /* #7de886 */
+}
