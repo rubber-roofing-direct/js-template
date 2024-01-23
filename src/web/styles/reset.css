@@ -1,0 +1,34 @@
+/* 
+CSS reset inspired by https://www.joshwcomeau.com/css/custom-css-reset/, please
+also see some of the resources below for future extensions to the reset:
+    - https://elad2412.github.io/the-new-css-reset/
+    - https://andy-bell.co.uk/a-modern-css-reset/
+    - https://meyerweb.com/eric/tools/css/reset/
+    - https://piccalil.li/blog/a-more-modern-css-reset/
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+#root, #__next {
+    isolation: isolate;
+}
