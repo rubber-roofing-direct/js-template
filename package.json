@@ -30,7 +30,10 @@
     },
     "targets": {
         "main": false,
-        "types": false
+        "types": false,
+        "module": {
+            "optimize": true
+        }
     },
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "scripts": {
@@ -46,7 +49,7 @@
         "build:prod": "npm run build:prod:bin && npm run build:prod:package && npm run build:prod:web",
         "build:prod:bin": "rollup --config ./admin/config/rollup.config.js",
         "build:prod:package": "npm run types:declaration && rollup --config ./admin/config/rollup.config.js",
-        "build:prod:web": "parcel build ./src/web/pages/**/**/*.html --dist-dir ./dist/web --cache-dir ./.cache/parcel",
+        "build:prod:web": "rm -rf ./dist/web && parcel build ./src/web/pages/**/**/*.html --dist-dir ./dist/web --cache-dir ./.cache/parcel-prod",
         "docs": "npm run docs:jsdoc",
         "docs:changelog": "node ./admin/scripts/changelog.js",
         "docs:jsdoc": "jsdoc --configure ./admin/config/jsdoc.config.json",
@@ -58,7 +61,7 @@
         "preversion": "npm run build:prod",
         "start": "npm run start:web",
         "start:docs": "npm run docs:jsdoc && http-server ./build/jsdoc & nodemon --watch src --exec 'npm run docs:jsdoc'",
-        "start:web": "parcel ./src/web/pages/**/**/*.html --dist-dir ./build/web --cache-dir ./.cache/parcel",
+        "start:web": "parcel ./src/web/pages/**/**/*.html --dist-dir ./build/web --cache-dir ./.cache/parcel-dev",
         "test": "npm run test:bin && npm run test:package && npm run test:web",
         "test:bin": "jest --config ./admin/config/jest.config.cjs --passWithNoTests",
         "test:package": "jest --config ./admin/config/jest.config.cjs --passWithNoTests",
