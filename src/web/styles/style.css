@@ -1,0 +1,14 @@
+/* Base CSS reset, font and color variable declarations etc.. */
+@import url("./base/reset.css");
+@import url("./base/colors.css");
+@import url("./base/fonts.css");
+
+/* Reusable component styling imports. */
+@import url("./components/card.css");
+
+/* Global styles. */
+body {
+    background-color: var(--clr-neutral-200);
+    color: var(--clr-neutral-800);
+    font-family: var(--ff-primary);
+}
