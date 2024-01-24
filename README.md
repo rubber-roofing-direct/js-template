@@ -49,16 +49,16 @@ This is a template repository for creating predominantly node based JavaScript p
 To get started using this template repository, please follow the instructions below in order:
 
 1. Duplicate this template repository using the `Use this template` button located in the top right of the file section of the [github](https://github.com/) repository where the `Clone` button is located for normal repositories
-3. In the `General` tab of the new repository settings, underneath the section labeled `Features`, disable the repository wiki.
-4. Run `npm i` to install dev dependencies
-5. 1. Run `npm run admin:plop`, select `Package`, and then follow the prompts in the terminal to update the `package.json` file with details of the new repository
-6. Run `npm run admin:plop`, select `Reset`, and then follow the prompts in the terminal to update the `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE.md`, and `README.md` files with details of the new repository (note that this step will overwrite this file)
-7. Update issue labels to match the labels required for repository issue templates (if duplicating into an organisation with the correct labels already set as default labels, this step may be skipped):
+2. In the `General` tab of the new repository settings, underneath the section labeled `Features`, disable the repository wiki.
+3. Run `npm i` to install dev dependencies
+4. Run `npm run admin:plop`, select `Package`, and then follow the prompts in the terminal to update the `package.json` file with details of the new repository
+5. Run `npm run admin:plop`, select `Reset`, and then follow the prompts in the terminal to update the `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE.md`, and `README.md` files with details of the new repository (note that this step will overwrite this file)
+6. Update issue labels to match the labels required for repository issue templates (if duplicating into an organisation with the correct labels already set as default labels, this step may be skipped):
     1. Obtain an appropriate personal access token using the directions in the [section below](#personal-access-token)
     2. Add `.env` file to root of repository, and add line containing access token with the following key `GITHUB_ACCESS_TOKEN=<github-pat>`
     3. Run `npm run admin:update-labels`
     4. Verify that labels have been updated correctly by comparing labels in the new, duplicated repository to the [template repository labels](https://github.com/blameitonyourisp/js-template/labels) (the file `./admin/config/labels.json` also contains a list of the required labels)
-8. Commit changes with a commit message such as `msc= Initialise template repository`
+7. Commit changes with a commit message such as `msc= Initialise template repository`
 
 ### Personal Access Token
 
