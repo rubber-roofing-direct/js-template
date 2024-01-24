@@ -49,7 +49,7 @@
         "build:prod": "npm run build:prod:bin && npm run build:prod:package && npm run build:prod:web",
         "build:prod:bin": "rollup --config ./admin/config/rollup.config.js",
         "build:prod:package": "npm run types:declaration && rollup --config ./admin/config/rollup.config.js",
-        "build:prod:web": "rm -rf ./dist/web && parcel build ./src/web/pages/**/**/*.html --dist-dir ./dist/web --cache-dir ./.cache/parcel-prod",
+        "build:prod:web": "rm -rf ./dist/web && parcel build ./src/web/pages/**/**/*.html --dist-dir ./dist/web --cache-dir ./.cache/parcel-prod && cp -r ./admin/web/. ./dist/web",
         "docs": "npm run docs:jsdoc",
         "docs:changelog": "node ./admin/scripts/changelog.js",
         "docs:jsdoc": "jsdoc --configure ./admin/config/jsdoc.config.json",
