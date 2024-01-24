@@ -44,6 +44,7 @@ Thank you for reading the contributing guidelines for this repository. Since thi
     - [Update](#update)
     - [Disable](#disable)
 - [Releasing](#releasing)
+    - [Indexing](#indexing)
 
 ## Pull Requests
 
@@ -374,6 +375,23 @@ The `./admin/scripts` subdirectory contains all custom scripts written by the ma
 
 The `./admin/templates` subdirectory contains all templates used by plop for automatic generation of new scripts or documentation files, and by the changelog generator to render new release note prompts. Note that template files are all saved as `.hbs` (handlebars) files for syntax highlighting purposes in vscode, although some of the template files may be limited to the simpler mustache syntax (this applies mainly to the templates used by the changelog generator).
 
+#### admin/web
+
+The `./admin/web` subdirectory contains files which should be copied to the `./dist/web` directory when building a site using the [appropriate build command](#npm-scripts). Primarily this directory contains public record files including a `CNAME` record file (required for `gh-pages` to correctly set custom domain when deploying site to [github pages](https://pages.github.com/)), a `robots.txt` file, and a `sitemap.xml` file, both of which help search engines to crawl the generated site. For references on how to write and update these files, please see the following links:
+
+- `CNAME` records references:
+    - [Google](https://support.google.com/a/answer/112037?hl=en#zippy=%2Cset-up-cname-records-now)
+    - [Cloudflare](https://www.cloudflare.com/en-gb/learning/dns/dns-records/dns-cname-record/)
+- `robots.txt` references:
+    - [Google](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
+    - [Cloudflare](https://www.cloudflare.com/en-gb/learning/bots/what-is-robots-txt/)
+    - [robotstxt.org](https://www.robotstxt.org/) (also includes a `robots.txt` file checker)
+    - [Yoast blog guide](https://yoast.com/ultimate-guide-robots-txt/)
+- `sitemap.xml` references:
+    - [Sitemap protocol](https://www.sitemaps.org/protocol.html)
+    - [Google](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
+    - [Sitemap generator](https://www.xml-sitemaps.com/)
+
 ### build
 
 The `./build` directory is included in this repository by use of a `.gitkeep` file, otherwise the contents of the `./build` directory are untracked by the `.gitignore` file. The `./build` directory is reserved for development build outputs. The relevant [npm build scripts](#npm-scripts) will output packaged scripts etc. to subdirectories in the `./build` directory. These subdirectories will correspond to the subdirectories in the `./src` directory (i.e. `./build/bin`, `./build/package`, and `./build/web`). Auto generated JSDoc documentation output will also be found in the `./build` directory in the `./build/docs` subdirectory. Please see the [src section](#src) for more information on the purpose of each subdirectory.
@@ -637,13 +655,17 @@ In order to ensure that versions of software released by this repository are rel
     3. Run `npm run test:package` to only run package source file tests
     4. Run `npm run test:web` to only run static web source file tests
 2. Build production bundles of source files:
-    1. Build type declarations with typescript by running `npm run types:declaration` (note that this command is also run automatically when building the package)
-    2. Build production bundles of the binary, package, and or web source files by running the appropriate build command:
+    1. If required, update public record files found at `./admin/web`:
+        1. Update URLs in public record files to ensure the correct domain and/or subdomain is used
+        2. Update `sitemap.xml` with new pages added etc., optionally use a [sitemap generator](https://www.xml-sitemaps.com/) to create a new sitemap
+        3. See the [admin/web](#adminweb) section for more information on updating public record files
+    2. Build type declarations with typescript by running `npm run types:declaration` (note that this command is also run automatically when building the package)
+    3. Build production bundles of the binary, package, and or web source files by running the appropriate build command:
         1. Run `npm run build:prod` to build a production bundle with all available source files
         2. Run `npm run build:prod:bin` to build only the CLI source files
         3. Run `npm run build:prod:package` to build only the released package source files
         4. Run `npm run build:prod:web` to build only the static web source files
-    3. If required, deploy static site to `gh-pages` by running `npm run admin:deploy`
+    4. If required, deploy static site to `gh-pages` by running `npm run admin:deploy`
 3. Update `package.json` file:
     1. Do *not* update the version field as this will be updated by using the `npm version <semver>` command
     2. Update [bin object](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#bin) with any changed executable names or paths
@@ -664,6 +686,18 @@ In order to ensure that versions of software released by this repository are rel
     1. Add the new version number of the package to the package version dropdown
     2. Add any new LTS version of node released since the last version to the node LTS version dropdown
 8. Commit all changes in the working tree, or stash uncommitted changes such that the working tree is clean prior to updating the version using the `npm version <semver>` command
-9.  Update version by running `npm version <semver>` where `<semver>` is either `major`, `minor`, or `patch` depending on the changes made
+9.  Update version by running `npm version <semver>` where `<semver>` is either `major`, `minor`, or `patch` depending on the changes made [^2]
 
-Note that the npm `preversion` script is configured to run the `build:prod` script in case the build step is forgotten, the `.npmrc` file is configured to add a git tag to the generated new version commit, and the npm `postversion` script is configured to push the new commit and tag to the remote repository. For more information on the `npm version` command, please see [this cheatsheet](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/package-managers/javascript/npm/commands/version.html).
+[^2]: Note that the npm `preversion` script is configured to run the `build:prod` script in case the build step is forgotten, the `.npmrc` file is configured to add a git tag to the generated new version commit, and the npm `postversion` script is configured to push the new commit and tag to the remote repository. For more information on the `npm version` command, please see [this cheatsheet](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/package-managers/javascript/npm/commands/version.html).
+
+### Indexing
+
+When publishing a new site, it may be useful to help search engine crawlers by explicitly submitting your `sitemap.xml` file for faster indexing. Note that this is step is *not* required for a site to be indexed, as search engines will usually find any given site organically unless the site's `robots.txt` file prevents this. To find out which page(s) are currently indexed by [google](https://www.google.com/) for a given site, simply search for `site:<url>`. This query will return all pages, posts etc. associated with that url which are currently indexed on [google](https://www.google.com/).
+
+For information on how to submit your `sitemap.xml` file for indexing on [google](https://www.google.com/) or different search engines, please see the following resources:
+
+- [Google sitemap documentation](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
+- [Yoast blog guide](https://yoast.com/help/submit-sitemap-search-engines/) (includes different search engines)
+- [Themeisle blog guide](https://themeisle.com/blog/submit-website-to-google/)
+
+Note that each subdomain of a given domain should have its own `sitemap.xml` file and associated public records. As discussed in these forum threads ([webmaster stack exchange](https://webmasters.stackexchange.com/questions/82687/sitemaps-one-per-subdomain-or-one-for-the-base-domain) and [google webmasters](https://support.google.com/webmasters/thread/4795511/how-to-add-sub-domain-sitemaps-into-root-domain-sitemap?hl=en)), search engines generally consider subdomains as being standalone sites, and all URLs listed in a `sitemap.xml` file *must* reside on the same host as the given `sitemap.xml` file (i.e. a sitemap at `https://www.example.com/sitemap.xml` cannot include URLs from `https://subdomain.example.com`). Additionally, modern search engines are usually capable of inferring from content which subdomains should be indexed as independent sites, and which subdomains should be associated with the main domain.
