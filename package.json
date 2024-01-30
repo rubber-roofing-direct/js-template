@@ -61,7 +61,7 @@
         "preversion": "npm run build:prod",
         "start": "npm run start:web",
         "start:docs": "npm run docs:jsdoc && http-server ./build/jsdoc & nodemon --watch src --exec 'npm run docs:jsdoc'",
-        "start:web": "parcel ./src/web/pages/**/**/*.html --dist-dir ./build/web --cache-dir ./.cache/parcel-dev",
+        "start:web": "rm -rf ./build/web && parcel ./src/web/pages/**/**/*.html --dist-dir ./build/web --cache-dir ./.cache/parcel-dev",
         "test": "npm run test:bin && npm run test:package && npm run test:web",
         "test:bin": "jest --config ./admin/config/jest.config.cjs --passWithNoTests",
         "test:package": "jest --config ./admin/config/jest.config.cjs --passWithNoTests",
