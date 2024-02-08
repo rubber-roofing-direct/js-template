@@ -70,7 +70,6 @@
         "watch:bin": "nodemon --watch ./src/bin --exec 'npm run build:dev:bin'",
         "watch:package": "nodemon --watch .src/package --exec 'npm run build:dev:package'"
     },
-    "dependencies": {},
     "devDependencies": {
         "@13ms/funky": "^1.0.1",
         "@13ms/submodule": "^1.2.1",
@@ -93,6 +92,7 @@
         "http-server": "^14.1.1",
         "jest": "^29.5.0",
         "jsdoc": "^4.0.2",
+        "lucide": "^0.323.0",
         "mustache": "^4.2.0",
         "nodemon": "^3.0.1",
         "parcel": "^2.9.3",
