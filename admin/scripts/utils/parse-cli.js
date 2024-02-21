@@ -120,14 +120,14 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
 
             // Log help string for each available cli option.
             for (const key in cli) {
-                const { name, aliases, value, description } = cli[key]
+                const { name, aliases, value, description, arity } = cli[key]
 
                 // Determine type based on default value of object.
                 const type = value === null ? "string"
                     : typeof value === "undefined" ? "string"
                     : typeof value === "string" ? "string"
                     : typeof value === "boolean" ? "boolean"
-                    : "string[]"
+                    : `string[${arity ? arity : ""}]`
 
                 renderHelp(name, type, aliases?.[0], value, description)
             }
@@ -179,9 +179,15 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
         cli[option].value = process.argv[pointer]
         option = undefined
     }
-    else if (cli[option].value instanceof Array) {
+    else if (typeof cli[option].value === "object") {
         // Push to array argument.
         /** @type {string[]} */ (cli[option].value).push(process.argv[pointer])
+
+        // Reset option flag if option arity reached.
+        const optionLength = /** @type {string[]} */ (cli[option].value).length
+        if (optionLength >= /** @type {number} */ (cli[option].arity)) {
+            option = undefined
+        }
     }
 
     // Recursively call with incremented pointer for cli argument array.

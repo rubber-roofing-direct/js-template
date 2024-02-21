@@ -34,6 +34,7 @@
  * @property {string[]} [aliases] - All allowable aliases for the named option.
  * @property {CliArgument} [value] - Default value of cli option argument.
  * @property {string} [description] - Description of cli option for help.
+ * @property {number} [arity]
  */
 
 // @@exports
