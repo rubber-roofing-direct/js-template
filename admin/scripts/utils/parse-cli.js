@@ -43,17 +43,17 @@ const renderHelp = (name, type, alias, value, description) => {
         decorateFg("(", "magenta")}${
         decorateFg(`${alias ? `-${alias}` : "".padEnd(2)}`, "red")}${
         decorateFg(")", "magenta")
-    }`, 12)
+    }`, 16)
 
     // Reassign option name with double hyphen option flag.
-    name = `--${name}`.padEnd(28)
+    name = `--${name}`.padEnd(32)
 
     // Reassign option type with "{}" brackets.
     type = padEndDecorated(`${
         decorateFg("{", "magenta")}${
         decorateFg(type, "yellow")}${
         decorateFg("}", "magenta")
-    }`, 12)
+    }`, 16)
 
     // Reassign default value with "[]" brackets.
     value = `${
