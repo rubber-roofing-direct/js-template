@@ -49,13 +49,13 @@ const defaults = {
         name: "label-color",
         aliases: ["l"],
         value: "191a1a",
-        description: ""
+        description: "Left hand color of generated badge."
     },
     color: {
         name: "color",
         aliases: ["c"],
         value: "779966",
-        description: ""
+        description: "Right hand color of generated badge."
     }
 }
 const { path, include, labelColor, color } = /** @type {TokeiCliOptions} */
