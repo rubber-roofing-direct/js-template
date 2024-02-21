@@ -17,6 +17,10 @@
 
 // @@no-imports
 
-// @@no-body
+// @@body
+/**
+ * @todo Implement admin wiki script for copying repository documentation files
+ *      into a `.github/wiki` subtree.
+ */
 
 // @@no-exports
