@@ -59,7 +59,7 @@ const defaults = {
     }
 }
 const { path, include, labelColor, color } = /** @type {TokeiCliOptions} */
-    (parseCliArguments(defaults))
+    (parseCliArguments("admin:tokei", defaults))
 
 // Count lines of code using tokei - note that this uses the "tokei" command
 // which is a cli application written in rust, this script will not run without

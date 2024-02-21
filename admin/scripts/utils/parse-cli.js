@@ -93,6 +93,7 @@ const renderHelp = (alias, name, type, value, description) => {
  * flag is used without any arguments.
  *
  * @summary Parses cli arguments into an arguments object.
+ * @param {string} name - Name of command.
  * @param {Object.<string,CliOption>} cli - Object containing the
  *      current state of parsed arguments, initial value passes option name,
  *      aliases, default values and descriptions for each cli option.
@@ -106,14 +107,14 @@ const renderHelp = (alias, name, type, value, description) => {
  *      original cli options object, each key mapping to the updated value
  *      of that option after all arguments have been parsed.
  */
-const parseCliArguments = (cli, option, optionMap, pointer = 2) => {
+const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
     // Print help if requested, otherwise initialise optionMap from cli options.
     if (!optionMap) {
         // If required, print help according to the aliases, defaults and
         // descriptions supplied in the parsedArgs object then exit process.
         if (process.argv.includes("--help") || process.argv.includes("-h")) {
             // Log usage and format sections, as well as options header.
-            console.log("USAGE:\nchangelog [OPTIONS]\n\nHELP FORMAT:")
+            console.log(`USAGE:\n${name} [OPTIONS]\n\nHELP FORMAT:`)
             renderHelp("alias", "option-name", "type", "default", "description")
             console.log("\nOPTIONS:")
 
@@ -184,7 +185,7 @@ const parseCliArguments = (cli, option, optionMap, pointer = 2) => {
     }
 
     // Recursively call with incremented pointer for cli argument array.
-    return parseCliArguments(cli, option, optionMap, ++pointer)
+    return parseCliArguments(name, cli, option, optionMap, ++pointer)
 }
 
 // @@exports

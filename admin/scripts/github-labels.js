@@ -181,7 +181,8 @@ const defaults = {
         description: "Github repository name of remote repository."
     }
 }
-const cli = /** @type {LabelCliOptions} */ (parseCliArguments(defaults))
+const cli = /** @type {LabelCliOptions} */
+    (parseCliArguments("admin:update-labels", defaults))
 
 // Check that git repository exists on github.
 await checkRemote(cli.repoOwner, cli.repoName)

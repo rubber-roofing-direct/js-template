@@ -187,7 +187,8 @@ const defaults = {
         description: "Github repository name of remote repository."
     }
 }
-const cli = /** @type {ChangelogCliOptions} */ (parseCliArguments(defaults))
+const cli = /** @type {ChangelogCliOptions} */
+    (parseCliArguments("docs:changelog", defaults))
 
 // Check that git repository exists on github.
 await checkRemote(cli.repoOwner, cli.repoName)
