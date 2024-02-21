@@ -43,7 +43,7 @@ const renderHelp = (name, type, alias, value, description) => {
         decorateFg("(", "magenta")}${
         decorateFg(`${alias ? `-${alias}` : "".padEnd(2)}`, "red")}${
         decorateFg(")", "magenta")
-    }`, 16)
+    }`, 12)
 
     // Reassign option name with double hyphen option flag.
     name = `--${name}`.padEnd(32)
@@ -53,7 +53,7 @@ const renderHelp = (name, type, alias, value, description) => {
         decorateFg("{", "magenta")}${
         decorateFg(type, "yellow")}${
         decorateFg("}", "magenta")
-    }`, 16)
+    }`, 12)
 
     // Reassign default value with "[]" brackets.
     value = `${
@@ -115,7 +115,7 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
         if (process.argv.includes("--help") || process.argv.includes("-h")) {
             // Log usage and format sections, as well as options header.
             console.log(`USAGE:\n${name} [OPTIONS]\n\nHELP FORMAT:`)
-            renderHelp("alias", "option-name", "type", "default", "description")
+            renderHelp("option-name", "type", "alias", "default", "description")
             console.log("\nOPTIONS:")
 
             // Log help string for each available cli option.
