@@ -145,7 +145,7 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
         for (const key in cli) {
             const aliases = [...cli[key].aliases || [], cli[key].name]
             for (const alias of aliases) {
-                // Note that if an name or alias is a duplicate of a previously
+                // Note that if a name or alias is a duplicate of a previously
                 // set key in the map, the later key will overwrite the original
                 // without warning.
                 optionMap.set(alias, key)
