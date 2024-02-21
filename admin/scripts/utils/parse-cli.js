@@ -75,7 +75,7 @@ const renderHelp = (name, type, alias, value, description) => {
  * Parses cli arguments into an arguments object given an object of default
  * arguments and available aliases for each flag. Options without a default are
  * assumed to be of type string. Default options may be of type string, boolean,
- * or array.
+ * or string array.
  *
  * String type options override the previously set string. The final string will
  * be the first argument following this cli flag, or an empty string if the flag
@@ -91,6 +91,9 @@ const renderHelp = (name, type, alias, value, description) => {
  * Array type options override the default array. The final array will be an
  * array of all arguments before the next cli flag, or an empty array if the
  * flag is used without any arguments.
+ *
+ * Any arguments which cannot be linked to a cli option will be added to a
+ * positional arguments array included in the returned parsed cli object.
  *
  * @summary Parses cli arguments into an arguments object.
  * @param {string} name - Name of command.
@@ -148,6 +151,10 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
                 optionMap.set(alias, key)
             }
         }
+
+        // Add reserved positional arguments object for storing arguments which
+        // cannot be linked to a cli option.
+        cli.POSITIONAL_ARGUMENTS = { name: "POSITIONAL_ARGUMENTS", value: [] }
     }
 
     // If all arguments are parsed, return all updated values in an object with
@@ -166,18 +173,17 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
         option = optionMap.get(flag)
         if (!option) { break OPTION_CHAIN } // Break if option undefined
 
-        // Reset default argument according to type of default argument.
-        cli[option].value = cli[option].value === null ? ""
-            : typeof cli[option].value === "undefined" ? ""
-            : typeof cli[option].value === "string" ? ""
-            : typeof cli[option].value === "boolean" ? true
-            : []
+        cli[option].value = typeof cli[option].value === "boolean" ? true
+            : typeof cli[option].value === "object" ? []
+            : ""
+
+        // Reset option flag if flag is setting a boolean option.
+        if (typeof cli[option].value === "boolean") { option = undefined }
     }
-    else if (!option) { break OPTION_CHAIN } // Break if option undefined
-    else if (typeof cli[option].value === "string") {
-        // Reset string argument and option flag.
-        cli[option].value = process.argv[pointer]
-        option = undefined
+    else if (!option) {
+        // Push cli argument to positional arguments if no options set.
+        /** @type {string[]} */ (cli.POSITIONAL_ARGUMENTS.value)
+            .push(process.argv[pointer])
     }
     else if (typeof cli[option].value === "object") {
         // Push to array argument.
@@ -188,6 +194,11 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
         if (optionLength >= /** @type {number} */ (cli[option].arity)) {
             option = undefined
         }
+    }
+    else {
+        // Reset string argument and option flag.
+        cli[option].value = process.argv[pointer]
+        option = undefined
     }
 
     // Recursively call with incremented pointer for cli argument array.
