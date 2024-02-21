@@ -44,7 +44,8 @@ import {
 import {
     Frontmatter,
     ChangelogCliOptions,
-    ChangelogView
+    ChangelogView,
+    CliOption
 } from "./types/index.js"
 /* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
@@ -143,7 +144,7 @@ const rankSemver = semverString => {
 const { owner, repo } = getRemote()
 
 // Parse options from cli with appropriate defaults.
-const defaults = {
+const defaults = /** @type {Object.<string,CliOption>} */ ({
     path: {
         name: "path",
         aliases: ["p"],
@@ -153,13 +154,11 @@ const defaults = {
     lastTag: {
         name: "last-tag",
         aliases: ["t"],
-        value: null,
         description: "Last tag generated or listed in changelog."
     },
     startHash: {
         name: "start-hash",
         aliases: ["h"],
-        value: null,
         description: "Start hash of revision list to generate changelog."
     },
     endHash: {
@@ -186,7 +185,7 @@ const defaults = {
         value: repo,
         description: "Github repository name of remote repository."
     }
-}
+})
 const cli = /** @type {ChangelogCliOptions} */
     (parseCliArguments("docs:changelog", defaults))
 

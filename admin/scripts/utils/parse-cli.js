@@ -30,18 +30,18 @@ import { CliOption, CliArgument } from "../types/index.js"
  * and section of surrounded by brackets render the brackets in magenta.
  *
  * @summary Render help for a given cli option.
- * @param {string} alias - Option alias.
  * @param {string} name - Option name.
  * @param {string} type - Type of option argument.
- * @param {CliArgument} value - Default value of option.
+ * @param {string} [alias] - Option alias.
+ * @param {CliArgument} [value] - Default value of option.
  * @param {string} [description] - Optional description of option.
  * @returns {void}
  */
-const renderHelp = (alias, name, type, value, description) => {
+const renderHelp = (name, type, alias, value, description) => {
     // Reassign alias with single hyphen alias flag and "()" brackets.
     alias = padEndDecorated(`${
         decorateFg("(", "magenta")}${
-        decorateFg(`-${alias}`, "red")}${
+        decorateFg(`${alias ? `-${alias}` : "".padEnd(2)}`, "red")}${
         decorateFg(")", "magenta")
     }`, 12)
 
@@ -129,7 +129,7 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
                     : typeof value === "boolean" ? "boolean"
                     : "string[]"
 
-                renderHelp(aliases[0] || "", name, type, value, description)
+                renderHelp(name, type, aliases?.[0], value, description)
             }
 
             // Exit process since no further action should be taken.
@@ -140,7 +140,7 @@ const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
         // mapping to the string key of the option object.
         optionMap = new Map()
         for (const key in cli) {
-            const aliases = [...cli[key].aliases, cli[key].name]
+            const aliases = [...cli[key].aliases || [], cli[key].name]
             for (const alias of aliases) {
                 // Note that if an name or alias is a duplicate of a previously
                 // set key in the map, the later key will overwrite the original

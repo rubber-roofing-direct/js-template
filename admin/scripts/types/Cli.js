@@ -22,7 +22,7 @@
 /**
  * Allowable types for arguments of any cli option.
  *
- * @typedef {?string|string[]|boolean} CliArgument
+ * @typedef {string|string[]|boolean|undefined} CliArgument
  */
 
 /**
@@ -31,9 +31,9 @@
  *
  * @typedef {object} CliOption
  * @property {string} name - Option name.
- * @property {string[]} aliases - All allowable aliases for the named option.
- * @property {CliArgument} value - Default value of cli option argument.
- * @property {string} description - Description of cli option for help purposes.
+ * @property {string[]} [aliases] - All allowable aliases for the named option.
+ * @property {CliArgument} [value] - Default value of cli option argument.
+ * @property {string} [description] - Description of cli option for help.
  */
 
 // @@exports

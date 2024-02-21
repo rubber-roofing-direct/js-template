@@ -25,14 +25,14 @@ import { parseCliArguments } from "./utils/index.js"
 
 // @@imports-types
 /* eslint-disable no-unused-vars -- Types only used in comments. */
-import { TokeiCliOptions } from "./types/index.js"
+import { TokeiCliOptions, CliOption } from "./types/index.js"
 /* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
 // Explicit include list for source code and documentation rather than using a
 // repetitive .tokeignore file to exclude boilerplate config file etc., also
 // default colours for shields.io badge.
-const defaults = {
+const defaults = /** @type {Object.<string,CliOption>} */ ({
     path: {
         name: "path",
         aliases: ["p"],
@@ -57,7 +57,7 @@ const defaults = {
         value: "779966",
         description: "Right hand color of generated badge."
     }
-}
+})
 const { path, include, labelColor, color } = /** @type {TokeiCliOptions} */
     (parseCliArguments("admin:tokei", defaults))
 
