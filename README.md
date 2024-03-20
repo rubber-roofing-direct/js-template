@@ -49,7 +49,7 @@ This is a template repository for creating predominantly node based JavaScript p
 To get started using this template repository, please follow the instructions below in order:
 
 1. Duplicate this template repository using the `Use this template` button located in the top right of the file section of the [github](https://github.com/) repository where the `Clone` button is located for normal repositories
-2. In the `General` tab of the new repository settings, underneath the section labeled `Features`, disable the repository wiki.
+2. In the `General` tab of the new repository settings, underneath the section labeled `Features`, disable the repository wiki and projects sections as they are unused in organisation workflow.
 3. Run `npm i` to install dev dependencies
 4. Run `npm run admin:plop`, select `Package`, and then follow the prompts in the terminal to update the `package.json` file with details of the new repository
 5. Run `npm run admin:plop`, select `Reset`, and then follow the prompts in the terminal to update the `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE.md`, and `README.md` files with details of the new repository (note that this step will overwrite this file)
