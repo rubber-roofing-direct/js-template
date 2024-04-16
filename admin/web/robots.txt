@@ -1,2 +1,2 @@
 User-Agent: *
-Sitemap: https://blameitonyourisp.com/sitemap.xml
+Sitemap: https://INSERT_DOMAIN_HERE.com/sitemap.xml
