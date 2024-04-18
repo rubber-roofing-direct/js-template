@@ -58,7 +58,7 @@ const prompts = [
         type: "input",
         name: "copyrightOwner",
         message: "Input copyright owner of script:",
-        default: author
+        default: "Rubber Roofing Direct"
     },
     {
         type: "input",

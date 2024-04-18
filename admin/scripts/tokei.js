@@ -54,7 +54,7 @@ const defaults = /** @type {Object.<string,CliOption>} */ ({
     color: {
         name: "color",
         aliases: ["c"],
-        value: "779966",
+        value: "0a57bc",
         description: "Right hand color of generated badge."
     }
 })

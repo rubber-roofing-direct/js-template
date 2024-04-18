@@ -91,19 +91,19 @@ const prompts = [
         type: "input",
         name: "badgeName",
         message: "Input badge left hand text for main documentation files:",
-        default: "blameitonyourisp"
+        default: "rubber%20roofing"
     },
     {
         type: "input",
         name: "badgeDetail",
         message: "Input badge right hand text for main documentation files:",
-        default: "13"
+        default: "direct"
     },
     {
         type: "input",
         name: "shieldLabelColor",
         message: "Input left hand shield color for code information badges:",
-        default: "191a1a",
+        default: "ffffff",
         validate: (/** @type {string} */ color) => {
             // Check input is 6 chars of lowercase or uppercase hex chars.
             return !!color.match(/^[a-fA-F\d]{6}$/)
@@ -113,7 +113,7 @@ const prompts = [
         type: "input",
         name: "shieldColor",
         message: "Input right hand shield color for code information badges:",
-        default: "779966",
+        default: "0a57bc",
         validate: (/** @type {string} */ color) => {
             // Check input is 6 chars of lowercase or uppercase hex chars.
             return !!color.match(/^[a-fA-F\d]{6}$/)
@@ -159,7 +159,7 @@ const prompts = [
         type: "input",
         name: "copyrightOwner",
         message: "Input copyright owner of repository:",
-        default: /** @type {string|undefined} */ packageObject.author
+        default: /** @type {string|undefined} */ "Rubber Roofing Direct"
     },
     {
         type: "confirm",
