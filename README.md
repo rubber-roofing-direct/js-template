@@ -126,7 +126,7 @@ At the time of last update, this repository used no 3rd party assets or librarie
 
 ---
 
-Copyright (c) 2023 James Reid. All rights reserved.
+Copyright (c) 2024 Rubber Roofing. All rights reserved.
 
 This software is licensed under the terms of the MIT license, a copy which may be found in the LICENSE.md file in the root of this repository, or please refer to the text below. For a template copy of the license see one of the following 3rd party sites:
 
@@ -136,7 +136,7 @@ This software is licensed under the terms of the MIT license, a copy which may b
 
 #### License Text
 
-Copyright 2023 James Reid
+Copyright 2024 Rubber Roofing
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the  "Software"), to deal in the Software without restriction, including  without limitation the rights to use, copy, modify, merge, publish,  distribute, sublicense, and/or sell copies of the Software, and to  permit persons to whom the Software is furnished to do so, subject to  the following conditions:
 
