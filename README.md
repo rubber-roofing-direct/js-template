@@ -11,7 +11,7 @@ A [github](https://github.com) template repository for creating node-first JavaS
 <!-- If applicable, insert link for web demo of repository in the paragraph below. -->
 This repository is hosted on [github](https://github.com), if you're already reading this there, then great! Otherwise browse the repository [here](https://github.com/rubber-roofing-direct/js-template).
 
-![](https://img.shields.io/github/license/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/github/package-json/v/rubber-roofing-direct/js-template/main?style=for-the-badge&labelColor=191a1a&color=779966) 
+![](https://img.shields.io/github/license/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=0a57bc) ![](https://img.shields.io/github/package-json/v/rubber-roofing-direct/js-template/main?style=for-the-badge&labelColor=191a1a&color=0a57bc) 
 
 ### Table of Contents
 
@@ -30,7 +30,7 @@ Approximate download size of repository, code files within repository, compresse
 
 Please note that due to file compression, and post download installs/builds such as node module dependencies, the following badges may not exactly reflect download size or space on disk.
 
-![](https://img.shields.io/github/repo-size/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/github/languages/code-size/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/rubber-roofing-direct/js-template/main/dist/tokei.json) 
+![](https://img.shields.io/github/repo-size/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=0a57bc) ![](https://img.shields.io/github/languages/code-size/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=0a57bc) ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/rubber-roofing-direct/js-template/main/dist/tokei.json) 
 
 ## Description
 
