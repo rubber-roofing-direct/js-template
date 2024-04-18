@@ -9,9 +9,9 @@
 A [github](https://github.com) template repository for creating node-first JavaScript projects (i.e. primarily for node packages and/or terminal applications which may include small, static web demos).
 
 <!-- If applicable, insert link for web demo of repository in the paragraph below. -->
-This repository is hosted on [github](https://github.com), if you're already reading this there, then great! Otherwise browse the repository [here](https://github.com/blameitonyourisp/js-template).
+This repository is hosted on [github](https://github.com), if you're already reading this there, then great! Otherwise browse the repository [here](https://github.com/rubber-roofing-direct/js-template).
 
-![](https://img.shields.io/github/license/blameitonyourisp/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/github/package-json/v/blameitonyourisp/js-template/main?style=for-the-badge&labelColor=191a1a&color=779966) 
+![](https://img.shields.io/github/license/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/github/package-json/v/rubber-roofing-direct/js-template/main?style=for-the-badge&labelColor=191a1a&color=779966) 
 
 ### Table of Contents
 
@@ -30,7 +30,7 @@ Approximate download size of repository, code files within repository, compresse
 
 Please note that due to file compression, and post download installs/builds such as node module dependencies, the following badges may not exactly reflect download size or space on disk.
 
-![](https://img.shields.io/github/repo-size/blameitonyourisp/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/github/languages/code-size/blameitonyourisp/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/blameitonyourisp/js-template/main/dist/tokei.json) 
+![](https://img.shields.io/github/repo-size/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/github/languages/code-size/rubber-roofing-direct/js-template?style=for-the-badge&labelColor=191a1a&color=779966) ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/rubber-roofing-direct/js-template/main/dist/tokei.json) 
 
 ## Description
 
@@ -57,7 +57,7 @@ To get started using this template repository, please follow the instructions be
     1. Obtain an appropriate personal access token using the directions in the [section below](#personal-access-token)
     2. Add `.env` file to root of repository, and add line containing access token with the following key `GITHUB_ACCESS_TOKEN=<github-pat>`
     3. Run `npm run admin:update-labels`
-    4. Verify that labels have been updated correctly by comparing labels in the new, duplicated repository to the [template repository labels](https://github.com/blameitonyourisp/js-template/labels) (the file `./admin/config/labels.json` also contains a list of the required labels)
+    4. Verify that labels have been updated correctly by comparing labels in the new, duplicated repository to the [template repository labels](https://github.com/rubber-roofing-direct/js-template/labels) (the file `./admin/config/labels.json` also contains a list of the required labels)
 7. Commit changes with a commit message such as `msc= Initialise template repository`
 
 ### Personal Access Token
@@ -93,11 +93,11 @@ GITHUB_ACCESS_TOKEN=<github-pat>
 <!-- Update this section with any additional custom documentation, for instance if the wiki is enabled. -->
 Since this README file will be overwritten during the template duplication process, no extra documentation is included here beyond the basic steps required for initialising a new repository using this template. For more information about this template repository, please see the links in the list below:
 
-- For more information on all features of this template repository such as folder structure, code style, and git usage, please see the [contributing file](https://github.com/blameitonyourisp/js-template/blob/main/CONTRIBUTING.md)
-- For more information specifically concerning changelog format and generation, see the [notes section](https://github.com/blameitonyourisp/js-template/blob/main/CHANGELOG.md#changelog-notes) of the [changelog file](https://github.com/blameitonyourisp/js-template/blob/main/CHANGELOG.md)
+- For more information on all features of this template repository such as folder structure, code style, and git usage, please see the [contributing file](https://github.com/rubber-roofing-direct/js-template/blob/main/CONTRIBUTING.md)
+- For more information specifically concerning changelog format and generation, see the [notes section](https://github.com/rubber-roofing-direct/js-template/blob/main/CHANGELOG.md#changelog-notes) of the [changelog file](https://github.com/rubber-roofing-direct/js-template/blob/main/CHANGELOG.md)
 - For more information specifically concerning repository scripts:
     - See the inline code documentation in the source files in the `./admin` directory
-    - See the [npm scripts section](https://github.com/blameitonyourisp/js-template/blob/main/CONTRIBUTING.md#npm-scripts) of the [contributing file](https://github.com/blameitonyourisp/js-template/blob/main/CONTRIBUTING.md)
+    - See the [npm scripts section](https://github.com/rubber-roofing-direct/js-template/blob/main/CONTRIBUTING.md#npm-scripts) of the [contributing file](https://github.com/rubber-roofing-direct/js-template/blob/main/CONTRIBUTING.md)
 
 For an approximate line count of all configuration files and documentation, please see the following code block (note that [tokei](https://github.com/XAMPPRocky/tokei) will have to be installed on your local system for this to work, and that tokei does not recognise `.files`, and therefore files such as the `.eslintrc` configuration will be excluded from the count):
 

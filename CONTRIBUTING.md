@@ -64,7 +64,7 @@ Please note that this repository is maintained primarily by a solo developer. As
 
 ## Issues
 
-If you encounter an issue whilst using this repository or any software released by it, please submit an issue using the [issue tracker for this repository](https://github.com/blameitonyourisp/js-template/issues). Issues for this repository are tracked using the default [github](https://github.com) issue tracker ([see here](https://docs.github.com/en/issues/tracking-your-work-with-issues) for more information on managing repository issues on [github](https://github.com)).
+If you encounter an issue whilst using this repository or any software released by it, please submit an issue using the [issue tracker for this repository](https://github.com/rubber-roofing-direct/js-template/issues). Issues for this repository are tracked using the default [github](https://github.com) issue tracker ([see here](https://docs.github.com/en/issues/tracking-your-work-with-issues) for more information on managing repository issues on [github](https://github.com)).
 
 ## Git
 
@@ -341,7 +341,7 @@ To speed up the creation of correctly formatted new scripts, this repository off
 
 ## Getting Around
 
-This repository is generated from a template repository which may be viewed [here](https://github.com/blameitonyourisp/js-template). Please see the following subheadings for descriptions of the purpose and use of the root directories included in the template repository. Note that other directories and architectures may be added by the maintainer(s) after duplicating the template. These additions will obviously have their own purpose(s), some of which may not be described below.
+This repository is generated from a template repository which may be viewed [here](https://github.com/rubber-roofing-direct/js-template). Please see the following subheadings for descriptions of the purpose and use of the root directories included in the template repository. Note that other directories and architectures may be added by the maintainer(s) after duplicating the template. These additions will obviously have their own purpose(s), some of which may not be described below.
 
 ### .cache
 
@@ -420,7 +420,7 @@ The `./src/package` subdirectory contains source files for the package which thi
 
 The `./src/web` subdirectory contains markup and source files for the static demo site of this repository. Its default subdirectories are included in this repository by use of `.gitkeep` files. The `./src/web` subdirectory is structured like a standard vanilla static site, with a `./src/web/pages` subdirectory for all `.html` page files, a `./src/web/scripts` subdirectory for all `.js` script files, and a `./src/web/styles` subdirectory for all `.css` stylesheet files. The standard entrypoint for the static demo site of this repository is `./src/web/pages/index.html`. The [parcel bundler](https://parceljs.org/) will create its bundled output from this file. 
 
-When deployed, this page will be found at a URL such as `<subdomain>.blameitonyourisp.com` (`gh-pages` looks for `index.html` file by default). Other pages can be added to the static site by adding them to the `./src/web/pages` subdirectory, and linking them from the `index.html` page. For instance the file `./src/web/pages/about.html` would be found at a URL such as `<subdomain>.blameitonyourisp.com/about.html`, or the file `./src/web/pages/docs/index.html` would be found at a URL such as `<subdomain>.blameitonyourisp.com/docs`.
+When deployed, this page will be found at a URL such as `<subdomain>.rubberroofingdirect.co.uk` (`gh-pages` looks for `index.html` file by default). Other pages can be added to the static site by adding them to the `./src/web/pages` subdirectory, and linking them from the `index.html` page. For instance the file `./src/web/pages/about.html` would be found at a URL such as `<subdomain>.rubberroofingdirect.co.uk/about.html`, or the file `./src/web/pages/docs/index.html` would be found at a URL such as `<subdomain>.rubberroofingdirect.co.uk/docs`.
 
 Most commonly this directory will be used to demonstrate functionality of the package exported by this repository, by importing and using the production build of the package from the `./dist` directory. Where appropriate, the static site may also include some author generated documentation pages.
 
