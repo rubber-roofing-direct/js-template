@@ -109,7 +109,12 @@ const prompts = [
         type: "input",
         name: "repoName",
         message: "Input package name of repository:",
-        default: parsePackage().packageObject.name || ""
+        default: /** @type {string|undefined} */ (parsePackage()
+            .packageObject
+            .name)
+            ?.match(/^(?:@.*\/)?(?<repoName>.*)$/)
+            ?.groups
+            ?.repoName || ""
     },
     {
         type: "confirm",
