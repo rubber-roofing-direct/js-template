@@ -1,4 +1,4 @@
-// Copyright (C) 2024 Rubber Roofing Direct. All rights reserved.
+// Copyright (c) 2024 Rubber Roofing Direct. All rights reserved.
 //
 // This source code file is licensed under the terms of the MIT license, a copy
 // of which may be found in the LICENSE.md file in the root of this repository.
@@ -151,6 +151,12 @@ const defaults = /** @type {Object.<string,CliOption>} */ ({
         value: "CHANGELOG.md",
         description: "Relative path to changelog from repo package.json file."
     },
+    token: {
+        name: "token",
+        aliases: ["t"],
+        value: process.env.GITHUB_ACCESS_TOKEN || "",
+        description: "GitHub fine-grained access token for updating labels."
+    },
     lastTag: {
         name: "last-tag",
         aliases: ["t"],
@@ -190,7 +196,7 @@ const cli = /** @type {ChangelogCliOptions} */
     (parseCliArguments("docs:changelog", defaults))
 
 // Check that git repository exists on github.
-await checkRemote(cli.repoOwner, cli.repoName)
+await checkRemote(cli.repoOwner, cli.repoName, cli.token)
 
 // Object for markdown and frontmatter props to be rendered to as final step.
 const changelog = /** @type {{markdown:string, frontmatter:Frontmatter}} */ ({})

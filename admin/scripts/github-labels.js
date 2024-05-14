@@ -1,4 +1,4 @@
-// Copyright (C) 2024 Rubber Roofing Direct. All rights reserved.
+// Copyright (c) 2023 James Reid. All rights reserved.
 //
 // This source code file is licensed under the terms of the MIT license, a copy
 // of which may be found in the LICENSE.md file in the root of this repository.
@@ -25,6 +25,7 @@
 import fs from "fs"
 import https from "https"
 import readline from "readline"
+import { exit } from "process"
 
 // @@imports-dependencies
 import "dotenv/config"
@@ -53,11 +54,12 @@ import { ClientRequest } from "http"
  * @param {string} methodPath - String of the format "<METHOD> <endpoint>"
  *      containing the required http method, and subpath of github api endpoint
  *      (excluding the identifying repo owner and name) for the request.
- * @param {{repoOwner:string, repoName:string}} obj - Repo owner and name
- *      forming part of full api endpoint path to identify the required repo.
+ * @param {{repoOwner:string, repoName:string, token:string}} obj - Repo owner
+ *      and name forming part of full api endpoint path to identify the required
+ *      repo.
  * @returns {https.RequestOptions} - Http RequestOptions object for github api.
  */
-const getRepoOptions = (methodPath, { repoOwner, repoName } = cli) => {
+const getRepoOptions = (methodPath, { repoOwner, repoName, token } = cli) => {
     // Get http request method and endpoint path for request.
     const methodPathRegex = /^(?<method>[a-z,A-Z]*)\s?(?<path>.*)$/
     const { method, path } = methodPath.match(methodPathRegex)?.groups || {}
@@ -69,7 +71,7 @@ const getRepoOptions = (methodPath, { repoOwner, repoName } = cli) => {
         method: method?.toUpperCase() || "GET",
         headers: {
             "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${cli.token}`,
+            "Authorization": `Bearer ${token}`,
             "User-Agent": `node/${process.versions.node}`
         }
     }
@@ -166,7 +168,7 @@ const defaults = /** @type {Object.<string,CliOption>} */ ({
         name: "token",
         aliases: ["t"],
         value: process.env.GITHUB_ACCESS_TOKEN || "",
-        description: "Relative path to changelog from repo package.json file."
+        description: "GitHub fine-grained access token for updating labels."
     },
     repoOwner: {
         name: "repo-owner",
@@ -185,7 +187,7 @@ const cli = /** @type {LabelCliOptions} */
     (parseCliArguments("admin:update-labels", defaults))
 
 // Check that git repository exists on github.
-await checkRemote(cli.repoOwner, cli.repoName)
+await checkRemote(cli.repoOwner, cli.repoName, cli.token)
 
 // Array of updated labels to be added to repository.
 let /** @type {GithubLabel[]} */ updatedLabels
@@ -268,6 +270,9 @@ const req = https.request(options, res => {
                     })
                 })
         }
+
+        // Exit process after all new labels created.
+        exit()
     })
 })
 

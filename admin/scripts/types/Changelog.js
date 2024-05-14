@@ -88,6 +88,7 @@
  * @typedef ChangelogCliOptions
  * @property {string} path - Relative path to changelog from repo package.json
  *      file.
+ * @property {string} token - Github personal access token.
  * @property {string} lastTag - Last tag generated or listed in changelog.
  * @property {string} startHash - Start hash of revision list to generate
  *      changelog.

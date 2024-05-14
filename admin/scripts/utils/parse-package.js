@@ -97,17 +97,27 @@ const getRemote = () => {
  * is not found.
  *
  * @summary Check that remote github repository exists.
- * @param {string} owner - Github owner (user or organisation) of remote.
- * @param {string} repo - Github repository name of remote.
+ * @param {string} repoOwner - Github owner (user or organisation) of remote.
+ * @param {string} repoName - Github repository name of remote.
+ * @param {string} token - Fine grained GitHub access token.
  * @returns {Promise<void>} No return value, throws error if not found.
  */
-const checkRemote = async (owner, repo) => {
+const checkRemote = async (repoOwner, repoName, token) => {
     // Setup controller.
     const controller = new AbortController()
     const { signal } = controller
 
-    // Fetch github repository remote.
-    await fetch(`https://github.com/${owner}/${repo}`, { signal })
+    // Fetch github repository remote using api and fine-grained access token
+    // such that private repositories will also be found.
+    await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/vnd.github+json",
+            "Authorization": `Bearer ${token}`,
+            "User-Agent": `node/${process.versions.node}`
+        },
+        signal
+    })
         .then(res => {
             // End connection.
             controller.abort()
