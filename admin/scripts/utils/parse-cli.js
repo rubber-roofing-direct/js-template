@@ -1,26 +1,32 @@
 // Copyright (C) 2024 Rubber Roofing Direct. All rights reserved.
 //
-// This source code file is licensed under the terms of the MIT license, a copy
-// of which may be found in the LICENSE.md file in the root of this repository.
+// This source code file is a part of free software licensed under the terms of
+// the MIT License as published by the Massachusetts Institute of Technology:
+// you can use, copy, modify and distribute any part of it without limitation,
+// subject to the conditions contained within that license.
 //
-// For a template copy of the license see one of the following 3rd party sites:
-//      - <https://opensource.org/licenses/MIT>
-//      - <https://choosealicense.com/licenses/mit>
-//      - <https://spdx.org/licenses/MIT>
+// This source code file, and the software it forms a part of, IS PROVIDED "AS
+// IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. See the MIT License
+// for more details.
+//
+// You should have received a copy of the MIT License along with this source
+// code file in the root of this repository. If not, see one of the following
+// 3rd party sites for a copy of the license template:
+// - <https://opensource.org/licenses/MIT>
+// - <https://choosealicense.com/licenses/mit>
+// - <https://spdx.org/licenses/MIT>
 
 /**
- * @ignore
  * @file Parses cli option arguments in a basic fashion for local scripts.
+ * @ignore
  * @author James Reid
  */
 
 // @ts-check
 
 // @@imports-types
-/* eslint-disable no-unused-vars -- Types only used in comments. */
 import { decorateFg, padEndDecorated } from "./decorate-cli.js"
 import { CliOption, CliArgument } from "../types/index.js"
-/* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
 /**
@@ -28,13 +34,12 @@ import { CliOption, CliArgument } from "../types/index.js"
  * padding for each part/fragment of the string, such that consecutive help
  * strings are vertically aligned. Each string section is coloured differently,
  * and section of surrounded by brackets render the brackets in magenta.
- *
  * @summary Render help for a given cli option.
- * @param {string} name - Option name.
- * @param {string} type - Type of option argument.
- * @param {string} [alias] - Option alias.
- * @param {CliArgument} [value] - Default value of option.
- * @param {string} [description] - Optional description of option.
+ * @param {string} name Option name.
+ * @param {string} type Type of option argument.
+ * @param {string} [alias] Option alias.
+ * @param {CliArgument} [value] Default value of option.
+ * @param {string} [description] Optional description of option.
  * @returns {void}
  */
 const renderHelp = (name, type, alias, value, description) => {
@@ -94,21 +99,20 @@ const renderHelp = (name, type, alias, value, description) => {
  *
  * Any arguments which cannot be linked to a cli option will be added to a
  * positional arguments array included in the returned parsed cli object.
- *
  * @summary Parses cli arguments into an arguments object.
- * @param {string} name - Name of command.
- * @param {Object.<string,CliOption>} cli - Object containing the
- *      current state of parsed arguments, initial value passes option name,
- *      aliases, default values and descriptions for each cli option.
- * @param {string} [option] - Current cli option being updated.
- * @param {Map.<string,string>} [optionMap] - Map containing keys taken from all
- *      option names and aliases, mapping to string values of the corresponding
- *      option key in the cli parsed arguments object.
- * @param {number} [pointer=2] - Current pointer in the node process arguments,
- *      starts by default at 2 in order to ignore the path arguments.
+ * @param {string} name Name of command.
+ * @param {Object.<string,CliOption>} cli Object containing the current state of
+ * parsed arguments, initial value passes option name, aliases, default values
+ * and descriptions for each cli option.
+ * @param {string} [option] Current cli option being updated.
+ * @param {Map.<string,string>} [optionMap] Map containing keys taken from all
+ * option names and aliases, mapping to string values of the corresponding
+ * option key in the cli parsed arguments object.
+ * @param {number} [pointer=2] Current pointer in the node process arguments,
+ * starts by default at 2 in order to ignore the path arguments.
  * @returns {Object.<string,CliArgument>} Returns object containing keys from
- *      original cli options object, each key mapping to the updated value
- *      of that option after all arguments have been parsed.
+ * original cli options object, each key mapping to the updated value of that
+ * option after all arguments have been parsed.
  */
 const parseCliArguments = (name, cli, option, optionMap, pointer = 2) => {
     // Print help if requested, otherwise initialise optionMap from cli options.

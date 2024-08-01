@@ -1,16 +1,24 @@
 // Copyright (C) 2024 Rubber Roofing Direct. All rights reserved.
 //
-// This source code file is licensed under the terms of the MIT license, a copy
-// of which may be found in the LICENSE.md file in the root of this repository.
+// This source code file is a part of free software licensed under the terms of
+// the MIT License as published by the Massachusetts Institute of Technology:
+// you can use, copy, modify and distribute any part of it without limitation,
+// subject to the conditions contained within that license.
 //
-// For a template copy of the license see one of the following 3rd party sites:
-//      - <https://opensource.org/licenses/MIT>
-//      - <https://choosealicense.com/licenses/mit>
-//      - <https://spdx.org/licenses/MIT>
+// This source code file, and the software it forms a part of, IS PROVIDED "AS
+// IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. See the MIT License
+// for more details.
+//
+// You should have received a copy of the MIT License along with this source
+// code file in the root of this repository. If not, see one of the following
+// 3rd party sites for a copy of the license template:
+// - <https://opensource.org/licenses/MIT>
+// - <https://choosealicense.com/licenses/mit>
+// - <https://spdx.org/licenses/MIT>
 
 /**
- * @ignore
  * @file Parse git commits into object of information for changelog generation.
+ * @ignore
  * @author James Reid
  */
 
@@ -23,24 +31,21 @@ import { execSync } from "child_process"
 import { DecoratedError } from "./decorate-cli.js"
 
 // @@imports-types
-/* eslint-disable no-unused-vars -- Types only used in comments. */
 import { ParsedCommit } from "../types/index.js"
-/* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
 /**
  * Get revision list of commits between specified hashes. Checks that commits
  * are on the specified target branch, and ignores merge commits. Result is
  * exclusive of start hash, and inclusive of end hash.
- *
  * @summary Get revision list of commits between specified hashes.
- * @param {string} startHash - Oldest hash to generate revision list. Git
- *      revision lists are exclusive of the start commit, so this hash will NOT
- *      be included in the returned revision list.
- * @param {string} endHash - Newest hash to generate revision list. Git
- *      revision lists are inclusive of the start commit, so this hash WILL be
- *      included in the returned revision list.
- * @param {string} branch - Target branch current and last commits should be on.
+ * @param {string} startHash Oldest hash to generate revision list. Git revision
+ * lists are exclusive of the start commit, so this hash will NOT be included in
+ * the returned revision list.
+ * @param {string} endHash Newest hash to generate revision list. Git revision
+ * lists are inclusive of the start commit, so this hash WILL be included in the
+ * returned revision list.
+ * @param {string} branch Target branch current and last commits should be on.
  * @returns {string[]} Revision list of commits between supplied commit hashes.
  */
 const getRevList = (startHash, endHash, branch) => {
@@ -62,12 +67,13 @@ const getRevList = (startHash, endHash, branch) => {
  * Find long hash from supplied short hash. The supplied short hash should
  * uniquely identify a commit in the git log, and must optionally be on a
  * specified branch.
- *
  * @summary Find long hash from commit short hash.
- * @param {string} shortHash - Short hash of commit (minimum 4 characters).
- * @param {string} [branch=master] - Target branch to check if commit is on.
- * @param {boolean} [checkBranch=true] - Flag to check if commit is on branch.
+ * @param {string} shortHash Short hash of commit (minimum 4 characters).
+ * @param {string} [branch=master] Target branch to check if commit is on.
+ * @param {boolean} [checkBranch=true] Flag to check if commit is on branch.
  * @returns {string} Long hash of unique commit identified by short hash.
+ * @throws {DecoratedError} Throws when:
+ * - Given commit hash is incorrect.
  */
 const getLongHash = (shortHash, branch = "master", checkBranch = true) => {
     let /** @type {string|undefined} */ longHash
@@ -109,14 +115,13 @@ const getLongHash = (shortHash, branch = "master", checkBranch = true) => {
  * Parse commit to an object containing data for changelog prompt. Fetches data
  * primarily with git log, using a specified pretty format placeholders to log
  * the required data to a newline separated string. This data is then parsed to
- * infer commit semver impact, category etc.
+ * infer commit semver impact, category etc..
  *
  * See here https://git-scm.com/docs/git-log#_pretty_formats for more
  * information on pretty format placeholders when logging git commits.
- *
  * @summary Parse commit to an object containing data for changelog prompt.
- * @param {string} hash - Hash of commit to fetch and parse.
- * @returns {ParsedCommit}
+ * @param {string} hash Hash of commit to fetch and parse.
+ * @returns {ParsedCommit} Parsed commit object fetched from given commit hash.
  */
 const parseCommit = hash => {
     // Use git pretty format to log only required information about commit, and

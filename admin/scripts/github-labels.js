@@ -1,21 +1,28 @@
-// Copyright (c) 2023 James Reid. All rights reserved.
+// Copyright (C) 2024 Rubber Roofing Direct. All rights reserved.
 //
-// This source code file is licensed under the terms of the MIT license, a copy
-// of which may be found in the LICENSE.md file in the root of this repository.
+// This source code file is a part of free software licensed under the terms of
+// the MIT License as published by the Massachusetts Institute of Technology:
+// you can use, copy, modify and distribute any part of it without limitation,
+// subject to the conditions contained within that license.
 //
-// For a template copy of the license see one of the following 3rd party sites:
-//      - <https://opensource.org/licenses/MIT>
-//      - <https://choosealicense.com/licenses/mit>
-//      - <https://spdx.org/licenses/MIT>
+// This source code file, and the software it forms a part of, IS PROVIDED "AS
+// IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. See the MIT License
+// for more details.
+//
+// You should have received a copy of the MIT License along with this source
+// code file in the root of this repository. If not, see one of the following
+// 3rd party sites for a copy of the license template:
+// - <https://opensource.org/licenses/MIT>
+// - <https://choosealicense.com/licenses/mit>
+// - <https://spdx.org/licenses/MIT>
 
 /**
  * This script replaces all labels on a github remote with a set of updated or
  * default labels from an external json file. Any missing data, or data which
  * this script cannot parse will cause an error to be thrown, and the process
  * will terminate without updating the labels.
- *
- * @ignore
  * @file Update labels on github remote given a file of updated labels to add.
+ * @ignore
  * @author James Reid
  */
 
@@ -40,24 +47,21 @@ import {
 } from "./utils/index.js"
 
 // @@imports-types
-/* eslint-disable no-unused-vars -- Types only used in comments. */
 import { CliOption, GithubLabel, LabelCliOptions } from "./types/index.js"
 import { ClientRequest } from "http"
-/* eslint-enable no-unused-vars -- Close disable-enable pair. */
 
 // @@body
 /**
  * Generate RequestOptions object for https request to "/repos/<path>" endpoint
  * of the github api. See [here](https://docs.github.com/en/rest/overview/endpoints-available-for-fine-grained-personal-access-tokens?apiVersion=2022-11-28#repos)
  * for available repo endpoints using fine grained personal access tokens.
- *
- * @param {string} methodPath - String of the format "<METHOD> <endpoint>"
- *      containing the required http method, and subpath of github api endpoint
- *      (excluding the identifying repo owner and name) for the request.
- * @param {{repoOwner:string, repoName:string, token:string}} obj - Repo owner
- *      and name forming part of full api endpoint path to identify the required
- *      repo.
- * @returns {https.RequestOptions} - Http RequestOptions object for github api.
+ * @param {string} methodPath String of the format "<METHOD> <endpoint>"
+ * containing the required http method, and subpath of github api endpoint
+ * (excluding the identifying repo owner and name) for the request.
+ * @param {{repoOwner:string, repoName:string, token:string}} obj Repo owner and
+ * name forming part of full api endpoint path to identify the required
+ * repo.
+ * @returns {https.RequestOptions} Http RequestOptions object for github api.
  */
 const getRepoOptions = (methodPath, { repoOwner, repoName, token } = cli) => {
     // Get http request method and endpoint path for request.
@@ -79,8 +83,7 @@ const getRepoOptions = (methodPath, { repoOwner, repoName, token } = cli) => {
 
 /**
  * Get request url from ClientRequest object returned by https.request() method.
- *
- * @param {ClientRequest} request - Node ClientRequest object.
+ * @param {ClientRequest} request Node ClientRequest object.
  * @returns {string} Url of request.
  */
 const getUrl = request => {
@@ -90,10 +93,9 @@ const getUrl = request => {
 /**
  * Delete issue label by name from github issue tracker for the given repo
  * identified by options passed in the cli.
- *
- * @param {string} name - Name of label to delete.
+ * @param {string} name Name of label to delete.
  * @returns {Promise.<{name:string, status:number|undefined, message:string}>}
- *      Returns promise, rejects if label deletion fails.
+ * Returns promise, rejects if label deletion fails.
  */
 const deleteLabel = name => {
     return new Promise((resolve, reject) => {
@@ -121,11 +123,10 @@ const deleteLabel = name => {
 /**
  * Create issue label in github issue tracker for the given repo identified by
  * options passed in the cli.
- *
- * @param {{name:string, color:string, description:string}} obj - Name, color
- *      and description string of label to be created.
+ * @param {{name:string, color:string, description:string}} obj Name, color
+ * and description string of label to be created.
  * @returns {Promise.<{name:string, status:number|undefined, message:string}>}
- *      Returns promise, rejects if label creation fails.
+ * Returns promise, rejects if label creation fails.
  */
 const createLabel = ({ name, color, description }) => {
     return new Promise((resolve, reject) => {

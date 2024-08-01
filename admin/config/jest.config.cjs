@@ -1,16 +1,24 @@
 // Copyright (C) 2024 Rubber Roofing Direct. All rights reserved.
 //
-// This source code file is licensed under the terms of the MIT license, a copy
-// of which may be found in the LICENSE.md file in the root of this repository.
+// This source code file is a part of free software licensed under the terms of
+// the MIT License as published by the Massachusetts Institute of Technology:
+// you can use, copy, modify and distribute any part of it without limitation,
+// subject to the conditions contained within that license.
 //
-// For a template copy of the license see one of the following 3rd party sites:
-//      - <https://opensource.org/licenses/MIT>
-//      - <https://choosealicense.com/licenses/mit>
-//      - <https://spdx.org/licenses/MIT>
+// This source code file, and the software it forms a part of, IS PROVIDED "AS
+// IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. See the MIT License
+// for more details.
+//
+// You should have received a copy of the MIT License along with this source
+// code file in the root of this repository. If not, see one of the following
+// 3rd party sites for a copy of the license template:
+// - <https://opensource.org/licenses/MIT>
+// - <https://choosealicense.com/licenses/mit>
+// - <https://spdx.org/licenses/MIT>
 
 /**
- * @ignore
  * @file Jest config.
+ * @ignore
  * @author James Reid
  */
 
@@ -67,8 +75,9 @@ const configMap = configs.reduce((map, config) => {
 
 /**
  * Select jest configuration by name of npm script being run.
- *
  * @returns {any} Jest config object.
+ * @throws {Error} Throws when:
+ * - No configuration exists by given name found in cli.
  */
 const configSelector = () => {
     // Set config name according to which npm script is being run.

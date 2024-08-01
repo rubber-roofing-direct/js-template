@@ -1,16 +1,24 @@
 // Copyright (C) 2024 Rubber Roofing Direct. All rights reserved.
 //
-// This source code file is licensed under the terms of the MIT license, a copy
-// of which may be found in the LICENSE.md file in the root of this repository.
+// This source code file is a part of free software licensed under the terms of
+// the MIT License as published by the Massachusetts Institute of Technology:
+// you can use, copy, modify and distribute any part of it without limitation,
+// subject to the conditions contained within that license.
 //
-// For a template copy of the license see one of the following 3rd party sites:
-//      - <https://opensource.org/licenses/MIT>
-//      - <https://choosealicense.com/licenses/mit>
-//      - <https://spdx.org/licenses/MIT>
+// This source code file, and the software it forms a part of, IS PROVIDED "AS
+// IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. See the MIT License
+// for more details.
+//
+// You should have received a copy of the MIT License along with this source
+// code file in the root of this repository. If not, see one of the following
+// 3rd party sites for a copy of the license template:
+// - <https://opensource.org/licenses/MIT>
+// - <https://choosealicense.com/licenses/mit>
+// - <https://spdx.org/licenses/MIT>
 
 /**
- * @ignore
  * @file Functions for decorating cli strings.
+ * @ignore
  * @author James Reid
  */
 
@@ -29,9 +37,8 @@ class DecoratedError extends Error {
      * Build new error based on supplied options object which may set the custom
      * name of the error, the top level message of the error, and then any
      * number of other custom fields.
-     *
-     * @param {Object.<string,string|number|boolean>} options - Options object
-     *      containing any string keys, and string, number or boolean values.
+     * @param {Object.<string,string|number|boolean>} options Options object
+     * containing any string keys, and string, number or boolean values.
      */
     constructor(options) {
         super()
@@ -65,14 +72,13 @@ class DecoratedError extends Error {
  * Decorate a string with control characters for changing cli string colors and
  * text decoration. Adds supplied list of modifiers for the string, then uses
  * reset character to set text back to default.
- *
  * @summary Return original string decorated with control characters.
- * @param {string} string - String to be decorated.
- * @param {object} options - Options object.
- * @param {string[]=} options.modifiers - String array of modifiers/control
- *      characters to apply input string.
- * @param {number=} options.tabs - Number of tab indents to include on string.
- * @param {number=} options.tabSize - Number of spaces for each tab.
+ * @param {string} string String to be decorated.
+ * @param {object} obj Optional destructured parameters object.
+ * @param {string[]} [obj.modifiers] String array of modifiers/control
+ * characters to apply input string.
+ * @param {number} [obj.tabs] Number of tab indents to include on string.
+ * @param {number} [obj.tabSize] Number of spaces for each tab.
  * @returns {string} Original string decorated with control characters.
  */
 const decorate = (string, { modifiers = [], tabs = 0, tabSize = 4 } = {}) => {
@@ -91,11 +97,10 @@ const decorate = (string, { modifiers = [], tabs = 0, tabSize = 4 } = {}) => {
 /**
  * Wrapper around decorate function to decorate a string with a foreground
  * colour control character, and optional number of tab indents.
- *
  * @summary Decorate a string with a foreground colour control character.
- * @param {string} string - String to be decorated.
- * @param {string} color - Desired foreground colour of string.
- * @param {number} [tabs=0] - Number of tab indents to include on string.
+ * @param {string} string String to be decorated.
+ * @param {string} color Desired foreground colour of string.
+ * @param {number} [tabs=0] Number of tab indents to include on string.
  * @returns {string} Original string decorated with color control character.
  */
 const decorateFg = (string, color, tabs = 0) => {
@@ -110,11 +115,10 @@ const decorateFg = (string, color, tabs = 0) => {
 /**
  * Wrapper around decorate function to decorate a string with a background
  * colour control character, and optional number of tab indents.
- *
  * @summary Decorate a string with a background colour control character.
- * @param {string} string - String to be decorated.
- * @param {string} color - Desired background colour of string.
- * @param {number} [tabs=0] - Number of tab indents to include on string.
+ * @param {string} string String to be decorated.
+ * @param {string} color Desired background colour of string.
+ * @param {number} [tabs=0] Number of tab indents to include on string.
  * @returns {string} Original string decorated with color control character.
  */
 const decorateBg = (string, color, tabs = 0) => {
@@ -132,14 +136,13 @@ const decorateBg = (string, color, tabs = 0) => {
  * whilst ignoring length of control characters which will not be rendered by
  * the console (i.e. pad string such that the displayed string will be the
  * correct length when logged in the console).
- *
  * @summary Pad end of string, ignoring length of control characters.
- * @param {string} string - String to be padded.
- * @param {number} maxLength - Maximum length of string.
- * @param {string} [fillString] - Optional fill string passed to
- *      String.prototype.padEnd method
+ * @param {string} string String to be padded.
+ * @param {number} maxLength Maximum length of string.
+ * @param {string} [fillString] Optional fill string passed to
+ * String.prototype.padEnd method.
  * @returns {string} Original string padded at end, ignoring length of control
- *      characters.
+ * characters.
  */
 const padEndDecorated = (string, maxLength, fillString) => {
     // Calculate length of decorators in a string using control regex.
@@ -152,14 +155,13 @@ const padEndDecorated = (string, maxLength, fillString) => {
  * whilst ignoring length of control characters which will not be rendered by
  * the console (i.e. pad string such that the displayed string will be the
  * correct length when logged in the console).
- *
  * @summary Pad start of string, ignoring length of control characters.
- * @param {string} string - String to be padded.
- * @param {number} maxLength - Maximum length of string.
- * @param {string} [fillString] - Optional fill string passed to
- *      String.prototype.padStart method
+ * @param {string} string String to be padded.
+ * @param {number} maxLength Maximum length of string.
+ * @param {string} [fillString] Optional fill string passed to
+ * String.prototype.padStart method.
  * @returns {string} Original string padded at end, ignoring length of control
- *      characters.
+ * characters.
  */
 const padStartDecorated = (string, maxLength, fillString) => {
     // Calculate length of decorators in a string using control regex.
@@ -214,13 +216,12 @@ const cliModifiers = {
  * Convert kebab-case string to camelCase string, removing all hyphens in input
  * string, and capitalising the first character following each hyphen. Options
  * available for generating UpperCamelCase strings, and spaced strings too.
- *
  * @summary Convert kebab-case string to camelCase string.
- * @param {string} kebabCaseString - Input kebab-case string.
- * @param {boolean} isUpper - Should return string be in UpperCamelCase?
- * @param {boolean} isSpaced - Should return string replace hyphens with
- *      whitespace characters?
- * @returns {string} camelCase string version of input.
+ * @param {string} kebabCaseString Input kebab-case string.
+ * @param {boolean} isUpper Should return string be in UpperCamelCase?
+ * @param {boolean} isSpaced Should return string replace hyphens with
+ * whitespace characters?
+ * @returns {string} Converted camelCase string version of input.
  */
 const toCamelCase = (kebabCaseString, isUpper = false, isSpaced = false) => {
     // Reduce split input string with starting value object containing an empty
@@ -245,11 +246,10 @@ const toCamelCase = (kebabCaseString, isUpper = false, isSpaced = false) => {
  * markdown documentation file), replace with hyphens - this is good for
  * converting a title string to a valid kebab-case-filename. Option also
  * available for generating Upper-Kebab-Case strings.
- *
  * @summary Convert camelCaseString to kebab-case-string.
- * @param {string} camelCaseString - Input camelCaseString.
- * @param {boolean} isUpper - Should return string be in Upper-Kebab-Case?
- * @returns {string} kebab-case-string version of input.
+ * @param {string} camelCaseString Input camelCaseString.
+ * @param {boolean} isUpper Should return string be in Upper-Kebab-Case?
+ * @returns {string} Converted kebab-case-string version of input.
  */
 const toKebabCase = (camelCaseString, isUpper = false) => {
     // Reduce split input string with starting value object containing an empty
